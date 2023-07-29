@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/75b27a2f9b.js" crossorigin="anonymous"></script>
+        <style>@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500&display=swap');</style>
+        <title>Les Petits Plats</title>
+    </head>
+    <body>
+        <header>
+            <img id="main-background" src="./assets/images/Background Index.png" alt="Background des Petits Plats">
+            <a href="./index.html" id="main-logo">
+                <div>LES PETITS PLATS</div>
+                <img src="./assets/images/logo.svg" alt="Logo des Petits Plats">
+            </a>
+            <h2 id="main-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h2>
+                <form id="main-search-bar" action="">
+                    <input type="text" name="search" placeholder="Rechercher une recette, un ingrédient, ...">
+                    <button id="button-loupe" type="submit">
+                        <img id="loupe" src="./assets/images/search.svg" alt="Logo Loupe de Recherche">
+                    </button>
+                </form>
+        </header>
+        <main>
+            <!-- SECTION DES BUTTONS FILTRES -->
+            <section id="section-buttons">
+                <div id="all-buttons">
+                    <button class="filter-button">
+                        <div>Ingrédients</div>
+                        <i class="fa-sharp fa-solid fa-angle-down"></i>
+                    </button>
+                    <button class="filter-button">
+                        <div>Appareils</div>
+                        <i class="fa-sharp fa-solid fa-angle-down"></i>
+                    </button>
+                    <button class="filter-button">
+                        <div>Ustensiles</div>
+                        <i class="fa-sharp fa-solid fa-angle-down"></i>
+                    </button>
+                </div>
+                <div id="nb-recettes">${X} recettes</div>
+            </section>
+
+            <!-- SECTION DES FILTRES APPLIQUES -->
+            <section id="section-filters">
+                <div id="filters-selected">
+                    <div class="filter">
+                        <div>Crème de coco</div>
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <!-- IMPORT DES FILTRES CHOISIS EN JS -->
+                </div>
+            </section>
+            
+        </main>
+    </body>
+</html>
