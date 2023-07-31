@@ -1,60 +1,231 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
-        <script src="https://kit.fontawesome.com/75b27a2f9b.js" crossorigin="anonymous"></script>
-        <style>@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500&display=swap');</style>
-        <title>Les Petits Plats</title>
-    </head>
-    <body>
-        <header>
-            <img id="main-background" src="./assets/images/Background Index.png" alt="Background des Petits Plats">
-            <a href="./index.html" id="main-logo">
-                <div>LES PETITS PLATS</div>
-                <img src="./assets/images/logo.svg" alt="Logo des Petits Plats">
-            </a>
-            <h2 id="main-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h2>
-                <form id="main-search-bar" action="">
-                    <input type="text" name="search" placeholder="Rechercher une recette, un ingrédient, ...">
-                    <button id="button-loupe" type="submit">
-                        <img id="loupe" src="./assets/images/search.svg" alt="Logo Loupe de Recherche">
-                    </button>
-                </form>
-        </header>
-        <main>
-            <!-- SECTION DES BUTTONS FILTRES -->
-            <section id="section-buttons">
-                <div id="all-buttons">
-                    <button class="filter-button">
-                        <div>Ingrédients</div>
-                        <i class="fa-sharp fa-solid fa-angle-down"></i>
-                    </button>
-                    <button class="filter-button">
-                        <div>Appareils</div>
-                        <i class="fa-sharp fa-solid fa-angle-down"></i>
-                    </button>
-                    <button class="filter-button">
-                        <div>Ustensiles</div>
-                        <i class="fa-sharp fa-solid fa-angle-down"></i>
-                    </button>
-                </div>
-                <div id="nb-recettes">${X} recettes</div>
-            </section>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/75b27a2f9b.js" crossorigin="anonymous"></script>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500&display=swap');</style>
+    <title>Les Petits Plats</title>
+  </head>
+  <body>
+    <header>
+      <img id="main-background" src="./assets/images/Background Index.png" alt="Background des Petits Plats">
+      <a href="./index.html" id="main-logo">
+        <div>LES PETITS PLATS</div>
+        <img src="./assets/images/logo.svg" alt="Logo des Petits Plats">
+      </a>
+      <h2 id="main-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h2>
+      <form id="main-search-bar" action="">
+        <input type="text" name="search" placeholder="Rechercher une recette, un ingrédient, ...">
+        <button id="button-loupe" type="submit">
+          <img id="loupe" src="./assets/images/search.svg" alt="Logo Loupe de Recherche">
+        </button>
+      </form>
+    </header>
+    <main>
+      <!-- SECTION DES BUTTONS FILTERS -->
+      <section id="section-buttons">
+        <div id="all-buttons">
+          <button class="filter-button">
+            <div>Ingrédients</div>
+            <i class="fa-sharp fa-solid fa-angle-down"></i>
+          </button>
+          <button class="filter-button">
+            <div>Appareils</div>
+            <i class="fa-sharp fa-solid fa-angle-down"></i>
+          </button>
+          <button class="filter-button">
+            <div>Ustensiles</div>
+            <i class="fa-sharp fa-solid fa-angle-down"></i>
+          </button>
+        </div>
+        <div id="nb-recettes">${x} recettes</div>
+      </section>
 
-            <!-- SECTION DES FILTRES APPLIQUES -->
-            <section id="section-filters">
-                <div id="filters-selected">
-                    <div class="filter">
-                        <div>Crème de coco</div>
-                        <i class="fa-solid fa-x"></i>
-                    </div>
-                    <!-- IMPORT DES FILTRES CHOISIS EN JS -->
+      <!-- SECTION DES FILTRES APPLIQUES -->
+      <section id="section-filters">
+        <div id="filters-selected">
+          <!-- IMPORT DES FILTRES CHOISIS EN JS -->
+          <div class="filter">
+            <div>Crème de coco</div>
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SECTION DES RECETTES -->
+      <section id="wrapper"> <!-- #all-recipes-cards -->
+        <div class="recipe-card">
+          <div class="recipe-entete">
+            <div class="recipe-duree">${x}min</div>
+            <!-- IMAGE DE LA RECETTE IMPORTEE-->
+            <img class="recipe-photo" src="./assets/images/photos/Recette01.jpg" alt="Photo1" style="width: 380px; height: 250px;">
+          </div>
+          <div class="recipe-complete">
+            <h3>Limonade de Coco</h3>
+            <div class="recipe-recette">
+              <h4>RECETTE</h4>
+              <p class="description-recette">
+                <!-- IMPORT RECETTE -->
+              </p>
+            </div>
+            <div class="recipe-ingredients">
+              <h4>INGRÉDIENTS</h4>
+              <!-- IMPORT INGREDIENTS 1 PAR 1 -->
+              <div class="liste-ingredients">
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Lait de coco</h5>
+                  <div class="ingredient-quantite">400ml</div>
                 </div>
-            </section>
-            
-        </main>
-    </body>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Jus de citron</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Crème de coco</h5>
+                  <div class="ingredient-quantite">4 cuillères</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Sucre</h5>
+                  <div class="ingredient-quantite">20g</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Glaçons</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="recipe-entete">
+            <div class="recipe-duree">${x}min</div>
+            <!-- IMAGE DE LA RECETTE IMPORTEE-->
+            <img class="recipe-photo" src="./assets/images/photos/Recette01.jpg" alt="Photo1" style="width: 380px; height: 250px;">
+          </div>
+          <div class="recipe-complete">
+            <h3>Limonade de Coco</h3>
+            <div class="recipe-recette">
+              <h4>RECETTE</h4>
+              <p class="description-recette">
+                <!-- IMPORT RECETTE -->
+              </p>
+            </div>
+            <div class="recipe-ingredients">
+              <h4>INGRÉDIENTS</h4>
+              <!-- IMPORT INGREDIENTS 1 PAR 1 -->
+              <div class="liste-ingredients">
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Lait de coco</h5>
+                  <div class="ingredient-quantite">400ml</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Jus de citron</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Crème de coco</h5>
+                  <div class="ingredient-quantite">4 cuillères</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Sucre</h5>
+                  <div class="ingredient-quantite">20g</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Glaçons</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="recipe-entete">
+            <div class="recipe-duree">${x}min</div>
+            <!-- IMAGE DE LA RECETTE IMPORTEE-->
+            <img class="recipe-photo" src="./assets/images/photos/Recette01.jpg" alt="Photo1" style="width: 380px; height: 250px;">
+          </div>
+          <div class="recipe-complete">
+            <h3>Limonade de Coco</h3>
+            <div class="recipe-recette">
+              <h4>RECETTE</h4>
+              <p class="description-recette">
+                <!-- IMPORT RECETTE -->
+              </p>
+            </div>
+            <div class="recipe-ingredients">
+              <h4>INGRÉDIENTS</h4>
+              <!-- IMPORT INGREDIENTS 1 PAR 1 -->
+              <div class="liste-ingredients">
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Lait de coco</h5>
+                  <div class="ingredient-quantite">400ml</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Jus de citron</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Crème de coco</h5>
+                  <div class="ingredient-quantite">4 cuillères</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Sucre</h5>
+                  <div class="ingredient-quantite">20g</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Glaçons</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="recipe-entete">
+            <div class="recipe-duree">${x}min</div>
+            <!-- IMAGE DE LA RECETTE IMPORTEE-->
+            <img class="recipe-photo" src="./assets/images/photos/Recette01.jpg" alt="Photo1" style="width: 380px; height: 250px;">
+          </div>
+          <div class="recipe-complete">
+            <h3>Limonade de Coco</h3>
+            <div class="recipe-recette">
+              <h4>RECETTE</h4>
+              <p class="description-recette">
+                <!-- IMPORT RECETTE -->
+              </p>
+            </div>
+            <div class="recipe-ingredients">
+              <h4>INGRÉDIENTS</h4>
+              <!-- IMPORT INGREDIENTS 1 PAR 1 -->
+              <div class="liste-ingredients">
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Lait de coco</h5>
+                  <div class="ingredient-quantite">400ml</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Jus de citron</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Crème de coco</h5>
+                  <div class="ingredient-quantite">4 cuillères</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Sucre</h5>
+                  <div class="ingredient-quantite">20g</div>
+                </div>
+                <div class="ingredient">
+                  <h5 class="ingredient-nom">Glaçons</h5>
+                  <div class="ingredient-quantite">2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

@@ -1,159 +1,180 @@
+/*-----------------------------------------*/
 /*---------- HTML & BODY DISPLAY ----------*/
+/*-----------------------------------------*/
 * {
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
 }
 html {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 header {
-    width: 1440px;
-    height: 667px;
+  width: 1440px;
+  height: 667px;
 }
 main {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
+/*----------------------------*/
 /*---------- HEADER ----------*/
+/*----------------------------*/
 #main-background {
-    z-index: -1;
-    position: absolute;
+  z-index: -1;
+  position: absolute;
 }
 #main-logo {
-    display: flex;
-    align-items: center;
-    width: auto;
-    padding-left: 70px;
-    padding-top: 50px;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: auto;
+  padding-left: 70px;
+  padding-top: 50px;
+  text-decoration: none;
 }
 #main-logo div {
-    font-family: 'Anton', sans-serif;
-    font-size: 25px;
-    font-weight: 400;
-    color: white;
+  font-family: 'Anton', sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  color: white;
 }
 #main-logo  img {
-    height: 22px;
-    width: 22px;
-    margin-left: 5px;
+  height: 22px;
+  width: 22px;
+  margin-left: 5px;
 }
 #main-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 890px;
-    margin: 170px auto 30px auto;
-    line-height: 66.24px;
-    font-family: 'Anton', sans-serif;
-    font-size: 44px;
-    font-weight: 400;
-    color: #FFD15B;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 890px;
+  margin: 170px auto 30px auto;
+  line-height: 66.24px;
+  font-family: 'Anton', sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  color: #FFD15B;
+  text-align: center;
 }
 #main-search-bar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin: auto;
-    width: 954px;
-    height: 72px;
-    border-radius: 11px;
-    background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: auto;
+  width: 954px;
+  height: 72px;
+  border-radius: 11px;
+  background-color: #FFFFFF;
 }
 #main-search-bar input {
-    padding-left: 35px;
-    border-radius: 11px;
-    width: 100%;
-    height: 72px;
-    size: 16px;
-    line-height: 21.86px;
-    font-weight: 400;
-    font-family: 'Manrope', sans-serif;
-    outline: none
+  padding-left: 35px;
+  border-radius: 11px;
+  width: 100%;
+  height: 72px;
+  size: 16px;
+  line-height: 21.86px;
+  font-weight: 400;
+  font-family: 'Manrope', sans-serif;
+  outline: none
 }
 #button-loupe {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 72px;
-    width: 72px;
-    border-radius: 11px;
-    background-color: #FFFFFF;
-    margin-right: 4px;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72px;
+  width: 72px;
+  border-radius: 11px;
+  background-color: #FFFFFF;
+  margin-right: 4px;
+  cursor: pointer;
 }
 #loupe {
-    padding: 12px;
-    background-color: #1B1B1B;
-    border-radius: 10px;
+  padding: 12px;
+  background-color: #1B1B1B;
+  border-radius: 10px;
 }
 
+/*-------------------------------------------*/
 /*---------- MAIN : BUTTON FILTERS ----------*/
+/*-------------------------------------------*/
 #section-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin: 0px 102px 0 102px;
-    padding-top: 21px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 102px 0 102px;
+  padding-top: 21px;
 }
 #all-buttons {
-    display: flex;
+  display: flex;
 }
 .filter-button {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 190px;
-    height: 56px;
-    margin-right: 64px;
-    border-radius: 11px;
-    cursor: pointer;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 21.86px;
-    color: #1B1B1B;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 190px;
+  height: 56px;
+  margin-right: 64px;
+  border-radius: 11px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21.86px;
+  color: #1B1B1B;
 }
 .filter-button i {
-    width: 13px;
+  width: 13px;
 }
 #nb-recettes {
-    margin-top: 17px;
-    font-family: 'Anton', sans-serif;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 31.61px;
+  margin-top: 17px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 31.61px;
 }
 
+/*---------------------------------------------*/
 /*---------- MAIN : FILTERS SELECTED ----------*/
+/*---------------------------------------------*/
 #section-filters {
-    display: flex;
-    justify-content: space-between;
-    margin: 0px 102px 0 102px;
-    padding-top: 21px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 102px 0 102px;
+  padding-top: 21px;
 }
 #filters-selected {
-    display: flex;
+  display: flex;
 }
 .filter {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 200px;
-    height: 56px;
-    margin-right: 64px;
-    margin-bottom: 21px;
-    border-radius: 11px;
-    cursor: pointer;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 21.86px;
-    color: #1B1B1B;
-    background-color: #FFD15B;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  height: 56px;
+  margin-right: 64px;
+  /* margin-bottom: 21px; */
+  border-radius: 11px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21.86px;
+  color: #1B1B1B;
+  background-color: #FFD15B;
 }
 .filter i {
-    width: 10px;
+  width: 10px;
+}
+
+/*-------------------------------------*/
+/*---------- MAIN : RECETTES ----------*/
+/*-------------------------------------*/
+#wrapper {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 66px 48px;
+}
+.recipe-card {
+  
 }
