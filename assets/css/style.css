@@ -1,6 +1,6 @@
-/*-----------------------------------------*/
-/*---------- HTML & BODY DISPLAY ----------*/
-/*-----------------------------------------*/
+/*-------------------------------------------------*/
+/*---------- HTML / BODY / HEADER / MAIN ----------*/
+/*-------------------------------------------------*/
 * {
   margin: 0px;
   padding: 0px;
@@ -10,21 +10,27 @@ html {
   display: flex;
   justify-content: center;
 }
+body {
+  max-width: 100%;
+}
 header {
   width: 1440px;
   height: 667px;
 }
 main {
+  width: 1440px;
   background-color: lightgray;
 }
 
 /*----------------------------*/
 /*---------- HEADER ----------*/
 /*----------------------------*/
+/* IMAGE DU HEADER */
 #main-background {
   z-index: -1;
   position: absolute;
 }
+/* LOGO "LES PETITS PLATS" */
 #main-logo {
   display: flex;
   align-items: center;
@@ -39,11 +45,12 @@ main {
   font-weight: 400;
   color: white;
 }
-#main-logo  img {
+#main-logo img {
   height: 22px;
   width: 22px;
   margin-left: 5px;
 }
+/* TITRE */
 #main-title {
   display: flex;
   justify-content: center;
@@ -57,6 +64,7 @@ main {
   color: #FFD15B;
   text-align: center;
 }
+/* BARRE DE RECHERCHE */
 #main-search-bar {
   display: flex;
   align-items: center;
@@ -72,12 +80,13 @@ main {
   border-radius: 11px;
   width: 100%;
   height: 72px;
-  size: 16px;
+  font-size: 16px;
   line-height: 21.86px;
   font-weight: 400;
   font-family: 'Manrope', sans-serif;
   outline: none
 }
+/* BOUTON LOUPE */
 #button-loupe {
   display: flex;
   justify-content: center;
@@ -95,9 +104,10 @@ main {
   border-radius: 10px;
 }
 
-/*-------------------------------------------*/
-/*---------- MAIN : BUTTON FILTERS ----------*/
-/*-------------------------------------------*/
+/*--------------------------------------------*/
+/*---------- MAIN : BOUTONS FILTRES ----------*/
+/*--------------------------------------------*/
+/* BOUTONS-MENUS POUR FILTRER */
 #section-buttons {
   display: flex;
   justify-content: space-between;
@@ -125,6 +135,7 @@ main {
 .filter-button i {
   width: 13px;
 }
+/* TOTAL DES RECETTES AFFICHEES */
 #nb-recettes {
   margin-top: 17px;
   font-family: 'Anton', sans-serif;
@@ -133,9 +144,9 @@ main {
   line-height: 31.61px;
 }
 
-/*---------------------------------------------*/
-/*---------- MAIN : FILTERS SELECTED ----------*/
-/*---------------------------------------------*/
+/*--------------------------------------------*/
+/*---------- MAIN : FILTRES CHOISIS ----------*/
+/*--------------------------------------------*/
 #section-filters {
   display: flex;
   justify-content: space-between;
@@ -170,11 +181,104 @@ main {
 /*---------- MAIN : RECETTES ----------*/
 /*-------------------------------------*/
 #wrapper {
-  margin-top: 40px;
+  margin: 40px 102px 0 102px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 66px 48px;
 }
-.recipe-card {
-  
+.card {
+  width: 380px;
+  height: 730px;
+  background-color: #FFFFFF;
+  border-radius: 21px;
+}
+/* ENTETE DE RECETTE */
+.recipe-entete {
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 21px 21px 0 0;
+}
+.recipe-duree {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin: 21px 22px 0 0;
+  width: 33px;
+  height: 16px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 14px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  background-color: #FFD15B;
+  color: #1B1B1B;
+}
+.recipe-entete img {
+  width: 100%;
+  height: 250px;
+  border-radius: 21px 21px 0 0;
+  object-fit: cover;
+}
+/* TITRE DE RECETTE */
+.recipe-complete {
+  padding: 32px 25px 0 25px;
+}
+.recipe-complete h3 {
+  height: 27px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+/* RECETTE */
+.recipe-recette {
+  width: 330px;
+}
+.recipe-recette h4 {
+  color: #7A7A7A;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+.recipe-recette p {
+  color: #1B1B1B;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19.12px;
+}
+/* INGREDIENTS */
+.recipe-ingredients {
+  margin-top: 32px;
+  width: 330px;
+}
+.recipe-ingredients h4 {
+  color: #7A7A7A;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+.liste-ingredients {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 21px 30px;
+}
+.ingredient-nom {
+  color: #1B1B1B;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19.12px;
+}
+.ingredient-quantite {
+  color: #7A7A7A;
+  font-family: 'Manrope';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19.12px;
 }
