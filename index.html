@@ -35,18 +35,76 @@
       <!-- SECTION DES BUTTONS FILTERS -->
       <section id="section-buttons">
         <div id="all-buttons">
-          <button class="filter-button">
-            <div>Ingrédients</div>
-            <i class="fa-sharp fa-solid fa-angle-down"></i>
-          </button>
-          <button class="filter-button">
-            <div>Appareils</div>
-            <i class="fa-sharp fa-solid fa-angle-down"></i>
-          </button>
-          <button class="filter-button">
-            <div>Ustensiles</div>
-            <i class="fa-sharp fa-solid fa-angle-down"></i>
-          </button>
+
+          <div class="filter-button">
+            <div class="filter-title">
+              <div>Ingrédients</div>
+              <i class="fa-sharp fa-solid fa-angle-down"></i>
+            </div>
+            <div class="filter-search-bar">
+              <input type="text" name="filter-1">
+              <button class="search-filter-button" type="button">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
+                  <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
+                </svg>
+              </button>
+            </div>
+            <div class="liste-ingredients-filtres">
+              <div class="ingredient-filtre">Jus de citron</div>
+              <div class="ingredient-filtre">Glaçons</div>
+              <div class="ingredient-filtre">Tomate</div>
+              <div class="ingredient-filtre">Poulet</div>
+              <div class="ingredient-filtre">Poulet</div>
+              <div class="ingredient-filtre">Poulet</div>
+              <div class="ingredient-filtre">Vinaigrette</div>
+            </div>
+          </div>
+          
+          <div class="filter-button">
+            <div class="filter-title">
+              <div>Appareils</div>
+              <i class="fa-sharp fa-solid fa-angle-down"></i>
+            </div>
+            <div class="filter-search-bar">
+              <input type="text" name="filter-2">
+              <button class="search-filter-button" type="button">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
+                  <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
+                </svg>
+              </button>
+            </div>
+            <div class="liste-ingredients-filtres">
+              <div class="ingredient-filtre">Jus de citron</div>
+              <div class="ingredient-filtre">Glaçons</div>
+              <div class="ingredient-filtre">Tomate</div>
+              <div class="ingredient-filtre">Poulet</div>
+            </div>
+          </div>
+
+          <div class="filter-button">
+            <div class="filter-title">
+              <div>Ustensiles</div>
+              <i class="fa-sharp fa-solid fa-angle-down"></i>
+            </div>
+            <div class="filter-search-bar">
+              <input type="text" name="filter-3">
+              <button class="search-filter-button" type="button">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
+                  <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
+                </svg>
+              </button>
+            </div>
+            <div class="liste-ingredients-filtres">
+              <div class="ingredient-filtre">Jus de citron</div>
+              <div class="ingredient-filtre">Glaçons</div>
+              <div class="ingredient-filtre">Tomate</div>
+              <div class="ingredient-filtre">Poulet</div>
+            </div>
+          </div>
+
         </div>
         <div id="nb-recettes">${x} recettes</div>
       </section>
@@ -63,7 +121,7 @@
       </section>
       
       <!-- SECTION DES RECETTES -->
-      <section id="wrapper"> <!-- #all-recipes-cards -->
+      <section id="wrapper">
         <div class="card">
           <div class="recipe-entete">
             <div class="recipe-duree">10min</div>
@@ -107,6 +165,7 @@
             </div>
           </div>
         </div>
+        <!-- CARTES FORMAT FIXE HTML POUR DEMO -->
         <div class="card">
           <div class="recipe-entete">
             <div class="recipe-duree">${x}min</div>

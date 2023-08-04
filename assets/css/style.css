@@ -132,24 +132,88 @@ main {
 #all-buttons {
   display: flex;
 }
+/* BOUTON COMPLET */
 .filter-button {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 190px;
+  flex-direction: column;
+  padding-left: 16px;
+  width: 179px;
   height: 56px;
   margin-right: 64px;
   border-radius: 11px;
   cursor: pointer;
+  background-color: #FFFFFF;
+}
+/* TITRE DU BOUTON */
+.filter-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 179px;
+  min-height: 56px;
   font-family: 'Manrope', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   line-height: 21.86px;
   color: #1B1B1B;
 }
-.filter-button i {
+.filter-title i {
   width: 13px;
+  margin-right: 16px;
 }
+/* SEARCH BAR DU BOUTON */
+.filter-search-bar {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 36px;
+  width: 165px;
+  border: #7A7A7A 0.5px solid;
+  border-radius: 2px;
+}
+.filter-search-bar input {
+  display: flex;
+  width: 100%;
+  outline: none;
+  margin-left: 10px;
+}
+.search-filter-button {
+  display: flex;
+  background-color: #FFFFFF;
+  margin-right: 11.5px;
+  cursor: pointer;
+}
+/* LISTE DES INGREDIENTS FILTRES */
+.liste-ingredients-filtres {
+  display: none;
+  position: relative;
+  flex-direction: column;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.ingredient-filtre {  
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19.12px;
+  margin-bottom: 12.5px;
+}
+/* HOVERING DU BOUTON */
+.filter-button:hover {
+  height: 315px;
+}
+.filter-button:hover > .filter-search-bar {
+  display: flex;
+}
+.filter-button:hover > .liste-ingredients-filtres {
+  display: flex;
+}
+
+
+
+
+
+
 /* TOTAL DES RECETTES AFFICHEES */
 #nb-recettes {
   margin-top: 17px;
