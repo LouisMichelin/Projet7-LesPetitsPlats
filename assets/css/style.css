@@ -22,6 +22,7 @@ main {
   background-color: lightgray;
 }
 
+
 /*----------------------------*/
 /*---------- HEADER ----------*/
 /*----------------------------*/
@@ -119,6 +120,7 @@ main {
   stroke: black;
 }
 
+
 /*--------------------------------------------*/
 /*---------- MAIN : BOUTONS FILTRES ----------*/
 /*--------------------------------------------*/
@@ -128,6 +130,7 @@ main {
   justify-content: space-between;
   margin: 0px 102px 0 102px;
   padding-top: 21px;
+  animation-name: menu1;
 }
 #all-buttons {
   display: flex;
@@ -160,6 +163,7 @@ main {
 .filter-title i {
   width: 13px;
   margin-right: 16px;
+  animation-name: rotate1;
 }
 /* SEARCH BAR DU BOUTON */
 .filter-search-bar {
@@ -170,6 +174,7 @@ main {
   width: 165px;
   border: #7A7A7A 0.5px solid;
   border-radius: 2px;
+  animation-name: menu2;
 }
 .filter-search-bar input {
   display: flex;
@@ -190,6 +195,7 @@ main {
   flex-direction: column;
   margin-top: 20px;
   overflow: hidden;
+  animation-name: menu2;
 }
 .ingredient-filtre {  
   font-family: 'Manrope', sans-serif;
@@ -200,20 +206,32 @@ main {
 }
 /* HOVERING DU BOUTON */
 .filter-button:hover {
-  height: 315px;
+  animation: menu1 1s ease-in-out forwards;
+}
+.filter-button:hover i {
+  animation: rotate1 forwards;
 }
 .filter-button:hover > .filter-search-bar {
   display: flex;
+  animation: menu2 1s ease-in forwards;
 }
 .filter-button:hover > .liste-ingredients-filtres {
   display: flex;
+  animation: menu2 1s ease-in forwards;
 }
-
-
-
-
-
-
+/* ANIMATIONS MENUS FILTRER */
+@keyframes rotate1 {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(180deg);}
+}
+@keyframes menu1 {
+  from {height: 56px;}
+  to {height: 315px;}
+}
+@keyframes menu2 {
+  from {opacity: 0%;}
+  to {opacity: 100%;}
+}
 /* TOTAL DES RECETTES AFFICHEES */
 #nb-recettes {
   margin-top: 17px;
@@ -222,6 +240,7 @@ main {
   font-size: 21px;
   line-height: 31.61px;
 }
+
 
 /*--------------------------------------------*/
 /*---------- MAIN : FILTRES CHOISIS ----------*/
@@ -255,6 +274,7 @@ main {
 .filter i {
   width: 10px;
 }
+
 
 /*-------------------------------------*/
 /*---------- MAIN : RECETTES ----------*/
