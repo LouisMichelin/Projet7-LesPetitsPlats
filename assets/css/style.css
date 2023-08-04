@@ -86,6 +86,12 @@ main {
   font-family: 'Manrope', sans-serif;
   outline: none
 }
+/* BOUTON EFFACER */
+#button-erase {
+  cursor: pointer;
+  background-color: #FFFFFF;
+  margin: 5px 20px 0 0;
+}
 /* BOUTON LOUPE */
 #button-loupe {
   display: flex;
@@ -99,9 +105,18 @@ main {
   cursor: pointer;
 }
 #loupe {
-  padding: 12px;
   background-color: #1B1B1B;
   border-radius: 10px;
+}
+/* EDIT LOUPE SVG EN :HOVER */
+#button-loupe:hover #loupe {
+  background-color: #FFD15B;
+}
+#button-loupe:hover circle {
+  stroke: black;
+}
+#button-loupe:hover line {
+  stroke: black;
 }
 
 /*--------------------------------------------*/

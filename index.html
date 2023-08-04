@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/75b27a2f9b.js" crossorigin="anonymous"></script>
-    <style>@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500&display=swap');</style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope&display=swap');</style>
     <title>Les Petits Plats</title>
   </head>
   <body>
     <header>
-      <img id="main-background" src="./assets/images/Background Index.png" alt="Background des Petits Plats">
+      <img id="main-background" src="./assets/images/background.png" alt="Background des Petits Plats">
       <a href="./index.html" id="main-logo">
         <div>LES PETITS PLATS</div>
         <img src="./assets/images/logo.svg" alt="Logo des Petits Plats">
@@ -19,8 +19,15 @@
       <h2 id="main-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h2>
       <form id="main-search-bar" action="">
         <input type="text" name="search" placeholder="Rechercher une recette, un ingrédient, ...">
+        <button id="button-erase" type="button">
+          <img src="./assets/images/croix.svg" alt="Effacer votre Recherche">
+        </button>
         <button id="button-loupe" type="submit">
-          <img id="loupe" src="./assets/images/search.svg" alt="Logo Loupe de Recherche">
+          <svg id="loupe" width="51" height="52" viewBox="0 0 51 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="51" height="52" rx="10"/>
+            <circle cx="22" cy="22" r="9.5" stroke="white"/>
+            <line x1="30.3536" y1="30.6464" x2="39.3536" y2="39.6464" stroke="white"/>
+          </svg>
         </button>
       </form>
     </header>
