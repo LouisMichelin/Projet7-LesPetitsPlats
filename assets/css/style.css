@@ -189,7 +189,7 @@ main {
   cursor: pointer;
 }
 /* LISTE DES INGREDIENTS FILTRES */
-.liste-ingredients-filtres {
+#liste-ingredients-filtres, #liste-appareils-filtres, #liste-ustensiles-filtres {
   display: none;
   position: relative;
   flex-direction: column;
@@ -197,7 +197,7 @@ main {
   overflow: hidden;
   animation-name: menu2;
 }
-.ingredient-filtre {  
+.item-filtre {  
   font-family: 'Manrope', sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -215,7 +215,10 @@ main {
   display: flex;
   animation: menu2 1s ease-in forwards;
 }
-.filter-button:hover > .liste-ingredients-filtres {
+.filter-button:hover > #liste-ingredients-filtres,
+.filter-button:hover > #liste-appareils-filtres,
+.filter-button:hover > #liste-ustensiles-filtres
+{
   display: flex;
   animation: menu2 1s ease-in forwards;
 }
@@ -271,8 +274,8 @@ main {
   color: #1B1B1B;
   background-color: #FFD15B;
 }
-.filter i {
-  width: 10px;
+#delete-filter path{
+  stroke: #000000;
 }
 
 
@@ -348,6 +351,8 @@ main {
   font-weight: 400;
   font-size: 14px;
   line-height: 19.12px;
+  max-height: 115px;
+  overflow: auto;
 }
 /* INGREDIENTS */
 .recipe-ingredients {
