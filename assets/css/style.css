@@ -23,6 +23,7 @@ main {
 }
 
 
+
 /*----------------------------*/
 /*---------- HEADER ----------*/
 /*----------------------------*/
@@ -89,6 +90,7 @@ main {
 }
 /* BOUTON EFFACER */
 #button-erase {
+  display: none;
   cursor: pointer;
   background-color: #FFFFFF;
   margin: 5px 20px 0 0;
@@ -121,6 +123,7 @@ main {
 }
 
 
+
 /*--------------------------------------------*/
 /*---------- MAIN : BOUTONS FILTRES ----------*/
 /*--------------------------------------------*/
@@ -137,13 +140,17 @@ main {
 }
 /* BOUTON COMPLET */
 .filter-button {
-  display: flex;
-  flex-direction: column;
-  padding-left: 16px;
+  z-index: 1;
+  display: grid;
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
+  /* padding-left: 16px; */
   width: 179px;
-  height: 56px;
+  max-height: 56px;
   margin-right: 64px;
   border-radius: 11px;
+  /* border-radius: 5px 5px 0 0; */
   cursor: pointer;
   background-color: #FFFFFF;
 }
@@ -152,8 +159,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 179px;
-  min-height: 56px;
+  margin-left: 16px;
+  width: 100%;
+  height: 56px;
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -162,19 +170,33 @@ main {
 }
 .filter-title i {
   width: 13px;
-  margin-right: 16px;
+  margin-right: 32px;
   animation-name: rotate1;
+}
+.menu-dropdown {
+  height: 180px;
+  max-width: 179px;
+  background-color: #FFFFFF;
+  visibility: hidden;
+  display: flex;
+  opacity: 0;
+  flex-direction: column;
+  transform: translateY(-45%);
+  border-radius: 0 0 11px 11px;
 }
 /* SEARCH BAR DU BOUTON */
 .filter-search-bar {
-  display: none;
+  visibility: hidden;
+  display: flex;
+  opacity: 0;
   justify-content: center;
   align-items: center;
   min-height: 36px;
-  width: 165px;
+  margin: 0 10px 0 10px;
   border: #7A7A7A 0.5px solid;
   border-radius: 2px;
   animation-name: menu2;
+  margin-top: 10px;
 }
 .filter-search-bar input {
   display: flex;
@@ -188,52 +210,17 @@ main {
   margin-right: 11.5px;
   cursor: pointer;
 }
-/* LISTE DES INGREDIENTS FILTRES */
-#liste-ingredients-filtres, #liste-appareils-filtres, #liste-ustensiles-filtres {
-  display: none;
-  position: relative;
-  flex-direction: column;
-  margin-top: 20px;
-  overflow: hidden;
-  animation-name: menu2;
+/* ANIMATIONS DES MENUS FILTRES */
+.filter-button:hover .menu-dropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-5%);
+  transition: .33s ease-in-out;
 }
-.item-filtre {  
-  font-family: 'Manrope', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 19.12px;
-  margin-bottom: 12.5px;
-}
-/* HOVERING DU BOUTON */
-.filter-button:hover {
-  animation: menu1 1s ease-in-out forwards;
-}
-.filter-button:hover i {
-  animation: rotate1 forwards;
-}
-.filter-button:hover > .filter-search-bar {
-  display: flex;
-  animation: menu2 1s ease-in forwards;
-}
-.filter-button:hover > #liste-ingredients-filtres,
-.filter-button:hover > #liste-appareils-filtres,
-.filter-button:hover > #liste-ustensiles-filtres
-{
-  display: flex;
-  animation: menu2 1s ease-in forwards;
-}
-/* ANIMATIONS MENUS FILTRER */
-@keyframes rotate1 {
-  from {transform: rotate(0deg);}
-  to {transform: rotate(180deg);}
-}
-@keyframes menu1 {
-  from {height: 56px;}
-  to {height: 315px;}
-}
-@keyframes menu2 {
-  from {opacity: 0%;}
-  to {opacity: 100%;}
+.filter-button:hover .filter-search-bar {
+  visibility: visible;
+  opacity: 1;
+  transition: .5s ease-in;
 }
 /* TOTAL DES RECETTES AFFICHEES */
 #nb-recettes {
@@ -243,7 +230,19 @@ main {
   font-size: 21px;
   line-height: 31.61px;
 }
-
+/* ITEMS DES BOUTONS FILTRES */
+#all-items-ingredients,
+#all-items-appareils,
+#all-items-ustensils {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  overflow: hidden;
+  font-family: 'Manrope', sans-serif;
+}
+.item-filtre {
+  margin: 10px 0 0 10px;
+}
 
 /*--------------------------------------------*/
 /*---------- MAIN : FILTRES CHOISIS ----------*/
@@ -255,7 +254,8 @@ main {
   padding-top: 21px;
 }
 #filters-selected {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 .filter {
   display: flex;
@@ -264,7 +264,7 @@ main {
   width: 200px;
   height: 56px;
   margin-right: 64px;
-  /* margin-bottom: 21px; */
+  margin-bottom: 21px;
   border-radius: 11px;
   cursor: pointer;
   font-family: 'Manrope', sans-serif;
@@ -279,11 +279,12 @@ main {
 }
 
 
+
 /*-------------------------------------*/
 /*---------- MAIN : RECETTES ----------*/
 /*-------------------------------------*/
 #wrapper {
-  margin: 40px 102px 0 102px;
+  margin: 19px 102px 0 102px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 66px 48px;

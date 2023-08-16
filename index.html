@@ -18,7 +18,7 @@
       </a>
       <h2 id="main-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h2>
       <form id="main-search-bar" action="">
-        <input type="text" name="search" placeholder="Rechercher une recette, un ingrédient, ...">
+        <input id="main-input" type="text" name="search" placeholder="Rechercher une recette, un ingrédient, ...">
         <button id="button-erase" type="button">
           <img src="./assets/images/croix.svg" alt="Effacer votre Recherche">
         </button>
@@ -37,58 +37,67 @@
       <!--------------------------------->
       <section id="section-buttons">
         <div id="all-buttons">
-          <div class="filter-button">
+          <!-- BOUTON FILTRE -->
+          <div class="filter-button" role="menubar" tabindex="0">
             <div class="filter-title">
               <div>Ingrédients</div>
               <i class="fa-sharp fa-solid fa-angle-down"></i>
             </div>
-            <div class="filter-search-bar">
-              <input type="text" name="filter-1">
-              <button class="search-filter-button" type="button">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
-                  <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
-                </svg>
-              </button>
-            </div>
-            <div id="liste-ingredients-filtres">
-              <div class="item-filtre">Jus de citron</div>
+            <div class="menu-dropdown">
+              <!-- SEARCH BAR -->
+              <div class="filter-search-bar">
+                <input id="ingredients-input" type="text" name="filter-1">
+                <button class="search-filter-button" type="button">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
+                    <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
+                  </svg>
+                </button>
+              </div>
+              <!-- INGREDIENTS DISPOS -->
+              <div id="all-items-ingredients"></div>
             </div>
           </div>
-          <div class="filter-button">
+          <!-- BOUTON FILTRE -->
+          <div class="filter-button" role="menubar" tabindex="0">
             <div class="filter-title">
               <div>Appareils</div>
               <i class="fa-sharp fa-solid fa-angle-down"></i>
             </div>
-            <div class="filter-search-bar">
-              <input type="text" name="filter-2">
-              <button class="search-filter-button" type="button">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
-                  <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
-                </svg>
-              </button>
-            </div>
-            <div id="liste-appareils-filtres">
-              <div class="item-filtre">Mixeur</div>
+            <div class="menu-dropdown">
+              <!-- SEARCH BAR -->
+              <div class="filter-search-bar">
+                <input id="appareils-input" type="text" name="filter-1">
+                <button class="search-filter-button" type="button">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
+                    <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
+                  </svg>
+                </button>
+              </div>
+              <!-- APPAREILS DISPOS -->
+              <div id="all-items-appareils"></div>
             </div>
           </div>
-          <div class="filter-button">
+          <!-- BOUTON FILTRE -->
+          <div class="filter-button" role="menubar" tabindex="0">
             <div class="filter-title">
               <div>Ustensiles</div>
               <i class="fa-sharp fa-solid fa-angle-down"></i>
             </div>
-            <div class="filter-search-bar">
-              <input type="text" name="filter-3">
-              <button class="search-filter-button" type="button">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
-                  <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
-                </svg>
-              </button>
-            </div>
-            <div id="liste-ustensiles-filtres">
-              <div class="item-filtre">Saladier</div>
+            <div class="menu-dropdown">
+              <!-- SEARCH BAR -->
+              <div class="filter-search-bar">
+                <input id="ustensils-input" type="text" name="filter-1">
+                <button class="search-filter-button" type="button">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="1"/>
+                    <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="1"/>
+                  </svg>
+                </button>
+              </div>
+              <!-- USTENSILES DISPOS -->
+              <div id="all-items-ustensils"></div>
             </div>
           </div>
         </div>
@@ -98,14 +107,7 @@
       <!-- SECTION DES FILTRES APPLIQUES -->
       <!----------------------------------->
       <section id="section-filters">
-        <div id="filters-selected">
-          <div class="filter">
-            <div>Crème de coco</div>
-            <svg id="delete-filter" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
+        <div id="filters-selected"></div>
       </section>
       <!------------------------------------>
       <!-- SECTION DES RECETTES AFFICHEES -->
