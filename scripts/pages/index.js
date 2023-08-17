@@ -166,8 +166,6 @@ buttonErase.addEventListener("click", function() {
   mainInput.value = "";
   buttonErase.style.display = "none";
 });
-
-
 // +-----------------------------------------------------------+
 // | AFFICHER LA CROIX DE SUPPRESSION SI SEARCHBAR >= 3lettres |
 // +-----------------------------------------------------------+
@@ -193,106 +191,29 @@ let allAppareilsReset = document.getElementById('all-items-appareils');
 let input2 = [];
 let allUstensilsReset = document.getElementById('all-items-ustensils');
 let input3 = [];
-// 
-inputIngredient.addEventListener("input", function(e) {
-  // ON AJOUTE LES LETTRES TAPEES DANS "input1" / OU RESET SI VALEUR = null
-  // if(e.data === null) {
-  //   input1 = [];
-  // } else {
-  //   input1.push(e.data);
-  //   // console.log(input1);
-  // }
-  // -----------------------------------------------------------------------------
-  allIngredientsReset.innerHTML = "";
-
-  // ON ENLEVE LES MAJUSCULES (.toLowerCase) + LES ESPACES (.trim)
-  const input = e.target.value.toLowerCase().trim();
-
-  // FILTRAGE DES INGREDIENTS
-  const filteredIngredients = allIngredients.filter(x => {
-    // INGREDIENT "c" en minuscule
-    const c = x.toLowerCase();
-    let m = 0;
-    for(let l of input) {
-      console.log("L=",l)
-      const i = c.substring(m).indexOf(l);
-      console.log("i=",i);
-      if(i < m) return false;
-      m = i;
-      console.log("M=", m);
-    }
-    
-    return true;
-  });
-  // REMPLACE LES INGREDIENTS DANS LE BOUTON DE TRI
-  input1 = filteredIngredients;
-  allIngredientsReset.innerHTML = input1;
-  console.log(filteredIngredients);
-  // 
-  // -----------------------------------------------------------------------------
-  // ON SPLIT LA VALEUR "STRING" de "input2" ET ON COMPARE AVEC LES LETTRES TAPEES
-  // for(let i=0; i<input1.length; i++) {
-  //   let input2Split = input2.split('');
-  //   if(input1[i] === input2Split[i]) {
-  //     console.log("Oui, c'est la même lettre:", input1[i]);
-  //   } else {
-  //     console.log("Non, pas la même lettre.")
-  //   }
-  // }
-  // 
-  // for(let i=0; i<input1.length; i++) {
-  //   if(input1[i] === allIngredients[i].split('')) {
-  //     console.log("Oui, c'est la même lettre:", input1[i]);
-  //   } else {
-  //     console.log("Non, pas la même lettre.")
-  //   }
-  // 
-  // }
-  // 
-  // console.log(allIngredients[0]);
-  // console.log(allAppareils[0]);
-  // console.log(allUstensils[0]);
-  // -----------------------------------------------------------------------------
-});
-inputAppareils.addEventListener("input", function(e) {
-  allAppareilsReset.innerHTML = "";
-  // ON ENLEVE LES MAJUSCULES (.toLowerCase) + LES ESPACES (.trim)
-  const input = e.target.value.toLowerCase().trim();
-  // FILTRAGE DES INGREDIENTS
-  const filteredAppareils = allAppareils.filter(x => {
-    // INGREDIENT "c" en minuscule
-    const c = x.toLowerCase();
-    let m = 0;
-    for(let l of input) {
-      const i = c.substring(m).indexOf(l);
+//
+inputIngredient.addEventListener("input", x => {
+  input1.pop(); /* REMOVE [x-1] */
+  input1.push(x.target.value.toLowerCase().trim()); /* ADD SEARCH LETTER TO : input1 */
+  const filteredIngredient = allIngredients.filter(y => {
+    for (let l of input1) {
+      console.log("Mot que l'on saisit dans Input1: ", l);
+      let m = 0;
+      const c = y.toLowerCase();
+      console.log("Ingrédient comparé, en minuscule: ", c);
+      const i = c.substring(m).indexOf(l)
+      console.log("Index 'i' de la valeur saisie: ", i);
       if(i < m) return false;
       m = i;
     }
     return true;
   });
-  // REMPLACE LES INGREDIENTS DANS LE BOUTON DE TRI
-  input2 = filteredAppareils;
-  allAppareilsReset.innerHTML = input2;
-  console.log(filteredAppareils);
-});
-inputUstensils.addEventListener("input", function(e) {
-  allUstensilsReset.innerHTML = "";
-  // ON ENLEVE LES MAJUSCULES (.toLowerCase) + LES ESPACES (.trim)
-  const input = e.target.value.toLowerCase().trim();
-  // FILTRAGE DES INGREDIENTS
-  const filteredUstensils = allUstensils.filter(x => {
-    // INGREDIENT "c" en minuscule
-    const c = x.toLowerCase();
-    let m = 0;
-    for(let l of input) {
-      const i = c.substring(m).indexOf(l);
-      if(i < m) return false;
-      m = i;
-    }
-    return true;
-  });
-  // REMPLACE LES INGREDIENTS DANS LE BOUTON DE TRI
-  input3 = filteredUstensils;
-  allUstensilsReset.innerHTML = input3;
-  console.log(filteredUstensils);
+  
+  // allIngredientsReset.innerHTML = filteredIngredient;
+  // filteredIngredient.setAttribute("class", "item-filtre");
+  // allIngredientsReset.replace(/\n/g, '<br>');
+  // allIngredientsReset.style.display = "flex";
+  // allIngredientsReset.style.flexDirection = "column";
+  console.log(filteredIngredient);
+  allIngredientsReset.innerHTML = filteredIngredient;
 });
