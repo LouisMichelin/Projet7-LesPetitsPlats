@@ -174,7 +174,7 @@ main {
   animation-name: rotate1;
 }
 .menu-dropdown {
-  height: 180px;
+  height: 280px;
   max-width: 179px;
   background-color: #FFFFFF;
   visibility: hidden;
@@ -197,6 +197,7 @@ main {
   border-radius: 2px;
   animation-name: menu2;
   margin-top: 10px;
+  margin-bottom: 15px;
 }
 .filter-search-bar input {
   display: flex;
@@ -223,8 +224,7 @@ main {
   transition: .5s ease-in;
 }
 .filter-button:hover .logo-menu-filter {
-  animation: rotate .5s normal forwards;
-  
+  animation: rotate .5s normal forwards; 
 }
 @keyframes rotate {
   0% {
@@ -234,7 +234,6 @@ main {
     transform: rotate(180deg);
   }
 }
-
 /* TOTAL DES RECETTES AFFICHEES */
 #nb-recettes {
   margin-top: 17px;
@@ -243,7 +242,56 @@ main {
   font-size: 21px;
   line-height: 31.61px;
 }
-/* ITEMS DES BOUTONS FILTRES */
+/* ITEMS CHOISIS DANS LE MENU DEROULANT DES FILTRES */
+#selected-ingredients,
+#selected-appareils,
+#selected-ustensils {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Manrope', sans-serif;
+}
+.item-selected-style {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.item-selected {
+  display: flex;
+  background-color: #FFD15B;
+  padding: 10px 10px 10px 20px;
+  width: 100%;
+}
+.delete-filter {
+  align-items: center;
+  background-color: #FFD15B;
+  height: 100%;
+  padding-right: 15px;
+}
+.delete-filter svg {
+  display: none;
+  align-items: center;
+}
+/* HOVERING SUR ITEM SELECTED */
+.delete-filter:hover {
+  cursor: pointer;
+}
+.item-selected-style:hover .item-selected {
+  font-weight: 700;
+}
+.item-selected-style:hover svg {
+  display: flex;
+  animation: fade .75s ease-in forwards;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* ITEMS DES BOUTONS FILTRES (INGREDIENTS / APPAREILS / USTENSILES) */
 #all-items-ingredients,
 #all-items-appareils,
 #all-items-ustensils {
@@ -256,6 +304,8 @@ main {
 .item-filtre {
   margin: 10px 0 0 10px;
 }
+
+
 
 /*--------------------------------------------*/
 /*---------- MAIN : FILTRES CHOISIS ----------*/
