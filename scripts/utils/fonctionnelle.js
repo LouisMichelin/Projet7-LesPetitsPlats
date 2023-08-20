@@ -15,32 +15,31 @@ let input3 = [];
 console.log(allIngredients);
 console.log(allAppareils);
 console.log(allUstensils);
-// MISE EN PLACE DES INGREDIENTS
-for(let i=0; i < allIngredients.length; i++) {
+// MISE EN PLACE DES INGREDIENTS : FONCTIONNELLE
+allIngredients.forEach(ingredient => {
   let div = document.createElement('div');
   div.setAttribute("class", "item-filtre");
   allItemsIngredients.appendChild(div);
-  div.innerHTML = allIngredients[i];
-}
-// MISE EN PLACE DES APPAREILS
-for(let i=0; i < allAppareils.length; i++) {
+  div.innerHTML = ingredient;
+});
+// MISE EN PLACE DES APPAREILS : FONCTIONNELLE
+allAppareils.forEach(appareil => {
   let div = document.createElement('div');
   div.setAttribute("class", "item-filtre");
   allItemsAppareils.appendChild(div);
-  div.innerHTML = allAppareils[i];
-}
-// MISE EN PLACE DES USTENSILES
-for(let i=0; i < allUstensils.length; i++) {
+  div.innerHTML = appareil;
+});
+// MISE EN PLACE DES USTENSILES : FONCTIONNELLE
+allUstensils.forEach(ustensil => {
   let div = document.createElement('div');
   div.setAttribute("class", "item-filtre");
   allItemsUstensils.appendChild(div);
-  div.innerHTML = allUstensils[i];
-}
+  div.innerHTML = ustensil;
+});
 
-// +------------------------------+
-// | FILTRES : BOUTON INGREDIENTS |
-// +------------------------------+
-// FILTRE INGREDIENTS
+// +--------------------+
+// | FILTRE INGREDIENTS |
+// +--------------------+
 inputIngredient.addEventListener("input", x => {
   input1.pop(); // REMOVE [x-1]
   input1.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
@@ -59,16 +58,18 @@ inputIngredient.addEventListener("input", x => {
   });
   console.log(filteredIngredients);
   allItemsIngredients.innerHTML = "";
-
-  // PASSER CECI EN .FOREACH (FONCTIONNEL)
-  for(let i=0; i < filteredIngredients.length; i++) {
+  // NEW DISPLAY
+  filteredIngredients.forEach(ingredient => {
     let div = document.createElement('div');
     div.setAttribute("class", "item-filtre");
     allItemsIngredients.appendChild(div);
-    div.innerHTML = filteredIngredients[i];
-  }
+    div.innerHTML = ingredient;
+  });
 });
-// FILTRE APPAREILS
+
+// +------------------+
+// | FILTRE APPAREILS |
+// +------------------+
 inputAppareils.addEventListener("input", x => {
   input2.pop(); // REMOVE [x-1]
   input2.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
@@ -87,14 +88,18 @@ inputAppareils.addEventListener("input", x => {
   });
   console.log(filteredAppareils);
   allItemsAppareils.innerHTML = "";
-  for(let i=0; i < filteredAppareils.length; i++) {
+  // NEW DISPLAY
+  filteredAppareils.forEach(appareil => {
     let div = document.createElement('div');
     div.setAttribute("class", "item-filtre");
     allItemsAppareils.appendChild(div);
-    div.innerHTML = filteredAppareils[i];
-  }
+    div.innerHTML = appareil;
+  });
 });
-// FILTRE USTENSILES
+
+// +-------------------+
+// | FILTRE USTENSILES |
+// +-------------------+
 inputUstensils.addEventListener("input", x => {
   input3.pop(); // REMOVE [x-1]
   input3.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
@@ -113,10 +118,11 @@ inputUstensils.addEventListener("input", x => {
   });
   console.log(filteredUstensils);
   allItemsUstensils.innerHTML = "";
-  for(let i=0; i < filteredUstensils.length; i++) {
+  // NEW DISPLAY
+  filteredUstensils.forEach(ustensil => {
     let div = document.createElement('div');
     div.setAttribute("class", "item-filtre");
     allItemsUstensils.appendChild(div);
-    div.innerHTML = filteredUstensils[i];
-  }
+    div.innerHTML = ustensil;
+  });
 });
