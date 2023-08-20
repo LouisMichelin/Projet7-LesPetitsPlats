@@ -8,9 +8,9 @@ buttonErase.addEventListener("click", function () {
   buttonErase.style.display = "none";
 });
 
-// +-----------------------------------------------------------+
-// | AFFICHER LA CROIX DE SUPPRESSION SI SEARCHBAR >= 3lettres |
-// +-----------------------------------------------------------+
+// +------------------------------------------------+
+// | AFFICHER DELETE BUTTON SI >= 3 LETTRES SAISIES |
+// +------------------------------------------------+
 mainInput.addEventListener("input", function () {
   if (mainInput.value == "") {
     buttonErase.style.display = "none";
@@ -26,49 +26,48 @@ let allIngredients = [];
 let allAppareils = [];
 let allUstensils = [];
 
+// +---------------------+
+// | PROGRAMME PRINCIPAL |
+// +---------------------+
 function init() {
-  // TOTAL DES RECETTES
+  // TOTAL RECETTES
   let totalRecipes = document.getElementById('nb-recettes');
   totalRecipes.innerHTML = `${recipes.length} recettes`;
-
-  // +---------------------------+
-  // | Programme principale  |
-  // +---------------------------+
+  // SETUP WRAPPER
   let wrapper = document.getElementById('wrapper');
   wrapper.innerHTML = "";
   recipes.forEach(recipe => {
-    // creation des cartes et leurs affichage sur le dom 
+    // CREATION DES CARTES ET DE LEUR AFFICHAGE SUR LE DOM
     const card = getRecipesCardDOM(recipe);
     wrapper.appendChild(card);
-
     getAllItemFilters(recipe);
-
   });
-  //Eliminer les doublons
+  // ELIMINER DOUBLONS
   convertToSet();
 }
 
-// creer les 3 tableaux allIngredients, allUnstuncils et allAppareils.
+// +-----------------------------------------------+
+// | REGROUPE LES INGREDIENTS/APPAREILS/USTENSILES |
+// +-----------------------------------------------+
 function getAllItemFilters(recipe) {
-  // REGROUPE LES INGREDIENTS/APPAREILS/USTENSILES
   let ingredientConsole = recipe.ingredients;
   let ustensilsConsole = recipe.ustensils;
-
+  // CREATION MENU : INGREDIENTS
+  ingredientConsole.forEach(item => {
+    allIngredients.push(item.ingredient);
+  });
+  // CREATION MENU : APPAREILS
   allAppareils.push(recipe.appliance);
-
-  // REGROUPE TOUS LES ITEMS DE CHAQUE CATEGORIE
-  for (let z = 0; z < ustensilsConsole.length; z++) {
-    allUstensils.push(recipe.ustensils[z]);
-  }
-  // REGROUPE TOUS LES ITEMS DE CHAQUE CATEGORIE
-  for (let z = 0; z < ingredientConsole.length; z++) {
-    allIngredients.push(recipe.ingredients[z].ingredient);
-  }
-
+  // CREATION MENU : USTENSILES
+  ustensilsConsole.forEach(item => {
+    allUstensils.push(item);
+  });
 }
 
+// +---------------------------------+
+// | ELIMINE LES DOUBLONS DES LISTES |
+// +---------------------------------+
 function convertToSet() {
-  // ELIMINE LES DOUBLONS DES LISTES
   allIngredients = [...new Set(allIngredients)];
   allAppareils = [...new Set(allAppareils)];
   allUstensils = [...new Set(allUstensils)];
@@ -117,7 +116,6 @@ function getRecipesCardDOM(recipe) {
   ingredientNom.setAttribute("class", "ingredient-nom");
   let ingredientQuantite = document.createElement('div');
   ingredientQuantite.setAttribute("class", "ingredient-quantite");
-
   // 
   // AFFICHAGE DES DONNEES DE CHAQUE INGREDIENT DE RECIPES.INGREDIENTS
   //
