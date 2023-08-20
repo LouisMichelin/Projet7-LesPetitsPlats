@@ -120,25 +120,24 @@ function getRecipesCardDOM(recipe) {
   // AFFICHAGE DES DONNEES DE CHAQUE INGREDIENT DE RECIPES.INGREDIENTS
   //
   let ingredientConsole = recipe.ingredients;
-  for (let y = 0; y < ingredientConsole.length; y++) {
-    if (ingredientConsole[y].quantity && ingredientConsole[y].unit) {
+  ingredientConsole.forEach(recipe => {
+    if(recipe.quantity && recipe.unit) {
       ingredientRecette.appendChild(ingredientNom);
-      ingredientNom.innerHTML = ingredientConsole[y].ingredient;
+      ingredientNom.innerHTML = recipe.ingredient;
       ingredientRecette.appendChild(ingredientQuantite);
-      ingredientQuantite.innerHTML = `${ingredientConsole[y].quantity}${ingredientConsole[y].unit}`;
-    } else if (ingredientConsole[y].quantity) {
+      ingredientQuantite.innerHTML = `${recipe.quantity}${recipe.unit}`;
+    } else if (recipe.quantity) {
       ingredientRecette.appendChild(ingredientNom);
-      ingredientNom.innerHTML = ingredientConsole[y].ingredient;
+      ingredientNom.innerHTML = recipe.ingredient;
       ingredientRecette.appendChild(ingredientQuantite);
-      ingredientQuantite.innerHTML = `${ingredientConsole[y].quantity}`;
+      ingredientQuantite.innerHTML = `${recipe.quantity}`;
     } else {
       ingredientRecette.appendChild(ingredientNom);
-      ingredientNom.innerHTML = ingredientConsole[y].ingredient;
+      ingredientNom.innerHTML = recipe.ingredient;
       ingredientQuantite.innerHTML = "";
     }
     listeIngredients.appendChild(ingredientRecette.cloneNode(true));
-  }
-
+  });
   // 
   // ASSEMBLAGE DES BALISES
   // 
