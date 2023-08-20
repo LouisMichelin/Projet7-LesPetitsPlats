@@ -59,6 +59,8 @@ inputIngredient.addEventListener("input", x => {
   });
   console.log(filteredIngredients);
   allItemsIngredients.innerHTML = "";
+
+  // PASSER CECI EN .FOREACH (FONCTIONNEL)
   for(let i=0; i < filteredIngredients.length; i++) {
     let div = document.createElement('div');
     div.setAttribute("class", "item-filtre");
