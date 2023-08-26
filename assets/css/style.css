@@ -334,6 +334,13 @@ main {
   color: #1B1B1B;
   background-color: #FFD15B;
 }
+.filter > button {
+  display: flex;
+  background-color: #FFD15B;
+}
+.filter > button:hover {
+  cursor: pointer;
+}
 #delete-filter path {
   stroke: #000000;
 }

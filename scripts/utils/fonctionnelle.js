@@ -40,6 +40,7 @@ allUstensils.forEach(ustensil => {
 // +-------------------------------------------------------------+
 // | FUNCTION CREATE SVG : "DELETE BUTTON FROM FILTERS SELECTED" |
 // +-------------------------------------------------------------+
+// ROUNDED CROSS
 function renderSVGIcon(Node) {
   let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   iconSvg.setAttribute('width', '17');
@@ -58,6 +59,24 @@ function renderSVGIcon(Node) {
   iconPath.setAttribute('stroke-linejoin', 'round');
   // APPENDCHILD'S
   iconSvg.appendChild(iconCircle);
+  iconSvg.appendChild(iconPath);
+  
+  return Node.appendChild(iconSvg);
+};
+// CROSS
+function renderSVGCross(Node) {
+  let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  iconSvg.setAttribute('width', '17');
+  iconSvg.setAttribute('height', '17');
+  iconSvg.setAttribute('viewBox', '0 0 17 17');
+  iconSvg.setAttribute('fill', '#FFD15B');
+  let iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  iconPath.setAttribute('d', 'M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15');
+  iconPath.setAttribute('stroke', '#1B1B1B');
+  iconPath.setAttribute('stroke-width', '2.16667');
+  iconPath.setAttribute('stroke-linecap', 'round');
+  iconPath.setAttribute('stroke-linejoin', 'round');
+  // APPENDCHILD'S
   iconSvg.appendChild(iconPath);
   
   return Node.appendChild(iconSvg);
@@ -99,22 +118,25 @@ chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
 // | EVENT LISTENER DES INGREDIENTS + CREATE ITEM |
 // +----------------------------------------------+
 function chosenIngredient() {
+  // INGREDIENTS CHOISIS
+  const ingredientArray = [];
+  // GET ELEMENTS DANS MENU "INGREDIENTS"
   const ingredientList = document.querySelector('#all-items-ingredients');
   const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
   const selectedIngredients = document.getElementById('selected-ingredients');
-  const ingredientArray = [];
-  let x = 0;
+  // GET ELEMENTS DANS "SECTION FILTERS APPLIED"
+  const sectionFilters = document.getElementById('filters-selected');
+  
+  
   chosenIngredient.forEach(ingredient => {
-    
     ingredient.addEventListener("click", function() {
       console.log("selected item = ", ingredient.innerHTML);
-
-      if (ingredientArray[x] !== ingredient.innerHTML) {
+      let x = 0;
+      if (ingredientArray.length === 0) {
+        // MENU FILTER'S CREATION
         console.log("x vaut maintenant :", x);
-
         ingredientArray.push(ingredient.innerHTML);
         console.log("ARRAY= ", ingredientArray[x]);
-
         let div = document.createElement('div');
         div.setAttribute('class', 'item-selected-style');
         let divTitle = document.createElement('div');
@@ -125,20 +147,38 @@ function chosenIngredient() {
         // DELETE SELECTED FILTER
         button.addEventListener("click", function() {
           div.remove();
-          ingredientArray[x].filter(ingredient.innerHTML);
+          filter.remove();
+          x--;
           console.log("x vaut maintenant :", x);
         });
-        // APPENDCHILDS
+        // APPENDCHILDS MENU DEROULANT
         selectedIngredients.appendChild(div);
         div.appendChild(divTitle);
         div.appendChild(button);
         renderSVGIcon(button);
-
+        //
+        // SECTION FILTERS' CREATION
+        //
+        let filter = document.createElement('div');
+        filter.setAttribute('class', 'filter');
+        let removeFilter = document.createElement('button');
+        // DELETE SELECTED FILTER
+        removeFilter.addEventListener("click", function() {
+          filter.remove();
+          div.remove();
+          x--;
+          console.log("x vaut maintenant :", x);
+        });
+        // APPENDCHILDS SECTION FILTERS
+        sectionFilters.appendChild(filter);
+        filter.innerHTML = ingredient.innerHTML;
+        filter.appendChild(removeFilter);
+        renderSVGCross(removeFilter);
+        //
+        x++;
         console.log("innerHTML valeur: ", ingredient.innerHTML);
-
         console.log("x vaut maintenant :", x);
       }
-      x++;
     });
   });
 };
