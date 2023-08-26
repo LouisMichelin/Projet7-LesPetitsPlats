@@ -4,7 +4,7 @@
 let inputIngredient = document.getElementById('ingredients-input');
 let inputAppareils = document.getElementById('appareils-input');
 let inputUstensils = document.getElementById('ustensils-input');
-// 
+//
 let allItemsIngredients = document.getElementById('all-items-ingredients');
 let input1 = [];
 let allItemsAppareils = document.getElementById('all-items-appareils');
@@ -12,9 +12,9 @@ let input2 = [];
 let allItemsUstensils = document.getElementById('all-items-ustensils');
 let input3 = [];
 // CONSOLE.LOG CHECK
-console.log(allIngredients);
-console.log(allAppareils);
-console.log(allUstensils);
+// console.log(allIngredients);
+// console.log(allAppareils);
+// console.log(allUstensils);
 // MISE EN PLACE DES INGREDIENTS : FONCTIONNELLE
 allIngredients.forEach(ingredient => {
   let div = document.createElement('div');
@@ -36,6 +36,32 @@ allUstensils.forEach(ustensil => {
   allItemsUstensils.appendChild(div);
   div.innerHTML = ustensil;
 });
+
+// +-------------------------------------------------------------+
+// | FUNCTION CREATE SVG : "DELETE BUTTON FROM FILTERS SELECTED" |
+// +-------------------------------------------------------------+
+function renderSVGIcon(Node) {
+  let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  iconSvg.setAttribute('width', '17');
+  iconSvg.setAttribute('height', '17');
+  iconSvg.setAttribute('viewBox', '0 0 17 17');
+  iconSvg.setAttribute('fill', 'none');
+  let iconCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  iconCircle.setAttribute('cx', '8.5');
+  iconCircle.setAttribute('cy', '8.5');
+  iconCircle.setAttribute('r', '8.5');
+  iconCircle.setAttribute('fill', 'black');
+  let iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  iconPath.setAttribute('d', 'M11 11L8.5 8.5M8.5 8.5L6 6M8.5 8.5L11 6M8.5 8.5L6 11');
+  iconPath.setAttribute('stroke', '#FFD15B');
+  iconPath.setAttribute('stroke-linecap', 'round');
+  iconPath.setAttribute('stroke-linejoin', 'round');
+  // APPENDCHILD'S
+  iconSvg.appendChild(iconCircle);
+  iconSvg.appendChild(iconPath);
+  
+  return Node.appendChild(iconSvg);
+};
 
 // +--------------------+
 // | FILTRE INGREDIENTS |
@@ -61,36 +87,38 @@ inputIngredient.addEventListener("input", x => {
   // NEW DISPLAY
   filteredIngredients.forEach(ingredient => {
     let div = document.createElement('div');
-    div.setAttribute("class", "item-filtre");
+    div.setAttribute('class', 'item-filtre');
     allItemsIngredients.appendChild(div);
     div.innerHTML = ingredient;
-    
   });
-  chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - FILTRES
+  chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - FILTERED
 });
-chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NON FILTRES
-// +--------------------------------+
-// | EVENT LISTENER DES INGREDIENTS |
-// +--------------------------------+
+chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
+// +----------------------------------------------+
+// | EVENT LISTENER DES INGREDIENTS + CREATE ITEM |
+// +----------------------------------------------+
 function chosenIngredient() {
-  const ingredientList = document.querySelector("#all-items-ingredients");
-  const chosenIngredient = ingredientList.querySelectorAll("div.item-filtre");
-  const selectedIngredients = document.
+  const ingredientList = document.querySelector('#all-items-ingredients');
+  const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
+  const selectedIngredients = document.getElementById('selected-ingredients');
   chosenIngredient.forEach(ingredient => {
     ingredient.addEventListener("click", function() {
-      console.log("Je fonctionne !!!", ingredient.innerHTML);
-
-
-
-
-
+      // console.log("Je fonctionne !!!", ingredient.innerHTML);
+      let div = document.createElement('div');
+      div.setAttribute('class', 'item-selected-style');
+      let divTitle = document.createElement('div');
+      divTitle.setAttribute('class', 'item-selected');
+      divTitle.innerHTML = ingredient.innerHTML;
+      let button = document.createElement('button');
+      button.setAttribute('class', 'delete-filter');
+      // APPENDCHILDS
+      selectedIngredients.appendChild(div);
+      div.appendChild(divTitle);
+      div.appendChild(button);
+      renderSVGIcon(button);
     });
   });
-}
-
-
-
-
+};
 
 
 // +------------------+
@@ -121,24 +149,33 @@ inputAppareils.addEventListener("input", x => {
     allItemsAppareils.appendChild(div);
     div.innerHTML = appareil;
   });
+  chosenAppareil(); // EVENTLISTENER DES APPAREILS - FILTERED
 });
-
-// +---------------------+
-// | SELECTED APPAREILS |
-// +---------------------+
-
-
-
-
-
-
-
-
-
-
-
-
-
+chosenAppareil(); // EVENTLISTENER DES APPAREILS - NOT FILTERED
+// +--------------------------------------------+
+// | EVENT LISTENER DES APPAREILS + CREATE ITEM |
+// +--------------------------------------------+
+function chosenAppareil() {
+  const appareilList = document.querySelector('#all-items-appareils');
+  const chosenAppareil = appareilList.querySelectorAll('div.item-filtre');
+  const selectedAppareils = document.getElementById('selected-appareils');
+  chosenAppareil.forEach(appareil => {
+    appareil.addEventListener("click", function() {
+      let div = document.createElement('div');
+      div.setAttribute('class', 'item-selected-style');
+      let divTitle = document.createElement('div');
+      divTitle.setAttribute('class', 'item-selected');
+      divTitle.innerHTML = appareil.innerHTML;
+      let button = document.createElement('button');
+      button.setAttribute('class', 'delete-filter');
+      // APPENDCHILDS
+      selectedAppareils.appendChild(div);
+      div.appendChild(divTitle);
+      div.appendChild(button);
+      renderSVGIcon(button);
+    });
+  });
+};
 
 
 
@@ -170,8 +207,30 @@ inputUstensils.addEventListener("input", x => {
     allItemsUstensils.appendChild(div);
     div.innerHTML = ustensil;
   });
+  chosenUstensil(); // EVENTLISTENER DES USTENSILES - FILTERED
 });
-
-// +---------------------+
-// | SELECTED USTENSILES |
-// +---------------------+
+chosenUstensil(); // EVENTLISTENER DES USTENSILES - NOT FILTERED
+// +---------------------------------------------+
+// | EVENT LISTENER DES USTENSILES + CREATE ITEM |
+// +---------------------------------------------+
+function chosenUstensil() {
+  const ustensilList = document.querySelector('#all-items-ustensils');
+  const chosenUstensil = ustensilList.querySelectorAll('div.item-filtre');
+  const selectedUstensils = document.getElementById('selected-ustensils');
+  chosenUstensil.forEach(ustensil => {
+    ustensil.addEventListener("click", function() {
+      let div = document.createElement('div');
+      div.setAttribute('class', 'item-selected-style');
+      let divTitle = document.createElement('div');
+      divTitle.setAttribute('class', 'item-selected');
+      divTitle.innerHTML = ustensil.innerHTML;
+      let button = document.createElement('button');
+      button.setAttribute('class', 'delete-filter');
+      // APPENDCHILDS
+      selectedUstensils.appendChild(div);
+      div.appendChild(divTitle);
+      div.appendChild(button);
+      renderSVGIcon(button);
+    });
+  });
+};
