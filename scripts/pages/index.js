@@ -121,7 +121,7 @@ function getRecipesCardDOM(recipe) {
   //
   let ingredientConsole = recipe.ingredients;
   ingredientConsole.forEach(recipe => {
-    if(recipe.quantity && recipe.unit) {
+    if (recipe.quantity && recipe.unit) {
       ingredientRecette.appendChild(ingredientNom);
       ingredientNom.innerHTML = recipe.ingredient;
       ingredientRecette.appendChild(ingredientQuantite);

@@ -45,12 +45,12 @@ inputIngredient.addEventListener("input", x => {
   input1.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
   const filteredIngredients = allIngredients.filter(y => {
     for(let l of input1) {
-      console.log("Mot que l'on saisit dans Input1: ", l);
+      // console.log("Mot que l'on saisit dans Input1: ", l);
       let m = 0;
       const c = y.toLowerCase();
-      console.log("Ingrédient comparé: ", c);
+      // console.log("Ingrédient comparé: ", c);
       const i = c.substring(m).indexOf(l)
-      console.log("Index 'i' de la valeur saisie: ", i);
+      // console.log("Index 'i' de la valeur saisie: ", i);
       if(i < m) return false;
       m = i;
     }
@@ -64,8 +64,34 @@ inputIngredient.addEventListener("input", x => {
     div.setAttribute("class", "item-filtre");
     allItemsIngredients.appendChild(div);
     div.innerHTML = ingredient;
+    
   });
+  chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - FILTRES
 });
+chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NON FILTRES
+// +--------------------------------+
+// | EVENT LISTENER DES INGREDIENTS |
+// +--------------------------------+
+function chosenIngredient() {
+  const ingredientList = document.querySelector("#all-items-ingredients");
+  const chosenIngredient = ingredientList.querySelectorAll("div.item-filtre");
+  const selectedIngredients = document.
+  chosenIngredient.forEach(ingredient => {
+    ingredient.addEventListener("click", function() {
+      console.log("Je fonctionne !!!", ingredient.innerHTML);
+
+
+
+
+
+    });
+  });
+}
+
+
+
+
+
 
 // +------------------+
 // | FILTRE APPAREILS |
@@ -75,12 +101,12 @@ inputAppareils.addEventListener("input", x => {
   input2.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
   const filteredAppareils = allAppareils.filter(y => {
     for(let l of input2) {
-      console.log("Mot que l'on saisit dans Input1: ", l);
+      // console.log("Mot que l'on saisit dans Input1: ", l);
       let m = 0;
       const c = y.toLowerCase();
-      console.log("Appareil comparé: ", c);
+      // console.log("Appareil comparé: ", c);
       const i = c.substring(m).indexOf(l)
-      console.log("Index 'i' de la valeur saisie: ", i);
+      // console.log("Index 'i' de la valeur saisie: ", i);
       if(i < m) return false;
       m = i;
     }
@@ -97,6 +123,25 @@ inputAppareils.addEventListener("input", x => {
   });
 });
 
+// +---------------------+
+// | SELECTED APPAREILS |
+// +---------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // +-------------------+
 // | FILTRE USTENSILES |
 // +-------------------+
@@ -105,12 +150,12 @@ inputUstensils.addEventListener("input", x => {
   input3.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
   const filteredUstensils = allUstensils.filter(y => {
     for(let l of input3) {
-      console.log("Mot que l'on saisit dans Input1: ", l);
+      // console.log("Mot que l'on saisit dans Input1: ", l);
       let m = 0;
       const c = y.toLowerCase();
-      console.log("Ustensile comparé: ", c);
+      // console.log("Ustensile comparé: ", c);
       const i = c.substring(m).indexOf(l)
-      console.log("Index 'i' de la valeur saisie: ", i);
+      // console.log("Index 'i' de la valeur saisie: ", i);
       if(i < m) return false;
       m = i;
     }
@@ -126,3 +171,7 @@ inputUstensils.addEventListener("input", x => {
     div.innerHTML = ustensil;
   });
 });
+
+// +---------------------+
+// | SELECTED USTENSILES |
+// +---------------------+
