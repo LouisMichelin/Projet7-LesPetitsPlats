@@ -94,6 +94,7 @@ inputIngredient.addEventListener("input", x => {
   chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - FILTERED
 });
 chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
+
 // +----------------------------------------------+
 // | EVENT LISTENER DES INGREDIENTS + CREATE ITEM |
 // +----------------------------------------------+
@@ -101,24 +102,43 @@ function chosenIngredient() {
   const ingredientList = document.querySelector('#all-items-ingredients');
   const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
   const selectedIngredients = document.getElementById('selected-ingredients');
+  const ingredientArray = [];
+  let x = 0;
   chosenIngredient.forEach(ingredient => {
+    
     ingredient.addEventListener("click", function() {
-      let div = document.createElement('div');
-      div.setAttribute('class', 'item-selected-style');
-      let divTitle = document.createElement('div');
-      divTitle.setAttribute('class', 'item-selected');
-      divTitle.innerHTML = ingredient.innerHTML;
-      let button = document.createElement('button');
-      button.setAttribute('class', 'delete-filter');
-      // DELETE SELECTED FILTER
-      button.addEventListener("click", function() {
-        div.remove();
-      });
-      // APPENDCHILDS
-      selectedIngredients.appendChild(div);
-      div.appendChild(divTitle);
-      div.appendChild(button);
-      renderSVGIcon(button);
+      console.log("selected item = ", ingredient.innerHTML);
+
+      if (ingredientArray[x] !== ingredient.innerHTML) {
+        console.log("x vaut maintenant :", x);
+
+        ingredientArray.push(ingredient.innerHTML);
+        console.log("ARRAY= ", ingredientArray[x]);
+
+        let div = document.createElement('div');
+        div.setAttribute('class', 'item-selected-style');
+        let divTitle = document.createElement('div');
+        divTitle.setAttribute('class', 'item-selected');
+        divTitle.innerHTML = ingredient.innerHTML;
+        let button = document.createElement('button');
+        button.setAttribute('class', 'delete-filter');
+        // DELETE SELECTED FILTER
+        button.addEventListener("click", function() {
+          div.remove();
+          ingredientArray[x].filter(ingredient.innerHTML);
+          console.log("x vaut maintenant :", x);
+        });
+        // APPENDCHILDS
+        selectedIngredients.appendChild(div);
+        div.appendChild(divTitle);
+        div.appendChild(button);
+        renderSVGIcon(button);
+
+        console.log("innerHTML valeur: ", ingredient.innerHTML);
+
+        console.log("x vaut maintenant :", x);
+      }
+      x++;
     });
   });
 };
@@ -154,6 +174,7 @@ inputAppareils.addEventListener("input", x => {
   chosenAppareil(); // EVENTLISTENER DES APPAREILS - FILTERED
 });
 chosenAppareil(); // EVENTLISTENER DES APPAREILS - NOT FILTERED
+
 // +--------------------------------------------+
 // | EVENT LISTENER DES APPAREILS + CREATE ITEM |
 // +--------------------------------------------+
@@ -161,24 +182,29 @@ function chosenAppareil() {
   const appareilList = document.querySelector('#all-items-appareils');
   const chosenAppareil = appareilList.querySelectorAll('div.item-filtre');
   const selectedAppareils = document.getElementById('selected-appareils');
+  const appareilArray = [];
   chosenAppareil.forEach(appareil => {
     appareil.addEventListener("click", function() {
-      let div = document.createElement('div');
-      div.setAttribute('class', 'item-selected-style');
-      let divTitle = document.createElement('div');
-      divTitle.setAttribute('class', 'item-selected');
-      divTitle.innerHTML = appareil.innerHTML;
-      let button = document.createElement('button');
-      button.setAttribute('class', 'delete-filter');
-      // DELETE SELECTED FILTER
-      button.addEventListener("click", function() {
-        div.remove();
-      });
-      // APPENDCHILDS
-      selectedAppareils.appendChild(div);
-      div.appendChild(divTitle);
-      div.appendChild(button);
-      renderSVGIcon(button);
+      // if () {
+      //   appareilArray.push(appareil.innerHTML);
+      //   console.log(appareilArray);
+      //   let div = document.createElement('div');
+      //   div.setAttribute('class', 'item-selected-style');
+      //   let divTitle = document.createElement('div');
+      //   divTitle.setAttribute('class', 'item-selected');
+      //   divTitle.innerHTML = appareil.innerHTML;
+      //   let button = document.createElement('button');
+      //   button.setAttribute('class', 'delete-filter');
+      //   // DELETE SELECTED FILTER
+      //   button.addEventListener("click", function() {
+      //     div.remove();
+      //   });
+      //   // APPENDCHILDS
+      //   selectedAppareils.appendChild(div);
+      //   div.appendChild(divTitle);
+      //   div.appendChild(button);
+      //   renderSVGIcon(button);
+      // }
     });
   });
 };
@@ -214,6 +240,7 @@ inputUstensils.addEventListener("input", x => {
   chosenUstensil(); // EVENTLISTENER DES USTENSILES - FILTERED
 });
 chosenUstensil(); // EVENTLISTENER DES USTENSILES - NOT FILTERED
+
 // +---------------------------------------------+
 // | EVENT LISTENER DES USTENSILES + CREATE ITEM |
 // +---------------------------------------------+
@@ -223,6 +250,9 @@ function chosenUstensil() {
   const selectedUstensils = document.getElementById('selected-ustensils');
   chosenUstensil.forEach(ustensil => {
     ustensil.addEventListener("click", function() {
+
+
+      // CODE SANS CONDITION
       let div = document.createElement('div');
       div.setAttribute('class', 'item-selected-style');
       let divTitle = document.createElement('div');
@@ -239,6 +269,9 @@ function chosenUstensil() {
       div.appendChild(divTitle);
       div.appendChild(button);
       renderSVGIcon(button);
+
+
+
     });
   });
 };
