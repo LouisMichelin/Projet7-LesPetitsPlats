@@ -103,7 +103,6 @@ function chosenIngredient() {
   const selectedIngredients = document.getElementById('selected-ingredients');
   chosenIngredient.forEach(ingredient => {
     ingredient.addEventListener("click", function() {
-      // console.log("Je fonctionne !!!", ingredient.innerHTML);
       let div = document.createElement('div');
       div.setAttribute('class', 'item-selected-style');
       let divTitle = document.createElement('div');
@@ -111,6 +110,10 @@ function chosenIngredient() {
       divTitle.innerHTML = ingredient.innerHTML;
       let button = document.createElement('button');
       button.setAttribute('class', 'delete-filter');
+      // DELETE SELECTED FILTER
+      button.addEventListener("click", function() {
+        div.remove();
+      });
       // APPENDCHILDS
       selectedIngredients.appendChild(div);
       div.appendChild(divTitle);
@@ -119,7 +122,6 @@ function chosenIngredient() {
     });
   });
 };
-
 
 // +------------------+
 // | FILTRE APPAREILS |
@@ -168,6 +170,10 @@ function chosenAppareil() {
       divTitle.innerHTML = appareil.innerHTML;
       let button = document.createElement('button');
       button.setAttribute('class', 'delete-filter');
+      // DELETE SELECTED FILTER
+      button.addEventListener("click", function() {
+        div.remove();
+      });
       // APPENDCHILDS
       selectedAppareils.appendChild(div);
       div.appendChild(divTitle);
@@ -176,8 +182,6 @@ function chosenAppareil() {
     });
   });
 };
-
-
 
 // +-------------------+
 // | FILTRE USTENSILES |
@@ -226,6 +230,10 @@ function chosenUstensil() {
       divTitle.innerHTML = ustensil.innerHTML;
       let button = document.createElement('button');
       button.setAttribute('class', 'delete-filter');
+      // DELETE SELECTED FILTER
+      button.addEventListener("click", function() {
+        div.remove();
+      });
       // APPENDCHILDS
       selectedUstensils.appendChild(div);
       div.appendChild(divTitle);
