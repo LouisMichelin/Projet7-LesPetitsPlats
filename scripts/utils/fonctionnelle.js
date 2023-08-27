@@ -114,29 +114,21 @@ inputIngredient.addEventListener("input", x => {
 });
 chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
 
-// +----------------------------------------------+
-// | EVENT LISTENER DES INGREDIENTS + CREATE ITEM |
-// +----------------------------------------------+
+// +-----------------------------------------------------+
+// | EVENT LISTENER DES INGREDIENTS + CREATE/REMOVE ITEM |
+// +-----------------------------------------------------+
 function chosenIngredient() {
-  // INGREDIENTS CHOISIS
   const ingredientArray = [];
-  // GET ELEMENTS DANS MENU "INGREDIENTS"
   const ingredientList = document.querySelector('#all-items-ingredients');
   const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
   const selectedIngredients = document.getElementById('selected-ingredients');
-  // GET ELEMENTS DANS "SECTION FILTERS APPLIED"
   const sectionFilters = document.getElementById('filters-selected');
-  
-  
+  // FONCTION ADD/REMOVE FILTERS
   chosenIngredient.forEach(ingredient => {
     ingredient.addEventListener("click", function() {
-      console.log("selected item = ", ingredient.innerHTML);
-      let x = 0;
-      if (ingredientArray.length === 0) {
+      if (ingredientArray.includes(ingredient.innerHTML) === false) {
         // MENU FILTER'S CREATION
-        console.log("x vaut maintenant :", x);
         ingredientArray.push(ingredient.innerHTML);
-        console.log("ARRAY= ", ingredientArray[x]);
         let div = document.createElement('div');
         div.setAttribute('class', 'item-selected-style');
         let divTitle = document.createElement('div');
@@ -148,17 +140,14 @@ function chosenIngredient() {
         button.addEventListener("click", function() {
           div.remove();
           filter.remove();
-          x--;
-          console.log("x vaut maintenant :", x);
+          ingredientArray.pop();
         });
         // APPENDCHILDS MENU DEROULANT
         selectedIngredients.appendChild(div);
         div.appendChild(divTitle);
         div.appendChild(button);
         renderSVGIcon(button);
-        //
         // SECTION FILTERS' CREATION
-        //
         let filter = document.createElement('div');
         filter.setAttribute('class', 'filter');
         let removeFilter = document.createElement('button');
@@ -166,18 +155,13 @@ function chosenIngredient() {
         removeFilter.addEventListener("click", function() {
           filter.remove();
           div.remove();
-          x--;
-          console.log("x vaut maintenant :", x);
+          ingredientArray.pop();
         });
         // APPENDCHILDS SECTION FILTERS
         sectionFilters.appendChild(filter);
         filter.innerHTML = ingredient.innerHTML;
         filter.appendChild(removeFilter);
         renderSVGCross(removeFilter);
-        //
-        x++;
-        console.log("innerHTML valeur: ", ingredient.innerHTML);
-        console.log("x vaut maintenant :", x);
       }
     });
   });
@@ -215,36 +199,54 @@ inputAppareils.addEventListener("input", x => {
 });
 chosenAppareil(); // EVENTLISTENER DES APPAREILS - NOT FILTERED
 
-// +--------------------------------------------+
-// | EVENT LISTENER DES APPAREILS + CREATE ITEM |
-// +--------------------------------------------+
+// +---------------------------------------------------+
+// | EVENT LISTENER DES APPAREILS + CREATE/REMOVE ITEM |
+// +---------------------------------------------------+
 function chosenAppareil() {
+  const appareilArray = [];
   const appareilList = document.querySelector('#all-items-appareils');
   const chosenAppareil = appareilList.querySelectorAll('div.item-filtre');
   const selectedAppareils = document.getElementById('selected-appareils');
-  const appareilArray = [];
+  const sectionFilters = document.getElementById('filters-selected');
   chosenAppareil.forEach(appareil => {
     appareil.addEventListener("click", function() {
-      // if () {
-      //   appareilArray.push(appareil.innerHTML);
-      //   console.log(appareilArray);
-      //   let div = document.createElement('div');
-      //   div.setAttribute('class', 'item-selected-style');
-      //   let divTitle = document.createElement('div');
-      //   divTitle.setAttribute('class', 'item-selected');
-      //   divTitle.innerHTML = appareil.innerHTML;
-      //   let button = document.createElement('button');
-      //   button.setAttribute('class', 'delete-filter');
-      //   // DELETE SELECTED FILTER
-      //   button.addEventListener("click", function() {
-      //     div.remove();
-      //   });
-      //   // APPENDCHILDS
-      //   selectedAppareils.appendChild(div);
-      //   div.appendChild(divTitle);
-      //   div.appendChild(button);
-      //   renderSVGIcon(button);
-      // }
+      if (appareilArray.includes(appareil.innerHTML) === false) {
+        // MENU FILTER'S CREATION
+        appareilArray.push(appareil.innerHTML);
+        let div = document.createElement('div');
+        div.setAttribute('class', 'item-selected-style');
+        let divTitle = document.createElement('div');
+        divTitle.setAttribute('class', 'item-selected');
+        divTitle.innerHTML = appareil.innerHTML;
+        let button = document.createElement('button');
+        button.setAttribute('class', 'delete-filter');
+        // DELETE SELECTED FILTER
+        button.addEventListener("click", function() {
+          div.remove();
+          filter.remove();
+          appareilArray.pop();
+        });
+        // APPENDCHILDS MENU DEROULANT
+        selectedAppareils.appendChild(div);
+        div.appendChild(divTitle);
+        div.appendChild(button);
+        renderSVGIcon(button);
+        // SECTION FILTERS' CREATION
+        let filter = document.createElement('div');
+        filter.setAttribute('class', 'filter');
+        let removeFilter = document.createElement('button');
+        // DELETE SELECTED FILTER
+        removeFilter.addEventListener("click", function() {
+          filter.remove();
+          div.remove();
+          appareilArray.pop();
+        });
+        // APPENDCHILDS SECTION FILTERS
+        sectionFilters.appendChild(filter);
+        filter.innerHTML = appareil.innerHTML;
+        filter.appendChild(removeFilter);
+        renderSVGCross(removeFilter);
+      }
     });
   });
 };
@@ -281,37 +283,54 @@ inputUstensils.addEventListener("input", x => {
 });
 chosenUstensil(); // EVENTLISTENER DES USTENSILES - NOT FILTERED
 
-// +---------------------------------------------+
-// | EVENT LISTENER DES USTENSILES + CREATE ITEM |
-// +---------------------------------------------+
+// +----------------------------------------------------+
+// | EVENT LISTENER DES USTENSILES + CREATE/REMOVE ITEM |
+// +----------------------------------------------------+
 function chosenUstensil() {
+  const ustensilArray = [];
   const ustensilList = document.querySelector('#all-items-ustensils');
   const chosenUstensil = ustensilList.querySelectorAll('div.item-filtre');
   const selectedUstensils = document.getElementById('selected-ustensils');
+  const sectionFilters = document.getElementById('filters-selected');
   chosenUstensil.forEach(ustensil => {
     ustensil.addEventListener("click", function() {
-
-
-      // CODE SANS CONDITION
-      let div = document.createElement('div');
-      div.setAttribute('class', 'item-selected-style');
-      let divTitle = document.createElement('div');
-      divTitle.setAttribute('class', 'item-selected');
-      divTitle.innerHTML = ustensil.innerHTML;
-      let button = document.createElement('button');
-      button.setAttribute('class', 'delete-filter');
-      // DELETE SELECTED FILTER
-      button.addEventListener("click", function() {
-        div.remove();
-      });
-      // APPENDCHILDS
-      selectedUstensils.appendChild(div);
-      div.appendChild(divTitle);
-      div.appendChild(button);
-      renderSVGIcon(button);
-
-
-
+      if (ustensilArray.includes(ustensil.innerHTML) === false) {
+        // MENU FILTER'S CREATION
+        ustensilArray.push(ustensil.innerHTML);
+        let div = document.createElement('div');
+        div.setAttribute('class', 'item-selected-style');
+        let divTitle = document.createElement('div');
+        divTitle.setAttribute('class', 'item-selected');
+        divTitle.innerHTML = ustensil.innerHTML;
+        let button = document.createElement('button');
+        button.setAttribute('class', 'delete-filter');
+        // DELETE SELECTED FILTER
+        button.addEventListener("click", function() {
+          div.remove();
+          filter.remove();
+          ustensilArray.pop();
+        });
+        // APPENDCHILDS MENU DEROULANT
+        selectedUstensils.appendChild(div);
+        div.appendChild(divTitle);
+        div.appendChild(button);
+        renderSVGIcon(button);
+        // SECTION FILTERS' CREATION
+        let filter = document.createElement('div');
+        filter.setAttribute('class', 'filter');
+        let removeFilter = document.createElement('button');
+        // DELETE SELECTED FILTER
+        removeFilter.addEventListener("click", function() {
+          filter.remove();
+          div.remove();
+          ustensilArray.pop();
+        });
+        // APPENDCHILDS SECTION FILTERS
+        sectionFilters.appendChild(filter);
+        filter.innerHTML = ustensil.innerHTML;
+        filter.appendChild(removeFilter);
+        renderSVGCross(removeFilter);
+      }
     });
   });
 };
