@@ -1,3 +1,49 @@
+// +------------------------------------+
+// | INPUTS & FILTRES - MAIN SEARCH BAR |
+// +------------------------------------+
+const mainArray = [];
+const mainSearchBar = document.getElementById('main-input');
+const mainRecipes = document.getElementById('wrapper');
+mainSearchBar.addEventListener("input", x => {
+  mainArray.pop();
+  mainArray.push(x.target.value.toLowerCase().trim());
+  console.log(mainArray);
+  const mainSearchFilters = mainRecipes.filter(y => {
+
+  });
+
+});
+// --------------------------------------------------------------------------------------------------
+// inputIngredient.addEventListener("input", x => {
+//   input1.pop(); // REMOVE [x-1]
+//   input1.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
+
+//   const filteredIngredients = allIngredients.filter(y => {
+//     for(let l of input1) {
+//       // console.log("Mot que l'on saisit dans Input1: ", l);
+//       let m = 0;
+//       const c = y.toLowerCase();
+//       // console.log("Ingrédient comparé: ", c);
+//       const i = c.substring(m).indexOf(l)
+//       // console.log("Index 'i' de la valeur saisie: ", i);
+//       if(i < m) return false;
+//       m = i;
+//     }
+//     return true;
+//   });
+//   console.log(filteredIngredients);
+//   allItemsIngredients.innerHTML = "";
+//   // NEW DISPLAY
+//   filteredIngredients.forEach(ingredient => {
+//     let div = document.createElement('div');
+//     div.setAttribute('class', 'item-filtre');
+//     allItemsIngredients.appendChild(div);
+//     div.innerHTML = ingredient;
+//   });
+//   chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - FILTERED
+// });
+// --------------------------------------------------------------------------------------------------
+
 // +--------------------------------------------+
 // | INPUTS & LISTES DES ITEMS DE CHAQUE BOUTON |
 // +--------------------------------------------+
@@ -114,9 +160,9 @@ inputIngredient.addEventListener("input", x => {
 });
 chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
 
-// +-----------------------------------------------------+
-// | EVENT LISTENER DES INGREDIENTS + CREATE/REMOVE ITEM |
-// +-----------------------------------------------------+
+// +-------------------------------------------------+
+// | EVENT LISTENER INGREDIENTS + CREATE/REMOVE ITEM |
+// +-------------------------------------------------+
 function chosenIngredient() {
   const ingredientArray = [];
   const ingredientList = document.querySelector('#all-items-ingredients');
@@ -199,9 +245,9 @@ inputAppareils.addEventListener("input", x => {
 });
 chosenAppareil(); // EVENTLISTENER DES APPAREILS - NOT FILTERED
 
-// +---------------------------------------------------+
-// | EVENT LISTENER DES APPAREILS + CREATE/REMOVE ITEM |
-// +---------------------------------------------------+
+// +-----------------------------------------------+
+// | EVENT LISTENER APPAREILS + CREATE/REMOVE ITEM |
+// +-----------------------------------------------+
 function chosenAppareil() {
   const appareilArray = [];
   const appareilList = document.querySelector('#all-items-appareils');
@@ -283,9 +329,9 @@ inputUstensils.addEventListener("input", x => {
 });
 chosenUstensil(); // EVENTLISTENER DES USTENSILES - NOT FILTERED
 
-// +----------------------------------------------------+
-// | EVENT LISTENER DES USTENSILES + CREATE/REMOVE ITEM |
-// +----------------------------------------------------+
+// +------------------------------------------------+
+// | EVENT LISTENER USTENSILES + CREATE/REMOVE ITEM |
+// +------------------------------------------------+
 function chosenUstensil() {
   const ustensilArray = [];
   const ustensilList = document.querySelector('#all-items-ustensils');
