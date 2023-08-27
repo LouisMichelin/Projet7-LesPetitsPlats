@@ -3,46 +3,41 @@
 // +------------------------------------+
 const mainArray = [];
 const mainSearchBar = document.getElementById('main-input');
-const mainRecipes = document.getElementById('wrapper');
-mainSearchBar.addEventListener("input", x => {
-  mainArray.pop();
-  mainArray.push(x.target.value.toLowerCase().trim());
+// const mainRecipes = document.getElementById('wrapper');
+const loupe = document.getElementById('button-loupe');
+
+//le filtrage sera effectuer sur le tableau des recipes globale
+//recipes.filter(y => {y.name == chaine || y.secription== chaine || y.ingredients.some(chaine) })
+// filtrerles recipes 
+// if titre ou description ou un element des ingredient == à la chaine saisie 
+// donc on stock l'element recipe dans le tableau mainArray 
+loupe.addEventListener("click", function(event) {
+  event.preventDefault();
+  mainArray.push(mainSearchBar.value.toLowerCase().trim());
   console.log(mainArray);
-  const mainSearchFilters = mainRecipes.filter(y => {
+
+
+  recipes.forEach(e => {
+    e = e.name.toLowerCase().trim()
+    if (e == mainArray) {
+      console.log("ça match !!", e.name)
+    } else {
+      console.log("ça match pas....")
+    }
+
+
 
   });
 
-});
-// --------------------------------------------------------------------------------------------------
-// inputIngredient.addEventListener("input", x => {
-//   input1.pop(); // REMOVE [x-1]
-//   input1.push(x.target.value.toLowerCase().trim()); // ADD SEARCH LETTER TO : input1
+  
 
-//   const filteredIngredients = allIngredients.filter(y => {
-//     for(let l of input1) {
-//       // console.log("Mot que l'on saisit dans Input1: ", l);
-//       let m = 0;
-//       const c = y.toLowerCase();
-//       // console.log("Ingrédient comparé: ", c);
-//       const i = c.substring(m).indexOf(l)
-//       // console.log("Index 'i' de la valeur saisie: ", i);
-//       if(i < m) return false;
-//       m = i;
-//     }
-//     return true;
-//   });
-//   console.log(filteredIngredients);
-//   allItemsIngredients.innerHTML = "";
-//   // NEW DISPLAY
-//   filteredIngredients.forEach(ingredient => {
-//     let div = document.createElement('div');
-//     div.setAttribute('class', 'item-filtre');
-//     allItemsIngredients.appendChild(div);
-//     div.innerHTML = ingredient;
-//   });
-//   chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - FILTERED
-// });
-// --------------------------------------------------------------------------------------------------
+});
+
+
+
+
+
+
 
 // +--------------------------------------------+
 // | INPUTS & LISTES DES ITEMS DE CHAQUE BOUTON |
