@@ -14,46 +14,45 @@ loupe.addEventListener("click", function(event) {
   const mainResearch = mainSearchBar.value.toLowerCase().trim();
   console.log(mainResearch);
   // -----------------------------------------------------------
-  
+  //
+  // CREATE ARRAY OF CARDS
+  //
+  let card = document.querySelectorAll('.card');
+  card = [...new Set(card)];
+  //
   // DISPLAY: NONE CHAQUE RECETTE
-  const card = document.querySelectorAll('.card');
-  card.forEach(y => {
-    y.style.display = "none";
+  //
+  card.forEach(e => {
+    e.style.display = "none";
   });
-
-  // const card = document.querySelectorAll('.card');
-  // console.log(card[1])
-  // console.log(card[40])
-
-
+  //
+  // DISPLAY: BLOCK IF TRUE
+  //
   
 
-  
+
     
   recipes.forEach(e => {
+    //
     // NAME
     const name = e.name.toLowerCase();
-    // console.log(name.includes(mainResearch), "NameID= ", e.id);
+    let cardID = (e.id - 1);
     if (name.includes(mainResearch)) {
-      console.log(e.name, "NameID= ", e.id);
-      card.style.display = "block";
+      
+      console.log(e.name, "NameID: ", cardID);
+    } else {
+      console.log("false", cardID)
     }
-
-
-
+    //
     // INGREDIENTS
     e.ingredients.forEach(y => {
       const ingredient = y.ingredient.toLowerCase();
       // console.log(ingredient.includes(mainResearch), "IngredientID= ", e.id);
     });
-
-
+    //
     // DESCRIPTION
     const description = e.description.toLowerCase();
     // console.log(description.includes(mainResearch), "DescriptionID= ", e.id);
-
-    
-  
   });
   
 
