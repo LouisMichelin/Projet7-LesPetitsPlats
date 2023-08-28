@@ -30,7 +30,6 @@ loupe.addEventListener("click", function(event) {
     const name = e.name.toLowerCase();
     if (name.includes(mainResearch) && card[cardID].style != "block") {
       card[cardID].style.display = "block";
-      totalRecipesFiltered++;
       // console.log(e.name, "NameID: ", cardID);
     }
     // INGREDIENTS
@@ -38,7 +37,6 @@ loupe.addEventListener("click", function(event) {
       const ingredient = y.ingredient.toLowerCase();
       if (ingredient.includes(mainResearch) && card[cardID].style != "block") {
         card[cardID].style = "block";
-        totalRecipesFiltered++;
         // console.log(ingredient, "IngredientID: ", cardID);
       }
     });
@@ -46,8 +44,11 @@ loupe.addEventListener("click", function(event) {
     const description = e.description.toLowerCase();
     if (description.includes(mainResearch) && card[cardID].style != "block") {
       card[cardID].style.display = "block";
-      totalRecipesFiltered++;
       // console.log(description, "DescriptionID: ", cardID);
+    }
+    // INCREASE NB RECIPES
+    if (card[cardID].style.display === "block") {
+      totalRecipesFiltered++
     }
   });
   // +--------------------+
