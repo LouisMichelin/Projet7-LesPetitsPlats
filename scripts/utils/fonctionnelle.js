@@ -36,7 +36,7 @@ loupe.addEventListener("click", function(event) {
     e.ingredients.forEach(y => {
       const ingredient = y.ingredient.toLowerCase();
       if (ingredient.includes(mainResearch) && card[cardID].style != "block") {
-        card[cardID].style = "block";
+        card[cardID].style.display = "block";
         // console.log(ingredient, "IngredientID: ", cardID);
       }
     });
