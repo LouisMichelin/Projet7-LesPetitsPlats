@@ -356,6 +356,7 @@ main {
   gap: 66px 48px;
 }
 .card {
+  display: block;
   width: 380px;
   height: 730px;
   background-color: #FFFFFF;
