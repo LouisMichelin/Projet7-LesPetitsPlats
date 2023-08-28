@@ -354,6 +354,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 66px 48px;
+  padding-bottom: 21px;
 }
 .card {
   display: block;
