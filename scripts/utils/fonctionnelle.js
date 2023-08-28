@@ -3,6 +3,9 @@
 // +------------------------------------+
 const mainSearchBar = document.getElementById('main-input');
 const loupe = document.getElementById('button-loupe');
+// CREATE ARRAY OF CARDS
+let card = document.querySelectorAll('.card');
+card = [...new Set(card)];
 
 // +------------------------+
 // | EVENT LISTENER : LOUPE |
@@ -10,11 +13,7 @@ const loupe = document.getElementById('button-loupe');
 loupe.addEventListener("click", function(event) {
   event.preventDefault();
   const mainResearch = mainSearchBar.value.toLowerCase().trim();
-  // +-----------------------+
-  // | CREATE ARRAY OF CARDS |
-  // +-----------------------+
-  let card = document.querySelectorAll('.card');
-  card = [...new Set(card)];
+
   // +-------------------------+
   // | DISPLAY: NONE ALL CARDS |
   // +-------------------------+
@@ -56,7 +55,20 @@ loupe.addEventListener("click", function(event) {
   // +--------------------+
   if (mainResearch !== "") {
     document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
+  } else if (mainResearch === "") {
+    document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
   }
+});
+
+  // +-------------------------------------------+
+  // | RESET RECIPES ONCLICK - MAIN ERASE BUTTON |
+  // +-------------------------------------------+
+const delMainSearch = document.getElementById('button-erase');
+delMainSearch.addEventListener("click", function() {
+  card.forEach(e => {
+    e.style.display = "block";
+  });
+  document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
 });
   
 
