@@ -71,15 +71,6 @@ delMainSearch.addEventListener("click", function() {
   });
   document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
 });
-  
-
-
-
-
-
-
-
-
 
 // +--------------------------------------------+
 // | INPUTS & LISTES DES ITEMS DE CHAQUE BOUTON |
@@ -87,17 +78,12 @@ delMainSearch.addEventListener("click", function() {
 let inputIngredient = document.getElementById('ingredients-input');
 let inputAppareils = document.getElementById('appareils-input');
 let inputUstensils = document.getElementById('ustensils-input');
-//
 let allItemsIngredients = document.getElementById('all-items-ingredients');
 let input1 = [];
 let allItemsAppareils = document.getElementById('all-items-appareils');
 let input2 = [];
 let allItemsUstensils = document.getElementById('all-items-ustensils');
 let input3 = [];
-// CONSOLE.LOG CHECK
-// console.log(allIngredients);
-// console.log(allAppareils);
-// console.log(allUstensils);
 // MISE EN PLACE DES INGREDIENTS : FONCTIONNELLE
 allIngredients.forEach(ingredient => {
   let div = document.createElement('div');
@@ -245,6 +231,7 @@ function chosenIngredient() {
         filter.innerHTML = ingredient.innerHTML;
         filter.appendChild(removeFilter);
         renderSVGCross(removeFilter);
+        myFunctionFiltering()
       }
     });
   });
@@ -417,3 +404,42 @@ function chosenUstensil() {
     });
   });
 };
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+// +----------------------+
+// | APPLY FILTER BUTTONS |
+// +----------------------+
+function myFunctionFiltering() {
+  // SECTION DES FILTRES CHOISIS
+  const appliedFilters = document.getElementById('filters-selected');
+  console.log(appliedFilters);
+
+  // ARRAY DE CETTE ZONE - APPLIQUEE APRES onClick() SUR LES FILTRES
+  const appliedFiltersArray = Array.from(appliedFilters.children);
+  console.log(appliedFiltersArray);
+  //
+  // FOREACH() BUTTON SELECTED : COMPARER SI CARD[i] INCLUDES(e)
+  //
+  appliedFiltersArray.forEach(e => {
+    let i = 0;
+    e = e.textContent.toLowerCase();
+    
+    console.log(card[i]);
+    
+
+
+    
+    // if (card[i].style.display = "block" && card[cardID].style != "block") {
+    //   // console.log(ingredient, "IngredientID: ", cardID);
+    // }
+
+    i++
+  });
+
+  
+
+
+}
