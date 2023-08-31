@@ -465,29 +465,35 @@ function applyFilterButtons() {
 
 
       recipesFiltered.forEach(item => {
-        console.log(item);
+        // console.log(item);
         
         const ingredients = item.ingredients;
         console.log(ingredients);
 
-        // let totalYes = 0;
-        // SI CA MATCH, TOTALYES++
+        let totalYes = 0;
+        
         ingredients.forEach(y => {
           const ingredient = y.ingredient.toLowerCase();
           console.log(ingredient);
-          let test = card[recipesFiltered.indexOf(item)];
+          
 
 
           if (ingredient.includes(e.innerHTML.toLowerCase())) {
+            console.log(ingredient, e.innerHTML.toLowerCase());
             console.log("YESSSSSSSSSSSSS");
-          } else {
-            console.log(item, "n'a pas de match", recipesFiltered.indexOf(item), " est son ID");
-            console.log(card[recipesFiltered.indexOf(item)]);
-            
-            // IMPORTANT !!!
-            // test.style.setProperty('display', 'none');
+            totalYes++;
           }
         });
+        if (totalYes === 0){
+          console.log("totalYes = 0.............")
+          // console.log(item, "n'a pas de match", recipesFiltered.indexOf(item), " est son ID");
+          console.log(card[recipesFiltered.indexOf(item)]);
+          
+          // IMPORTANT !!!
+
+          // EN gros, trouver l'ID de l'item depuis l'INDEX dans la liste filtrée
+          card[recipesFiltered.indexOf(item)].style.setProperty('display', 'none');
+        }
         
         
       });
