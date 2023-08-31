@@ -420,43 +420,78 @@ function applyFilterButtons() {
   let allIngredients = document.getElementById('all-items-ingredients');
   allIngredients = [...new Set(allIngredients.children)];
   //
-  let blockRecipesID = []
-
-  //--------------------------------------------------------------------
+  let blockRecipesID = [] // STOCKE LES RECIPES.ID IF(DISPLAY === "BLOCK");
   
+  //-----------------------------------------------------------------------
+
+  // +---------------------------------+
+  // | DECLENCHEUR : Filtre Ingrédient |
+  // +---------------------------------+
   allIngredients.forEach(e => {
-    // DECLENCHEUR: click ingredient
     e.addEventListener("click", function() {
-      // FOREACH: recette en display=block
       let i = 0;
       let id = 1;
       filteredRecipes.forEach(y => {
-        if (y.style.display === "none") {
-          console.log("NONE, ID= ", id);
-        } else {
-          console.log("BLOCK, ID= ", id);
+        if (y.style.display === "block") {
           blockRecipesID.push(id);
         }
         id++;
         i++;
       });
-      // blockRecipesID STOCK LES RECIPES.ID en DISPLAY===BLOCK
-      
-      // console.log(recipes[0], recipes[1]);
+      // +------------------------------+
+      // | POUR CHAQUE BLOCK FILTERED : |
+      // +------------------------------+
+      blockRecipesID.forEach(num => {
+        // +-----------------------+
+        // | POUR CHAQUE RECETTE : |
+        // +-----------------------+
+        recipes.forEach(recette => {
+          if (recette.id === num) {
+            const filterIngredients = recette.ingredients;
+            console.log("")
+            console.log(recette);
+            console.log("-----");
+            console.log("RECIPE N° ", num, filterIngredients);
+            //
+            const filtre = e.innerHTML;
+            console.log("Filtre Appliqué :", filtre);
+            //
+            console.log("-----");
+            //
+            filterIngredients.forEach(item => {
+              if (item.ingredient.toLowerCase() === e.innerHTML.toLowerCase()) {
+                console.log("OH OUIIIIII", recette.name, recette.id);
+              }
+            });
 
-      blockRecipesID.forEach(id => {
-        // console.log(recipes[id])
-        let recipesIngredients = recipes[id].ingredients;
-        // console.log(recipesIngredients);
-        recipesIngredients.forEach(ing => {
-          if (ing.ingredient == "Tomate") {
-            console.log(ing.ingredient);
-          }
             
+            
+
+
+
+
+
+
+            // if (ingredient.includes()) {
+            //   card[num].style.display = "block";
+            //   // console.log(ingredient, "IngredientID: ", cardID);
+            // } else {
+            //   card[num].style.display = "none";
+            // }
+
+
+            // filteredIngredients.forEach(item => {
+            //   if (item.ingredient.toLowerCase() === e.innerHTML.toLowerCase()) {
+            //     console.log("NOPE, pas pour ", item, "num° ", num);
+            //     // card[num].style.display = "none";
+            //   } else {
+            //     console.log("OUI, ça match", item, "num° ", num);
+            //   }
+            //   // console.log("pour l'ingredient n° ", num, "ingredients= ", item);
+            // });
+          };
         });
       });
-
-  
     });
   });
 };
