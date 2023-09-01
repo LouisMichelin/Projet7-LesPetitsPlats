@@ -12,55 +12,59 @@ card = [...new Set(card)];
 // | EVENT LISTENER : LOUPE |
 // +------------------------+
 let totalRecipesFiltered = 0;
-loupe.addEventListener("click", function(event) {
-  event.preventDefault();
-  const mainResearch = mainSearchBar.value.toLowerCase().trim();
-  // +-------------------------+
-  // | DISPLAY: NONE ALL CARDS |
-  // +-------------------------+
-  card.forEach(e => {
-    e.style.display = "none";
-  });
-  // +------------------------+
-  // | DISPLAY: BLOCK IF TRUE |
-  // +------------------------+
-  
-  recipes.forEach(e => {
-    let cardID = (e.id - 1);
-    // NAME
-    const name = e.name.toLowerCase();
-    if (name.includes(mainResearch) && card[cardID].style != "block") {
-      card[cardID].style.display = "block";
-      // console.log(e.name, "NameID: ", cardID);
-    }
-    // INGREDIENTS
-    e.ingredients.forEach(y => {
-      const ingredient = y.ingredient.toLowerCase();
-      if (ingredient.includes(mainResearch) && card[cardID].style != "block") {
+function loupeFunction() {
+  loupe.addEventListener("click", function(event) {
+    event.preventDefault();
+    const mainResearch = mainSearchBar.value.toLowerCase().trim();
+    // +-------------------------+
+    // | DISPLAY: NONE ALL CARDS |
+    // +-------------------------+
+    card.forEach(e => {
+      e.style.display = "none";
+    });
+    // +------------------------+
+    // | DISPLAY: BLOCK IF TRUE |
+    // +------------------------+
+    recipes.forEach(e => {
+      let cardID = (e.id - 1);
+      // NAME
+      const name = e.name.toLowerCase();
+      if (name.includes(mainResearch) && card[cardID].style != "block") {
         card[cardID].style.display = "block";
-        // console.log(ingredient, "IngredientID: ", cardID);
+        // console.log(e.name, "NameID: ", cardID);
+      }
+      // INGREDIENTS
+      e.ingredients.forEach(y => {
+        const ingredient = y.ingredient.toLowerCase();
+        if (ingredient.includes(mainResearch) && card[cardID].style != "block") {
+          card[cardID].style.display = "block";
+          // console.log(ingredient, "IngredientID: ", cardID);
+        }
+      });
+      // DESCRIPTION
+      const description = e.description.toLowerCase();
+      if (description.includes(mainResearch) && card[cardID].style != "block") {
+        card[cardID].style.display = "block";
+        // console.log(description, "DescriptionID: ", cardID);
+      }
+      // INCREASE NB RECIPES
+      if (card[cardID].style.display === "block") {
+        totalRecipesFiltered++
       }
     });
-    // DESCRIPTION
-    const description = e.description.toLowerCase();
-    if (description.includes(mainResearch) && card[cardID].style != "block") {
-      card[cardID].style.display = "block";
-      // console.log(description, "DescriptionID: ", cardID);
-    }
-    // INCREASE NB RECIPES
-    if (card[cardID].style.display === "block") {
-      totalRecipesFiltered++
+    // +--------------------+
+    // | UPDATE NB RECETTES |
+    // +--------------------+
+    if (mainResearch !== "") {
+      document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
+    } else if (mainResearch === "") {
+      document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
     }
   });
-  // +--------------------+
-  // | UPDATE NB RECETTES |
-  // +--------------------+
-  if (mainResearch !== "") {
-    document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
-  } else if (mainResearch === "") {
-    document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
-  }
-});
+} 
+loupeFunction()
+
+
 
 
   // +-------------------------------------------+
@@ -231,13 +235,19 @@ function chosenIngredient() {
           filter.remove();
           div.remove();
           ingredientArray.pop();
+          
+          card.forEach(e => {
+            e.style.display = "block";
+          });
+          document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
+
+
         });
         // APPENDCHILDS SECTION FILTERS
         sectionFilters.appendChild(filter);
         filter.innerHTML = ingredient.innerHTML;
         filter.appendChild(removeFilter);
         renderSVGCross(removeFilter);
-        // myFunctionFiltering();
       }
     });
   });
