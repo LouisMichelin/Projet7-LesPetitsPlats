@@ -7,13 +7,14 @@ const loupe = document.getElementById('button-loupe');
 let card = document.querySelectorAll('.card');
 card = [...new Set(card)];
 
+
 // +------------------------+
 // | EVENT LISTENER : LOUPE |
 // +------------------------+
+let totalRecipesFiltered = 0;
 loupe.addEventListener("click", function(event) {
   event.preventDefault();
   const mainResearch = mainSearchBar.value.toLowerCase().trim();
-
   // +-------------------------+
   // | DISPLAY: NONE ALL CARDS |
   // +-------------------------+
@@ -23,7 +24,7 @@ loupe.addEventListener("click", function(event) {
   // +------------------------+
   // | DISPLAY: BLOCK IF TRUE |
   // +------------------------+
-  let totalRecipesFiltered = 0;
+  
   recipes.forEach(e => {
     let cardID = (e.id - 1);
     // NAME
@@ -61,6 +62,7 @@ loupe.addEventListener("click", function(event) {
   }
 });
 
+
   // +-------------------------------------------+
   // | RESET RECIPES ONCLICK - MAIN ERASE BUTTON |
   // +-------------------------------------------+
@@ -71,6 +73,7 @@ delMainSearch.addEventListener("click", function() {
   });
   document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
 });
+
 
 // +--------------------------------------------+
 // | INPUTS & LISTES DES ITEMS DE CHAQUE BOUTON |
@@ -105,6 +108,7 @@ allUstensils.forEach(ustensil => {
   allItemsUstensils.appendChild(div);
   div.innerHTML = ustensil;
 });
+
 
 // +-------------------------------------------------------------+
 // | FUNCTION CREATE SVG : "DELETE BUTTON FROM FILTERS SELECTED" |
@@ -151,6 +155,7 @@ function renderSVGCross(Node) {
   return Node.appendChild(iconSvg);
 };
 
+
 // +--------------------+
 // | FILTRE INGREDIENTS |
 // +--------------------+
@@ -183,9 +188,10 @@ inputIngredient.addEventListener("input", x => {
 });
 chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
 
-// +-------------------------------------------------+
-// | EVENT LISTENER INGREDIENTS + CREATE/REMOVE ITEM |
-// +-------------------------------------------------+
+
+// +---------------------------------------------------+
+// | INGREDIENTS : EVENT LISTENER + CREATE/REMOVE ITEM |
+// +---------------------------------------------------+
 function chosenIngredient() {
   const ingredientArray = [];
   const ingredientList = document.querySelector('#all-items-ingredients');
@@ -237,6 +243,7 @@ function chosenIngredient() {
   });
 };
 
+
 // +------------------+
 // | FILTRE APPAREILS |
 // +------------------+
@@ -269,9 +276,10 @@ inputAppareils.addEventListener("input", x => {
 });
 chosenAppareil(); // EVENTLISTENER DES APPAREILS - NOT FILTERED
 
-// +-----------------------------------------------+
-// | EVENT LISTENER APPAREILS + CREATE/REMOVE ITEM |
-// +-----------------------------------------------+
+
+// +-------------------------------------------------+
+// | APPAREILS : EVENT LISTENER + CREATE/REMOVE ITEM |
+// +-------------------------------------------------+
 function chosenAppareil() {
   const appareilArray = [];
   const appareilList = document.querySelector('#all-items-appareils');
@@ -322,6 +330,7 @@ function chosenAppareil() {
   });
 };
 
+
 // +-------------------+
 // | FILTRE USTENSILES |
 // +-------------------+
@@ -354,9 +363,10 @@ inputUstensils.addEventListener("input", x => {
 });
 chosenUstensil(); // EVENTLISTENER DES USTENSILES - NOT FILTERED
 
-// +------------------------------------------------+
-// | EVENT LISTENER USTENSILES + CREATE/REMOVE ITEM |
-// +------------------------------------------------+
+
+// +--------------------------------------------------+
+// | USTENSILES : EVENT LISTENER + CREATE/REMOVE ITEM |
+// +--------------------------------------------------+
 function chosenUstensil() {
   const ustensilArray = [];
   const ustensilList = document.querySelector('#all-items-ustensils');
@@ -408,28 +418,25 @@ function chosenUstensil() {
 };
 
 
-
-
 // +----------------------+
 // | APPLY FILTER BUTTONS |
 // +----------------------+
+let recipesFiltered = []; // NEW ARRAY FILTERED
 function applyFilterButtons() {
   let filteredRecipes = document.getElementById('wrapper');
   filteredRecipes = Array.from(filteredRecipes.children);
-  // filteredRecipes.forEach(child => {
-  //   child.setAttribute("display", "block");
-  // });
   //
   let allIngredients = document.getElementById('all-items-ingredients');
   allIngredients = Array.from(allIngredients.children);
   //
   let blockRecipesID = [] // STOCKE LES RECIPES.ID IF(DISPLAY === "BLOCK")
-  
-  //-----------------------------------------------------------------------
+  //
+  let selectedIngredients = document.getElementById('selected-ingredients');
+  selectedIngredients = Array.from(selectedIngredients)
 
-  // +---------------------------------+
-  // | DECLENCHEUR : Filtre Ingrédient |
-  // +---------------------------------+
+  // +----------------------------------+
+  // | DECLENCHEUR : FILTRE INGREDIENTS |
+  // +----------------------------------+
   allIngredients.forEach(e => {
     e.addEventListener("click", function() {
       let i = 0;
@@ -446,12 +453,10 @@ function applyFilterButtons() {
           id++;
         }
       });
-      //
-      // console.log(blockRecipesID);
       // +------------------------------+
       // | POUR CHAQUE BLOCK FILTERED : |
       // +------------------------------+
-      recipesFiltered = [];
+      
       blockRecipesID.forEach(itemID => {
         recipes.forEach(y => {
           if (y.id === itemID) {
@@ -460,135 +465,83 @@ function applyFilterButtons() {
         });
       });
 
-      // LA NOUVELLE ARRAY FILTREE
       console.log("NEW ARRAY : ", recipesFiltered);
 
-
       recipesFiltered.forEach(item => {
-        // console.log(item);
-        
         const ingredients = item.ingredients;
-        console.log(ingredients);
-
         let totalYes = 0;
-        
+        // COMPARAISON DE CHAQUE INGREDIENT
         ingredients.forEach(y => {
           const ingredient = y.ingredient.toLowerCase();
-          console.log(ingredient);
-          
-
-
           if (ingredient.includes(e.innerHTML.toLowerCase())) {
-            console.log(ingredient, e.innerHTML.toLowerCase());
-            console.log("YESSSSSSSSSSSSS");
+            console.log(ingredient," VS : ", e.innerHTML.toLowerCase());
             totalYes++;
           }
         });
-        if (totalYes === 0){
-          console.log("totalYes = 0.............")
-          // console.log(item, "n'a pas de match", recipesFiltered.indexOf(item), " est son ID");
-          console.log(card[recipesFiltered.indexOf(item)]);
-          
-          // IMPORTANT !!!
-
-          // EN gros, trouver l'ID de l'item depuis l'INDEX dans la liste filtrée
-          card[recipesFiltered.indexOf(item)].style.setProperty('display', 'none');
+        if (totalYes === 0) {
+          let elemID = (item.id - 1);
+          console.log("TEST card[elemID]", card[elemID]);
+          card[elemID].style.setProperty('display', 'none');
+          totalRecipesFiltered -= 1;
+          document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
         }
-        
-        
       });
-    
-
-
-
-      // -----------------------------------------------------------------------------
-      // blockRecipesID.forEach(num => {
-      //   // +-----------------------+
-      //   // | POUR CHAQUE RECETTE : |
-      //   // +-----------------------+
-      //   recipes.forEach(recette => {
-      //     if (recette.id === num) {
-      //       const filterIngredients = recette.ingredients;
-      //       console.log("")
-      //       console.log(recette);
-      //       console.log("-----");
-      //       console.log("RECIPE N° ", num, filterIngredients);
-      //       //
-      //       const filtre = e.innerHTML;
-      //       console.log("Filtre Appliqué :", filtre);
-      //       //
-      //       console.log("-----");
-      //       //
-      // -----------------------------------------------------------------------------
-      //       //
-      //       let test = 0;
-      //       filterIngredients.forEach(item => {
-      //         item = item.ingredient.toLowerCase();
-      //         console.log(item);
-              
-      //         if (item === e.innerHTML.toLowerCase()) {
-      //           console.log("OH OUIIIIII", recette.name, recette.id);
-      //           test += 1;
-      //         } else {
-      //           console.log("NOPE...", recette.name, recette.id);
-      //         }
-      // -----------------------------------------------------------------------------
-      //         if (test === 0) {
-      //           card[num].style.display = "none";
-      //         }
-      //       });
-      // -----------------------------------------------------------------------------     
-      //       // if (ingredient.includes()) {
-      //       //   card[num].style.display = "block";
-      //       //   // console.log(ingredient, "IngredientID: ", cardID);
-      //       // } else {
-      //       //   card[num].style.display = "none";
-      //       // }
-      // -----------------------------------------------------------------------------
-      //       // filteredIngredients.forEach(item => {
-      //       //   if (item.ingredient.toLowerCase() === e.innerHTML.toLowerCase()) {
-      //       //     console.log("NOPE, pas pour ", item, "num° ", num);
-      //       //     // card[num].style.display = "none";
-      //       //   } else {
-      //       //     console.log("OUI, ça match", item, "num° ", num);
-      //       //   }
-      //       //   // console.log("pour l'ingredient n° ", num, "ingredients= ", item);
-      //       // });
-      //     };
-      //   });
-      // });
     });
   });
+
+
+
+
+
+  selectedIngredients.forEach(e => {
+    e.addEventListener("click", function() {
+      let i = 0;
+      let id = 1;
+      filteredRecipes.forEach(recipe => {
+        if (recipe.style.display === "block") {
+          // console.log("BLOCK", recipe);
+          blockRecipesID.push(id);
+          i++;
+          id++;
+        } else if (recipe.style.display === "none") {
+          // console.log("NONE", recipe);
+          i++;
+          id++;
+        }
+      });
+      // +------------------------------+
+      // | POUR CHAQUE BLOCK FILTERED : |
+      // +------------------------------+
+      
+      blockRecipesID.forEach(itemID => {
+        recipes.forEach(y => {
+          if (y.id === itemID) {
+            recipesFiltered.push(y);
+          }
+        });
+      });
+
+      console.log("NEW ARRAY : ", recipesFiltered);
+
+      recipesFiltered.forEach(item => {
+        const ingredients = item.ingredients;
+        let totalYes = 0;
+        // COMPARAISON DE CHAQUE INGREDIENT
+        ingredients.forEach(y => {
+          const ingredient = y.ingredient.toLowerCase();
+          if (ingredient.includes(e.innerHTML.toLowerCase())) {
+            console.log(ingredient," VS : ", e.innerHTML.toLowerCase());
+            totalYes++;
+          }
+        });
+        if (totalYes === 0) {
+          let elemID = (item.id - 1);
+          console.log("TEST card[elemID]", card[elemID]);
+          card[elemID].style.setProperty('display', 'none');
+        }
+      });
+    });
+  });
+
 };
 applyFilterButtons();
-  //   // +------------------------+
-  //   // | DISPLAY: BLOCK IF TRUE |
-  //   // +------------------------+
-  //   let totalRecipesFiltered = 0;
-  //   recipes.forEach(e => {
-  //     let cardID = (e.id - 1);
-
-  //     // INGREDIENTS
-  //     e.ingredients.forEach(y => {
-  //       const ingredient = y.ingredient.toLowerCase();
-  //       if (ingredient.includes(mainResearch) && card[cardID].style != "block") {
-  //         card[cardID].style.display = "block";
-  //         // console.log(ingredient, "IngredientID: ", cardID);
-  //       }
-  //     });
-  //     
-  //     // INCREASE NB RECIPES
-  //     if (card[cardID].style.display === "block") {
-  //       totalRecipesFiltered++
-  //     }
-  //   });
-  //   // +--------------------+
-  //   // | UPDATE NB RECETTES |
-  //   // +--------------------+
-  //   if (mainResearch !== "") {
-  //     document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
-  //   } else if (mainResearch === "") {
-  //     document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
-  //   }
-  // });
-  // -------------------------------------------------------------------------------------------------
