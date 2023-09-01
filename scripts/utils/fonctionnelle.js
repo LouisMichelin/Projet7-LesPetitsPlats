@@ -8,10 +8,31 @@ let card = document.querySelectorAll('.card');
 card = [...new Set(card)];
 
 
+// +----------------------+
+// | NB TOTAL DE RECETTES |
+// +----------------------+
+let wrapperAll = Array.from(document.getElementById('wrapper').children);
+wrapperAll.forEach(carte => {
+  carte.style.display = "block";
+});
+//
+let total = 0;
+//
+function totalRecipes() {
+  wrapperAll.forEach(carte => {
+    if (carte.style.display == "block") {
+      total++;
+      console.log("OUI, c'est du BLOCK");
+    }
+  });
+  console.log("TOTAL=", total);
+}
+totalRecipes();
+
+
 // +------------------------+
 // | EVENT LISTENER : LOUPE |
 // +------------------------+
-let totalRecipesFiltered = 0;
 function loupeFunction() {
   loupe.addEventListener("click", function(event) {
     event.preventDefault();
@@ -47,25 +68,16 @@ function loupeFunction() {
         card[cardID].style.display = "block";
         // console.log(description, "DescriptionID: ", cardID);
       }
-      // INCREASE NB RECIPES
-      if (card[cardID].style.display === "block") {
-        totalRecipesFiltered++
-      }
     });
     // +--------------------+
     // | UPDATE NB RECETTES |
     // +--------------------+
-    if (mainResearch !== "") {
-      document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
-    } else if (mainResearch === "") {
-      document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
-    }
+    total = 0;
+    totalRecipes();
+    document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
   });
 } 
 loupeFunction()
-
-
-
 
   // +-------------------------------------------+
   // | RESET RECIPES ONCLICK - MAIN ERASE BUTTON |
@@ -75,7 +87,9 @@ delMainSearch.addEventListener("click", function() {
   card.forEach(e => {
     e.style.display = "block";
   });
-  document.getElementById('nb-recettes').innerHTML = `${recipes.length} recettes`;
+  total = 0;
+  totalRecipes();
+  document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
 });
 
 
@@ -496,12 +510,14 @@ function applyFilterButtons() {
           let elemID = (item.id - 1);
           console.log("TEST card[elemID]", card[elemID]);
           card[elemID].style.setProperty('display', 'none');
-          totalRecipesFiltered -= 1;
-          document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
         }
+        total = 0;
+        totalRecipes();
+        document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
       });
     });
   });
+  //
   //
   // FOREACH : POUR CHAQUE FILTRE RECHERCHé DANS LA BARRE DES INGREDIENTS
   // selectedIngredients.forEach(e => {
@@ -553,6 +569,8 @@ function applyFilterButtons() {
   //     });
   //   });
   // });
+  //
+  //
 
   // +--------------------------------+
   // | DECLENCHEUR : FILTRE APPAREILS |
@@ -596,15 +614,12 @@ function applyFilterButtons() {
           let elemID = (item.id - 1);
           console.log("TEST card[elemID]", card[elemID]);
           card[elemID].style.setProperty('display', 'none');
-          totalRecipesFiltered -= 1;
-          document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
+          total = 0;
+          totalRecipes();
+          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
         }
       });
     });
-      
-
-
-
   });
 
   // +---------------------------------+
@@ -653,8 +668,9 @@ function applyFilterButtons() {
           let elemID = (item.id - 1);
           console.log("TEST card[elemID]", card[elemID]);
           card[elemID].style.setProperty('display', 'none');
-          totalRecipesFiltered -= 1;
-          document.getElementById('nb-recettes').innerHTML = `${totalRecipesFiltered} recettes`;
+          total = 0;
+          totalRecipes();
+          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
         }
       });
     });

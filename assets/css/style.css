@@ -296,7 +296,8 @@ main {
   display: flex;
   flex-direction: column;
   margin: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-y: scroll;
   font-family: 'Manrope', sans-serif;
 }
 .item-filtre {
