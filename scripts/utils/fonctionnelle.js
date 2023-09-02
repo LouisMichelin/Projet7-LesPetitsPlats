@@ -219,25 +219,13 @@ inputIngredient.addEventListener("input", x => {
       filteredRecipes = Array.from(filteredRecipes.children);
       // EVENT LISTENER
       div.addEventListener("click", function() {
-        console.log("YES, RESPONSIVE");
-        //
         selectedIngredients.push(div.innerText.toLowerCase());
-        console.log(selectedIngredients);
-        //
-        console.log("Selected Array: ", selectedIngredients);
-        console.log("Filtre Selectionné: ", div.innerText.toLowerCase());
-        //
-        //
-        //
         let wrapper = document.getElementById('wrapper');
         wrapper = Array.from(wrapper.children);
-        //
+        // FILTERING EACH INGREDIENT
         selectedIngredients.forEach(e => {
           let i = 0;
           let id = 1;
-
-          console.log(filteredRecipes);
-
           filteredRecipes.forEach(recipe => {
             if (recipe.style.display === "block") {
               // console.log("BLOCK", recipe);
@@ -250,11 +238,7 @@ inputIngredient.addEventListener("input", x => {
               id++;
             }
           });
-          console.log(blockRecipesID);
-          console.log("ingredient: ", e);
-          //
-          //
-          //
+          // ARRAY DES INGREDIENTS FILTERED
           blockRecipesID.forEach(itemID => {
             recipes.forEach(y => {
               if (y.id === itemID) {
@@ -263,19 +247,15 @@ inputIngredient.addEventListener("input", x => {
             });
           });
           console.log(recipesFiltered);
-          //
-          //
-          //
+          // FILTERING
           recipesFiltered.forEach(item => {
             const ingredients = item.ingredients;
             let totalYes = 0;
             // COMPARAISON DE CHAQUE INGREDIENT
-
-
             ingredients.forEach(y => {
               const ingredient = y.ingredient.toLowerCase();
-              if (ingredient.includes(e.innerHTML.toLowerCase())) {
-                console.log(ingredient," VS : ", e.innerHTML.toLowerCase());
+              if (ingredient.includes(div.innerText.toLowerCase())) {
+                console.log(ingredient," VS : ", div.innerText.toLowerCase());
                 totalYes++;
               }
             });
@@ -284,31 +264,14 @@ inputIngredient.addEventListener("input", x => {
               console.log("TEST card[elemID]", card[elemID]);
               card[elemID].style.setProperty('display', 'none');
             }
-
-
           });
           total = 0;
           totalRecipes();
           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
-
-          // let recipeIngredients = recipes.ingredients;
-          // let ingredientsIngredient = recipeIngredients.ingredient;
-          // console.log(ingredientsIngredient.forEach(z => {
-          //   console.log(z)
-          // }))
-
-
-
         });
       });
     };
     monFiltreDesIngredients();
-    
-    
-    
-
-
-
   });
   chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - FILTERED
 });
