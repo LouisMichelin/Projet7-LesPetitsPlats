@@ -76,11 +76,14 @@ function convertToSet() {
 // +---------------------------------+
 // | CREATION DES CARTES DE RECETTES |
 // +---------------------------------+
+let indexID = 0;
 function getRecipesCardDOM(recipe) {
   // 1 CARTE DE RECETTE
   let recipeCard = document.createElement('div');
   recipeCard.setAttribute("class", "card");
-  recipeCard.style.display = 'block'; 
+  recipeCard.style.display = 'block';
+  recipeCard.setAttribute("index", `${recipes[indexID].id}`);
+  indexID++;
   // PHOTO ET DUREE
   let recipeEntete = document.createElement('div');
   recipeEntete.setAttribute("class", "recipe-entete");

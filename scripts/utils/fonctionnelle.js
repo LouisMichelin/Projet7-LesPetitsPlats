@@ -1,39 +1,39 @@
 // +------------------------------------+
 // | INPUTS & FILTRES - MAIN SEARCH BAR |
 // +------------------------------------+
-const mainSearchBar = document.getElementById('main-input');
-const loupe = document.getElementById('button-loupe');
+// const mainSearchBar = document.getElementById('main-input');
+// const loupe = document.getElementById('button-loupe');
 // WRAPPER
 // let filteredRecipes = Array.from(document.getElementById('wrapper'));
 // SELECTED FILTERS
 let selectedIngredients = Array.from(document.getElementById('selected-ingredients'));
 let selectedAppareils = Array.from(document.getElementById('selected-appareils'));
 let selectedUstensils = Array.from(document.getElementById('selected-ustensils'));
-// CREATE ARRAY OF CARDS
-let card = document.querySelectorAll('.card');
-card = [...new Set(card)];
+// // CREATE ARRAY OF CARDS
+// let card = document.querySelectorAll('.card');
+// card = [...new Set(card)];
 
 
-// +----------------------+
-// | NB TOTAL DE RECETTES |
-// +----------------------+
-let wrapperAll = Array.from(document.getElementById('wrapper').children);
-wrapperAll.forEach(carte => {
-  carte.style.display = "block";
-});
-//
-let total = 0;
-//
-function totalRecipes() {
-  wrapperAll.forEach(carte => {
-    if (carte.style.display == "block") {
-      total++;
-      console.log("OUI, c'est du BLOCK");
-    }
-  });
-  console.log("TOTAL=", total);
-}
-totalRecipes();
+// // +----------------------+
+// // | NB TOTAL DE RECETTES |
+// // +----------------------+
+// let wrapperAll = Array.from(document.getElementById('wrapper').children);
+// wrapperAll.forEach(carte => {
+//   carte.style.display = "block";
+// });
+// //
+// let total = 0;
+// //
+// function totalRecipes() {
+//   wrapperAll.forEach(carte => {
+//     if (carte.style.display == "block") {
+//       total++;
+//       console.log("OUI, c'est du BLOCK");
+//     }
+//   });
+//   console.log("TOTAL=", total);
+// }
+// totalRecipes();
 
 
 // +------------------------+
