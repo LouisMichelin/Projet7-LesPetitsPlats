@@ -41,8 +41,8 @@ totalRecipes();
 // +------------------------+
 function loupeFunction() {
   loupe.addEventListener("click", function(event) {
-    event.preventDefault();
-    const mainResearch = mainSearchBar.value.toLowerCase().trim();
+    // event.preventDefault();
+    // const mainResearch = mainSearchBar.value.toLowerCase().trim();
     // +-------------------------+
     // | DISPLAY: NONE ALL CARDS |
     // +-------------------------+

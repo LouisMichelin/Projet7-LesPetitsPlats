@@ -80,6 +80,7 @@ function getRecipesCardDOM(recipe) {
   // 1 CARTE DE RECETTE
   let recipeCard = document.createElement('div');
   recipeCard.setAttribute("class", "card");
+  recipeCard.style.display = 'block'; 
   // PHOTO ET DUREE
   let recipeEntete = document.createElement('div');
   recipeEntete.setAttribute("class", "recipe-entete");
