@@ -46,9 +46,9 @@ function loupeFunction() {
     // +-------------------------+
     // | DISPLAY: NONE ALL CARDS |
     // +-------------------------+
-    card.forEach(e => {
-      e.style.display = "none";
-    });
+    // card.forEach(e => {
+    //   e.style.display = "none";
+    // });
     // +------------------------+
     // | DISPLAY: BLOCK IF TRUE |
     // +------------------------+

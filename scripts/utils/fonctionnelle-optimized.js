@@ -7,6 +7,7 @@ const loupe = document.getElementById('button-loupe');
 // WRAPPER + CARD DOM
 let wrapper = document.getElementById('wrapper').children;
 wrapper = Array.from(wrapper);
+// let card = document.querySelectorAll('.card');
 
 // +----------------------+
 // | NB TOTAL DE RECETTES |
@@ -28,15 +29,31 @@ allTotalRecipes();
 // +----------------------------------+
 function mainSearchFunction() {
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
-  // ID DE CHAQUE RECIPE
-  // recipes.forEach(recipe => {
-  //   console.log(recipe.id);
-  // });
-  
-  // INDEX ATTRIBUTE 
+  // INDEX ATTRIBUTE -------------------------
   // wrapper.forEach(card => {
   //   console.log(card.getAttribute('index'));
   // });
+  // ------------------------------------------
+  recipes.forEach(recipe => {
+    let mainFilteredArray = [];
+    let name = recipe.name.toLowerCase();
+
+    // if (name.includes(mainSearchInput)) {
+    //   console.log(recipe.id);
+    // }
+
+    // recipe.filter(x => {
+
+    // })
+
+
+
+
+
+
+  });
+  
+  
 
 
     
