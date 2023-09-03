@@ -218,6 +218,7 @@ inputIngredient.addEventListener("input", x => {
     div.setAttribute('class', 'item-filtre');
     allItemsIngredients.appendChild(div);
     div.innerHTML = ingredient;
+    div.addEventListener("click", function() {});
     // ----------------------------------------------------------
     //
     // INSERTION DE FONCTION JUSTE APRES ELEMENT FILTERED DU MENU
@@ -292,7 +293,7 @@ chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
 function chosenIngredient() {
   const ingredientArray = [];
   const ingredientList = document.querySelector('#all-items-ingredients');
-  const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
+  //const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
   const selectedIngredients = document.getElementById('selected-ingredients');
   const sectionFilters = document.getElementById('filters-selected');
   // FONCTION ADD/REMOVE FILTERS
@@ -345,7 +346,8 @@ function chosenIngredient() {
             e.style.display = "block";
           });
           document.getElementById('ingredients-input').value = "";
-          // setupAllIngredients();
+          document.getElementById()
+          setupAllIngredients();
           total = 0;
           totalRecipes();
           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
