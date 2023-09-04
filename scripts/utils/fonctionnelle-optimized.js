@@ -34,12 +34,12 @@ function mainSearchFunction() {
   // FILTRE NOM
   let nameFilter = recipes.filter(card => card.name.toLowerCase().includes(mainSearchInput));
   nameFilter.forEach(x => {
-    allFiltersRegrouped.push(x);
+    allFiltersRegrouped.push(x.id);
   });
   // FILTRE DESCRIPTION
   let descriptionFilter = recipes.filter(card => card.description.toLowerCase().includes(mainSearchInput));
   descriptionFilter.forEach(x => {
-    allFiltersRegrouped.push(x);
+    allFiltersRegrouped.push(x.id);
   });
   // FILTRE INGREDIENTS
   recipes.forEach(x => {
@@ -47,28 +47,30 @@ function mainSearchFunction() {
     allStackedIngredients.forEach(card => {
       const ingredient = card.ingredient.toLowerCase();
       if (ingredient.includes(mainSearchInput)) {
-        allFiltersRegrouped.push(x);
+        allFiltersRegrouped.push(x.id);
       }
     });
   });
   // SUPPRIME LES DOUBLONS
   allFiltersRegrouped = [...new Set(allFiltersRegrouped)];
   // SORT BY RECIPE.ID
-  allFiltersRegrouped.sort((a, b) => a.id - b.id);
+  allFiltersRegrouped.sort((a, b) => a - b);
   console.log(allFiltersRegrouped);
-
-
-  for (let z = 0; z < 50; z++) {
-    console.log(recipes[z].id);
-    console.log(allFiltersRegrouped[z].id);
-  }
-  
-  
-
-
-
-
-  
+  // DISPLAY: NONE FOR ALL CARDS
+  card.forEach(e => {
+    e.style.display = "none";
+  });
+  // FILTERING
+  let i = 0;
+  recipes.forEach(recipe => {
+    allFiltersRegrouped.forEach(index => {
+      if (index == recipe.id) {
+        console.log(recipe.name);
+        card[i].style.display = "block";
+      }
+    });
+    i++;
+  });
 };
 // TOGGLERS : Loupe + "Enter"
 mainSearchBar.addEventListener("keydown", function(e) {

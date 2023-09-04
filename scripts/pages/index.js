@@ -82,7 +82,7 @@ function getRecipesCardDOM(recipe) {
   let recipeCard = document.createElement('div');
   recipeCard.setAttribute("class", "card");
   recipeCard.style.display = 'block';
-  recipeCard.setAttribute("index", `${recipes[indexID].id}`);
+  recipeCard.setAttribute("id", `${recipes[indexID].id}`);
   indexID++;
   // PHOTO ET DUREE
   let recipeEntete = document.createElement('div');
