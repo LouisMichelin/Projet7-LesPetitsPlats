@@ -10,10 +10,56 @@ wrapper = Array.from(wrapper);
 let card = document.querySelectorAll('.card');
 
 
+// +---------------------------------------------------+
+// | SVG CREATORS : "DELETE CROSS FROM FILTERS BUTTON" |
+// +---------------------------------------------------+
+// CIRCLED CROSS
+function renderSVGIcon(Node) {
+  let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  iconSvg.setAttribute('width', '17');
+  iconSvg.setAttribute('height', '17');
+  iconSvg.setAttribute('viewBox', '0 0 17 17');
+  iconSvg.setAttribute('fill', 'none');
+  let iconCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  iconCircle.setAttribute('cx', '8.5');
+  iconCircle.setAttribute('cy', '8.5');
+  iconCircle.setAttribute('r', '8.5');
+  iconCircle.setAttribute('fill', 'black');
+  let iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  iconPath.setAttribute('d', 'M11 11L8.5 8.5M8.5 8.5L6 6M8.5 8.5L11 6M8.5 8.5L6 11');
+  iconPath.setAttribute('stroke', '#FFD15B');
+  iconPath.setAttribute('stroke-linecap', 'round');
+  iconPath.setAttribute('stroke-linejoin', 'round');
+  // APPENDCHILD'S
+  iconSvg.appendChild(iconCircle);
+  iconSvg.appendChild(iconPath);
+  
+  return Node.appendChild(iconSvg);
+};
+// CROSS
+function renderSVGCross(Node) {
+  let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  iconSvg.setAttribute('width', '17');
+  iconSvg.setAttribute('height', '17');
+  iconSvg.setAttribute('viewBox', '0 0 17 17');
+  iconSvg.setAttribute('fill', '#FFD15B');
+  let iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  iconPath.setAttribute('d', 'M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15');
+  iconPath.setAttribute('stroke', '#1B1B1B');
+  iconPath.setAttribute('stroke-width', '2.16667');
+  iconPath.setAttribute('stroke-linecap', 'round');
+  iconPath.setAttribute('stroke-linejoin', 'round');
+  // APPENDCHILD'S
+  iconSvg.appendChild(iconPath);
+  
+  return Node.appendChild(iconSvg);
+};
+
+
 // +----------------------+
 // | NB TOTAL DE RECETTES |
 // +----------------------+
-let totalCards = 0;
+let totalCards;
 function allTotalRecipes() {
   totalCards = 0;
   wrapper.forEach(card => {
@@ -22,8 +68,8 @@ function allTotalRecipes() {
     }
   });
   console.log("Total Recipes = ", totalCards);
-}
-allTotalRecipes();
+  document.getElementById('nb-recettes').innerHTML = `${totalCards} recettes`;
+};
 
 
 // +----------------------------------+
@@ -78,12 +124,74 @@ mainSearchBar.addEventListener("keydown", function(e) {
     e.preventDefault();
     mainSearchFunction();
     allTotalRecipes();
-    document.getElementById('nb-recettes').innerHTML = `${totalCards} recettes`;
   }
 });
 loupe.addEventListener("click", function(event) {
   event.preventDefault();
   mainSearchFunction();
   allTotalRecipes();
-  document.getElementById('nb-recettes').innerHTML = `${totalCards} recettes`;
 });
+
+
+// +----------------------------------------------+
+// | MAIN SEARCH BAR : Erase Button & Empty Input |
+// +----------------------------------------------+
+const delMainSearch = document.getElementById('button-erase');
+delMainSearch.addEventListener("click", function() {
+  card.forEach(e => {
+    e.style.display = "block";
+  });
+  allTotalRecipes();
+});
+mainSearchBar.addEventListener("input", (e) => {
+  if (e.currentTarget.value == "" && totalCards < 50) {
+    card.forEach(e => {
+      e.style.display = "block";
+    });
+    allTotalRecipes();
+  }
+});
+
+
+// +---------------------------+
+// | BUTTONS-MENUS : Variables |
+// +---------------------------+
+// MENU INGREDIENTS
+let menuIngredients = document.getElementById('all-items-ingredients');
+let inputIngredient = document.getElementById('ingredients-input');
+// MENU APPAREILS
+let menuAppareils = document.getElementById('all-items-appareils');
+let inputAppareils = document.getElementById('appareils-input');
+// MENU USTENSILS
+let menuUstensils = document.getElementById('all-items-ustensils');
+let inputUstensils = document.getElementById('ustensils-input');
+// +--------------------------------------------+
+// | BUTTONS-MENUS : Listing des Items + Init() |
+// +--------------------------------------------+
+// INGREDIENTS
+allIngredients.forEach(ingredient => {
+  let div = document.createElement('div');
+  div.setAttribute("class", "item-filtre");
+  menuIngredients.appendChild(div);
+  div.innerHTML = ingredient;
+});
+// APPAREILS
+allAppareils.forEach(appareil => {
+  let div = document.createElement('div');
+  div.setAttribute("class", "item-filtre");
+  menuAppareils.appendChild(div);
+  div.innerHTML = appareil;
+});
+// USTENSILS
+allUstensils.forEach(ustensil => {
+  let div = document.createElement('div');
+  div.setAttribute("class", "item-filtre");
+  menuUstensils.appendChild(div);
+  div.innerHTML = ustensil;
+});
+
+
+
+
+
+
