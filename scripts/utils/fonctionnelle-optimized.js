@@ -13,8 +13,9 @@ let card = document.querySelectorAll('.card');
 // +----------------------+
 // | NB TOTAL DE RECETTES |
 // +----------------------+
+let totalCards = 0;
 function allTotalRecipes() {
-  let totalCards = 0;
+  totalCards = 0;
   wrapper.forEach(card => {
     if (card.style.display == "block") {
       totalCards++;
@@ -51,9 +52,8 @@ function mainSearchFunction() {
       }
     });
   });
-  // SUPPRIME LES DOUBLONS
+  // SUPPRIME LES DOUBLONS && SORT BY RECIPE.ID
   allFiltersRegrouped = [...new Set(allFiltersRegrouped)];
-  // SORT BY RECIPE.ID
   allFiltersRegrouped.sort((a, b) => a - b);
   console.log(allFiltersRegrouped);
   // DISPLAY: NONE FOR ALL CARDS
@@ -77,9 +77,13 @@ mainSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
     mainSearchFunction();
+    allTotalRecipes();
+    document.getElementById('nb-recettes').innerHTML = `${totalCards} recettes`;
   }
 });
 loupe.addEventListener("click", function(event) {
   event.preventDefault();
   mainSearchFunction();
+  allTotalRecipes();
+  document.getElementById('nb-recettes').innerHTML = `${totalCards} recettes`;
 });
