@@ -160,7 +160,7 @@ mainSearchBar.addEventListener("input", (e) => {
 let sectionFilters = document.getElementById('filters-selected');
 // MENU INGREDIENTS
 let menuIngredients = document.getElementById('all-items-ingredients');
-let inputIngredient = document.getElementById('ingredients-input');
+let inputIngredients = document.getElementById('ingredients-input');
 let selectedIngredients = document.getElementById('selected-ingredients');
 // MENU APPAREILS
 let menuAppareils = document.getElementById('all-items-appareils');
@@ -173,6 +173,7 @@ let selectedUstensils = document.getElementById('selected-ustensils');
 // +-------------+
 // | INGREDIENTS |
 // +-------------+
+const ingredientArray = [];
 allIngredients.forEach(ingredient => {
   // SETUP
   let div = document.createElement('div');
@@ -181,10 +182,14 @@ allIngredients.forEach(ingredient => {
   menuIngredients.appendChild(div);
   div.innerHTML = ingredient;
   // MENU : ONCLICK EVENT
-  const ingredientArray = [];
   div.addEventListener("click", function() {
+    
+    console.log("avant", ingredientArray)
     if (!ingredientArray.includes(ingredient)) {
+      div.style.display = "none";
       ingredientArray.push(ingredient);
+      // let arrayID = ingredientArray.indexOf(ingredient);
+      
       // +----------------+
       // | MENU DEROULANT |
       // +----------------+
@@ -197,14 +202,17 @@ allIngredients.forEach(ingredient => {
       let divButton = document.createElement('button');
       divButton.setAttribute('class', 'delete-filter');
       divButton.addEventListener("click", function() {
+        div.style.display = "block";
         divMenuItem.remove();
         filter.remove();
-        ingredientArray.pop();
+        console.log(ingredientArray.indexOf(ingredient))
+        ingredientArray.splice(ingredientArray.indexOf(ingredient), 1);
         card.forEach(e => {
           e.style.display = "block";
         });
-        document.getElementById('ingredients-input').value = "";
+        inputIngredients.value = "";
         allTotalRecipes();
+        console.log(ingredientArray)
       });
       // APPENDCHILDS
       selectedIngredients.appendChild(divMenuItem);
@@ -219,26 +227,56 @@ allIngredients.forEach(ingredient => {
       // DELETE FILTER : SECTION
       let removeFilter = document.createElement('button');
       removeFilter.addEventListener("click", function() {
+        div.style.display = "block";
         divMenuItem.remove();
         filter.remove();
-        ingredientArray.pop();
+        console.log(ingredientArray.indexOf(ingredient));
+        ingredientArray.splice(ingredientArray.indexOf(ingredient), 1);
         card.forEach(e => {
           e.style.display = "block";
         });
-        document.getElementById('ingredients-input').value = "";
+        inputIngredients.value = "";
         allTotalRecipes();
+        console.log(ingredientArray);
       });
       // APPENDCHILDS
       sectionFilters.appendChild(filter);
       filter.innerHTML = ingredient;
       filter.appendChild(removeFilter);
       renderSVGCross(removeFilter);
+      // ingredientArray.forEach(recipe => {
+      //   sectionFilters.appendChild(filter);
+      //   filter.innerHTML = recipe;
+      //   filter.appendChild(removeFilter);
+      // });
+      // renderSVGCross(removeFilter);
+      
+      console.log("after", ingredientArray)
+
+
     }
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // +-----------+
 // | APPAREILS |
 // +-----------+
+const appareilsArray = [];
 allAppareils.forEach(appareil => {
   // SETUP
   let div = document.createElement('div');
@@ -247,7 +285,6 @@ allAppareils.forEach(appareil => {
   menuAppareils.appendChild(div);
   div.innerHTML = appareil;
   // MENU : ONCLICK EVENT
-  const appareilsArray = [];
   div.addEventListener("click", function() {
     if (!appareilsArray.includes(appareil)) {
       appareilsArray.push(appareil);
@@ -269,7 +306,7 @@ allAppareils.forEach(appareil => {
         card.forEach(e => {
           e.style.display = "block";
         });
-        document.getElementById('appareils-input').value = "";
+        inputAppareils.value = "";
         allTotalRecipes();
       });
       // APPENDCHILDS
@@ -291,7 +328,7 @@ allAppareils.forEach(appareil => {
         card.forEach(e => {
           e.style.display = "block";
         });
-        document.getElementById('appareils-input').value = "";
+        inputAppareils.value = "";
         allTotalRecipes();
       });
       // APPENDCHILDS
@@ -305,6 +342,7 @@ allAppareils.forEach(appareil => {
 // +-----------+
 // | USTENSILS |
 // +-----------+
+const ustensilsArray = [];
 allUstensils.forEach(ustensil => {
   // SETUP
   let div = document.createElement('div');
@@ -313,7 +351,6 @@ allUstensils.forEach(ustensil => {
   menuUstensils.appendChild(div);
   div.innerHTML = ustensil;
   // MENU : ONCLICK EVENT
-  const ustensilsArray = [];
   div.addEventListener("click", function() {
     if (!ustensilsArray.includes(ustensil)) {
       ustensilsArray.push(ustensil);
@@ -335,7 +372,7 @@ allUstensils.forEach(ustensil => {
         card.forEach(e => {
           e.style.display = "block";
         });
-        document.getElementById('ustensils-input').value = "";
+        inputUstensils.value = "";
         allTotalRecipes();
       });
       // APPENDCHILDS
@@ -357,7 +394,7 @@ allUstensils.forEach(ustensil => {
         card.forEach(e => {
           e.style.display = "block";
         });
-        document.getElementById('ustensils-input').value = "";
+        inputUstensils.value = "";
         allTotalRecipes();
       });
       // APPENDCHILDS
