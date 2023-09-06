@@ -290,77 +290,80 @@ chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
 // +---------------------------------------------------+
 // | INGREDIENTS : EVENT LISTENER + CREATE/REMOVE ITEM |
 // +---------------------------------------------------+
-function chosenIngredient() {
-  const ingredientArray = [];
-  const ingredientList = document.querySelector('#all-items-ingredients');
-  //const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
-  const selectedIngredients = document.getElementById('selected-ingredients');
-  const sectionFilters = document.getElementById('filters-selected');
-  // FONCTION ADD/REMOVE FILTERS
-  chosenIngredient.forEach(ingredient => {
-    ingredient.addEventListener("click", function() {
-      if (ingredientArray.includes(ingredient.innerHTML) === false) {
-        // MENU FILTER'S CREATION
-        ingredientArray.push(ingredient.innerHTML);
-        let div = document.createElement('div');
-        div.setAttribute('class', 'item-selected-style');
-        let divTitle = document.createElement('div');
-        divTitle.setAttribute('class', 'item-selected');
-        divTitle.innerHTML = ingredient.innerHTML;
-        let button = document.createElement('button');
-        button.setAttribute('class', 'delete-filter');
-        // DELETE SELECTED FILTER
-        button.addEventListener("click", function() {
-          div.remove();
-          filter.remove();
-          ingredientArray.pop();
-        });
-        // APPENDCHILDS MENU DEROULANT
-        selectedIngredients.appendChild(div);
-        div.appendChild(divTitle);
-        div.appendChild(button);
-        renderSVGIcon(button);
-        // SECTION FILTERS' CREATION
-        let filter = document.createElement('div');
-        filter.setAttribute('class', 'filter');
-        let removeFilter = document.createElement('button');
-        // DELETE SELECTED FILTER
-        removeFilter.addEventListener("click", function() {
-          filter.remove();
-          div.remove();
-          ingredientArray.pop();
-          card.forEach(e => {
-            e.style.display = "block";
-          });
-          document.getElementById('ingredients-input').value = "";
-          total = 0;
-          totalRecipes();
-          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
-        });
-        // DELETE WITH FILTER-MENU SCROLLING DELETE BUTTON
-        document.querySelector('.delete-filter').addEventListener("click", function() {
-          filter.remove();
-          div.remove();
-          ingredientArray.pop();
-          card.forEach(e => {
-            e.style.display = "block";
-          });
-          document.getElementById('ingredients-input').value = "";
-          document.getElementById()
-          setupAllIngredients();
-          total = 0;
-          totalRecipes();
-          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
-        });
-        // APPENDCHILDS SECTION FILTERS
-        sectionFilters.appendChild(filter);
-        filter.innerHTML = ingredient.innerHTML;
-        filter.appendChild(removeFilter);
-        renderSVGCross(removeFilter);
-      }
-    });
-  });
-};
+// function chosenIngredient() {
+//   const ingredientArray = [];
+//   const ingredientList = document.querySelector('#all-items-ingredients');
+//   //const chosenIngredient = ingredientList.querySelectorAll('div.item-filtre');
+//   const selectedIngredients = document.getElementById('selected-ingredients');
+//   const sectionFilters = document.getElementById('filters-selected');
+//   // FONCTION ADD/REMOVE FILTERS
+//   chosenIngredient.forEach(ingredient => {
+//     // ingredient.addEventListener("click", function() {
+//     //   if (ingredientArray.includes(ingredient.innerHTML) === false) {
+//     //     // MENU FILTER'S CREATION
+//     //     ingredientArray.push(ingredient.innerHTML);
+//     //     let div = document.createElement('div');
+//     //     div.setAttribute('class', 'item-selected-style');
+//     //     let divTitle = document.createElement('div');
+//     //     divTitle.setAttribute('class', 'item-selected');
+//     //     divTitle.innerHTML = ingredient.innerHTML;
+//     //     let button = document.createElement('button');
+//     //     button.setAttribute('class', 'delete-filter');
+//     //     // DELETE SELECTED FILTER
+//     //     button.addEventListener("click", function() {
+//     //       div.remove();
+//     //       filter.remove();
+//     //       ingredientArray.pop();
+//     //     });
+//     //     // APPENDCHILDS MENU DEROULANT
+//     //     selectedIngredients.appendChild(div);
+//     //     div.appendChild(divTitle);
+//     //     div.appendChild(button);
+//     //     renderSVGIcon(button);
+
+
+
+//         // SECTION FILTERS' CREATION
+//         let filter = document.createElement('div');
+//         filter.setAttribute('class', 'filter');
+//         let removeFilter = document.createElement('button');
+//         // DELETE SELECTED FILTER
+//         removeFilter.addEventListener("click", function() {
+//           filter.remove();
+//           div.remove();
+//           ingredientArray.pop();
+//           card.forEach(e => {
+//             e.style.display = "block";
+//           });
+//           document.getElementById('ingredients-input').value = "";
+//           total = 0;
+//           totalRecipes();
+//           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
+//         });
+//         // DELETE WITH FILTER-MENU SCROLLING DELETE BUTTON
+//         document.querySelector('.delete-filter').addEventListener("click", function() {
+//           filter.remove();
+//           div.remove();
+//           ingredientArray.pop();
+//           card.forEach(e => {
+//             e.style.display = "block";
+//           });
+//           document.getElementById('ingredients-input').value = "";
+//           document.getElementById()
+//           setupAllIngredients();
+//           total = 0;
+//           totalRecipes();
+//           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
+//         });
+//         // APPENDCHILDS SECTION FILTERS
+//         sectionFilters.appendChild(filter);
+//         filter.innerHTML = ingredient.innerHTML;
+//         filter.appendChild(removeFilter);
+//         renderSVGCross(removeFilter);
+//       })
+//     // });
+//   // });
+// };
 
 
 // +------------------+
@@ -455,79 +458,79 @@ inputAppareils.addEventListener("input", x => {
   chosenAppareil(); // EVENTLISTENER DES APPAREILS - FILTERED
 });
 chosenAppareil(); // EVENTLISTENER DES APPAREILS - NOT FILTERED
-// +-------------------------------------------------+
-// | APPAREILS : EVENT LISTENER + CREATE/REMOVE ITEM |
-// +-------------------------------------------------+
-function chosenAppareil() {
-  const appareilArray = [];
-  const appareilList = document.querySelector('#all-items-appareils');
-  const chosenAppareil = appareilList.querySelectorAll('div.item-filtre');
-  const selectedAppareils = document.getElementById('selected-appareils');
-  const sectionFilters = document.getElementById('filters-selected');
-  chosenAppareil.forEach(appareil => {
-    appareil.addEventListener("click", function() {
-      if (appareilArray.includes(appareil.innerHTML) === false) {
-        // MENU FILTER'S CREATION
-        appareilArray.push(appareil.innerHTML);
-        let div = document.createElement('div');
-        div.setAttribute('class', 'item-selected-style');
-        let divTitle = document.createElement('div');
-        divTitle.setAttribute('class', 'item-selected');
-        divTitle.innerHTML = appareil.innerHTML;
-        let button = document.createElement('button');
-        button.setAttribute('class', 'delete-filter');
-        // DELETE SELECTED FILTER
-        button.addEventListener("click", function() {
-          div.remove();
-          filter.remove();
-          appareilArray.pop();
-        });
-        // APPENDCHILDS MENU DEROULANT
-        selectedAppareils.appendChild(div);
-        div.appendChild(divTitle);
-        div.appendChild(button);
-        renderSVGIcon(button);
-        // SECTION FILTERS' CREATION
-        let filter = document.createElement('div');
-        filter.setAttribute('class', 'filter');
-        let removeFilter = document.createElement('button');
-        // DELETE SELECTED FILTER
-        removeFilter.addEventListener("click", function() {
-          filter.remove();
-          div.remove();
-          appareilArray.pop();
-          card.forEach(e => {
-            e.style.display = "block";
-          });
-          document.getElementById('appareils-input').value = "";
-          setupAllAppareils();
-          total = 0;
-          totalRecipes();
-          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
-        });
-        // DELETE WITH FILTER-MENU SCROLLING DELETE BUTTON
-        document.querySelector('.delete-filter').addEventListener("click", function() {
-          filter.remove();
-          div.remove();
-          appareilArray.pop();
-          card.forEach(e => {
-            e.style.display = "block";
-          });
-          document.getElementById('appareils-input').value = "";
-          setupAllAppareils();
-          total = 0;
-          totalRecipes();
-          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
-        });
-        // APPENDCHILDS SECTION FILTERS
-        sectionFilters.appendChild(filter);
-        filter.innerHTML = appareil.innerHTML;
-        filter.appendChild(removeFilter);
-        renderSVGCross(removeFilter);
-      }
-    });
-  });
-};
+// // +-------------------------------------------------+
+// // | APPAREILS : EVENT LISTENER + CREATE/REMOVE ITEM |
+// // +-------------------------------------------------+
+// function chosenAppareil() {
+//   const appareilArray = [];
+//   const appareilList = document.querySelector('#all-items-appareils');
+//   const chosenAppareil = appareilList.querySelectorAll('div.item-filtre');
+//   const selectedAppareils = document.getElementById('selected-appareils');
+//   const sectionFilters = document.getElementById('filters-selected');
+//   chosenAppareil.forEach(appareil => {
+//     appareil.addEventListener("click", function() {
+//       if (appareilArray.includes(appareil.innerHTML) === false) {
+//         // MENU FILTER'S CREATION
+//         appareilArray.push(appareil.innerHTML);
+//         let div = document.createElement('div');
+//         div.setAttribute('class', 'item-selected-style');
+//         let divTitle = document.createElement('div');
+//         divTitle.setAttribute('class', 'item-selected');
+//         divTitle.innerHTML = appareil.innerHTML;
+//         let button = document.createElement('button');
+//         button.setAttribute('class', 'delete-filter');
+//         // DELETE SELECTED FILTER
+//         button.addEventListener("click", function() {
+//           div.remove();
+//           filter.remove();
+//           appareilArray.pop();
+//         });
+//         // APPENDCHILDS MENU DEROULANT
+//         selectedAppareils.appendChild(div);
+//         div.appendChild(divTitle);
+//         div.appendChild(button);
+//         renderSVGIcon(button);
+//         // SECTION FILTERS' CREATION
+//         let filter = document.createElement('div');
+//         filter.setAttribute('class', 'filter');
+//         let removeFilter = document.createElement('button');
+//         // DELETE SELECTED FILTER
+//         removeFilter.addEventListener("click", function() {
+//           filter.remove();
+//           div.remove();
+//           appareilArray.pop();
+//           card.forEach(e => {
+//             e.style.display = "block";
+//           });
+//           document.getElementById('appareils-input').value = "";
+//           setupAllAppareils();
+//           total = 0;
+//           totalRecipes();
+//           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
+//         });
+//         // DELETE WITH FILTER-MENU SCROLLING DELETE BUTTON
+//         document.querySelector('.delete-filter').addEventListener("click", function() {
+//           filter.remove();
+//           div.remove();
+//           appareilArray.pop();
+//           card.forEach(e => {
+//             e.style.display = "block";
+//           });
+//           document.getElementById('appareils-input').value = "";
+//           setupAllAppareils();
+//           total = 0;
+//           totalRecipes();
+//           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
+//         });
+//         // APPENDCHILDS SECTION FILTERS
+//         sectionFilters.appendChild(filter);
+//         filter.innerHTML = appareil.innerHTML;
+//         filter.appendChild(removeFilter);
+//         renderSVGCross(removeFilter);
+//       }
+//     });
+//   });
+// };
 
 
 // +-------------------+
@@ -625,79 +628,79 @@ inputUstensils.addEventListener("input", x => {
   chosenUstensil(); // EVENTLISTENER DES USTENSILES - FILTERED
 });
 chosenUstensil(); // EVENTLISTENER DES USTENSILES - NOT FILTERED
-// +--------------------------------------------------+
-// | USTENSILES : EVENT LISTENER + CREATE/REMOVE ITEM |
-// +--------------------------------------------------+
-function chosenUstensil() {
-  const ustensilArray = [];
-  const ustensilList = document.querySelector('#all-items-ustensils');
-  const chosenUstensil = ustensilList.querySelectorAll('div.item-filtre');
-  const selectedUstensils = document.getElementById('selected-ustensils');
-  const sectionFilters = document.getElementById('filters-selected');
-  chosenUstensil.forEach(ustensil => {
-    ustensil.addEventListener("click", function() {
-      if (ustensilArray.includes(ustensil.innerHTML) === false) {
-        // MENU FILTER'S CREATION
-        ustensilArray.push(ustensil.innerHTML);
-        let div = document.createElement('div');
-        div.setAttribute('class', 'item-selected-style');
-        let divTitle = document.createElement('div');
-        divTitle.setAttribute('class', 'item-selected');
-        divTitle.innerHTML = ustensil.innerHTML;
-        let button = document.createElement('button');
-        button.setAttribute('class', 'delete-filter');
-        // DELETE SELECTED FILTER
-        button.addEventListener("click", function() {
-          div.remove();
-          filter.remove();
-          ustensilArray.pop();
-        });
-        // APPENDCHILDS MENU DEROULANT
-        selectedUstensils.appendChild(div);
-        div.appendChild(divTitle);
-        div.appendChild(button);
-        renderSVGIcon(button);
-        // SECTION FILTERS' CREATION
-        let filter = document.createElement('div');
-        filter.setAttribute('class', 'filter');
-        let removeFilter = document.createElement('button');
-        // DELETE SELECTED FILTER
-        removeFilter.addEventListener("click", function() {
-          filter.remove();
-          div.remove();
-          ustensilArray.pop();
-          card.forEach(e => {
-            e.style.display = "block";
-          });
-          document.getElementById('ustensils-input').value = "";
-          setupAllUstensils();
-          total = 0;
-          totalRecipes();
-          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
-        });
-        // DELETE WITH FILTER-MENU SCROLLING DELETE BUTTON
-        document.querySelector('.delete-filter').addEventListener("click", function() {
-          filter.remove();
-          div.remove();
-          ustensilArray.pop();
-          card.forEach(e => {
-            e.style.display = "block";
-          });
-          document.getElementById('ustensils-input').value = "";
-          setupAllUstensils();
-          total = 0;
-          totalRecipes();
-          document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
-        });
-        // APPENDCHILDS SECTION FILTERS
-        sectionFilters.appendChild(filter);
-        filter.innerHTML = ustensil.innerHTML;
-        filter.appendChild(removeFilter);
-        renderSVGCross(removeFilter);
-      }
-    });
-  });
-};
+// // +--------------------------------------------------+
+// // | USTENSILES : EVENT LISTENER + CREATE/REMOVE ITEM |
+// // +--------------------------------------------------+
+// function chosenUstensil() {
+//   const ustensilArray = [];
+//   const ustensilList = document.querySelector('#all-items-ustensils');
+//   const chosenUstensil = ustensilList.querySelectorAll('div.item-filtre');
+//   const selectedUstensils = document.getElementById('selected-ustensils');
+//   const sectionFilters = document.getElementById('filters-selected');
+//   chosenUstensil.forEach(ustensil => {
+//     ustensil.addEventListener("click", function() {
+//       if (ustensilArray.includes(ustensil.innerHTML) === false) {
+//         // MENU FILTER'S CREATION
+//         ustensilArray.push(ustensil.innerHTML);
+//         let div = document.createElement('div');
+//         div.setAttribute('class', 'item-selected-style');
+//         let divTitle = document.createElement('div');
+//         divTitle.setAttribute('class', 'item-selected');
+//         divTitle.innerHTML = ustensil.innerHTML;
+//         let button = document.createElement('button');
+//         button.setAttribute('class', 'delete-filter');
+//         // DELETE SELECTED FILTER
+//         button.addEventListener("click", function() {
+//           div.remove();
+//           filter.remove();
+//           ustensilArray.pop();
+//         });
+//         // APPENDCHILDS MENU DEROULANT
+//         selectedUstensils.appendChild(div);
+//         div.appendChild(divTitle);
+//         div.appendChild(button);
+//         renderSVGIcon(button);
+//         // SECTION FILTERS' CREATION
+//         let filter = document.createElement('div');
+//         filter.setAttribute('class', 'filter');
+//         let removeFilter = document.createElement('button');
+//         // DELETE SELECTED FILTER
+//         removeFilter.addEventListener("click", function() {
+//           filter.remove();
+//           div.remove();
+//           ustensilArray.pop();
+//           card.forEach(e => {
+//             e.style.display = "block";
+//           });
+//           document.getElementById('ustensils-input').value = "";
+//           setupAllUstensils();
+//           total = 0;
+//           totalRecipes();
+//           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
+//         });
+//         // DELETE WITH FILTER-MENU SCROLLING DELETE BUTTON
+//         document.querySelector('.delete-filter').addEventListener("click", function() {
+//           filter.remove();
+//           div.remove();
+//           ustensilArray.pop();
+//           card.forEach(e => {
+//             e.style.display = "block";
+//           });
+//           document.getElementById('ustensils-input').value = "";
+//           setupAllUstensils();
+//           total = 0;
+//           totalRecipes();
+//           document.getElementById('nb-recettes').innerHTML = `${total} recettes`;
+//         });
+//         // APPENDCHILDS SECTION FILTERS
+//         sectionFilters.appendChild(filter);
+//         filter.innerHTML = ustensil.innerHTML;
+//         filter.appendChild(removeFilter);
+//         renderSVGCross(removeFilter);
+//       }
+//     });
+//   });
+// };
 
 
 // +----------------------+

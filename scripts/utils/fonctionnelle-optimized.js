@@ -153,45 +153,218 @@ mainSearchBar.addEventListener("input", (e) => {
 });
 
 
-// +---------------------------+
-// | BUTTONS-MENUS : Variables |
-// +---------------------------+
-// MENU INGREDIENTS
-let menuIngredients = document.getElementById('all-items-ingredients');
-let inputIngredient = document.getElementById('ingredients-input');
-// MENU APPAREILS
-let menuAppareils = document.getElementById('all-items-appareils');
-let inputAppareils = document.getElementById('appareils-input');
-// MENU USTENSILS
-let menuUstensils = document.getElementById('all-items-ustensils');
-let inputUstensils = document.getElementById('ustensils-input');
 // +--------------------------------------------+
 // | BUTTONS-MENUS : Listing des Items + Init() |
 // +--------------------------------------------+
-// INGREDIENTS
+// SECTION FILTERS
+let sectionFilters = document.getElementById('filters-selected');
+// MENU INGREDIENTS
+let menuIngredients = document.getElementById('all-items-ingredients');
+let inputIngredient = document.getElementById('ingredients-input');
+let selectedIngredients = document.getElementById('selected-ingredients');
+// MENU APPAREILS
+let menuAppareils = document.getElementById('all-items-appareils');
+let inputAppareils = document.getElementById('appareils-input');
+let selectedAppareils = document.getElementById('selected-appareils');
+// MENU USTENSILS
+let menuUstensils = document.getElementById('all-items-ustensils');
+let inputUstensils = document.getElementById('ustensils-input');
+let selectedUstensils = document.getElementById('selected-ustensils');
+// +-------------+
+// | INGREDIENTS |
+// +-------------+
 allIngredients.forEach(ingredient => {
+  // SETUP
   let div = document.createElement('div');
   div.setAttribute("class", "item-filtre");
+  div.setAttribute("display", "block");
   menuIngredients.appendChild(div);
   div.innerHTML = ingredient;
+  // MENU : ONCLICK EVENT
+  const ingredientArray = [];
+  div.addEventListener("click", function() {
+    if (!ingredientArray.includes(ingredient)) {
+      ingredientArray.push(ingredient);
+      // +----------------+
+      // | MENU DEROULANT |
+      // +----------------+
+      let divMenuItem = document.createElement('div');
+      divMenuItem.setAttribute('class', 'item-selected-style');
+      let divMenuTitle = document.createElement('div');
+      divMenuTitle.setAttribute('class', 'item-selected');
+      divMenuTitle.innerHTML = ingredient;
+      // DELETE FILTER : MENU
+      let divButton = document.createElement('button');
+      divButton.setAttribute('class', 'delete-filter');
+      divButton.addEventListener("click", function() {
+        divMenuItem.remove();
+        filter.remove();
+        ingredientArray.pop();
+        card.forEach(e => {
+          e.style.display = "block";
+        });
+        document.getElementById('ingredients-input').value = "";
+        allTotalRecipes();
+      });
+      // APPENDCHILDS
+      selectedIngredients.appendChild(divMenuItem);
+      divMenuItem.appendChild(divMenuTitle);
+      divMenuItem.appendChild(divButton);
+      renderSVGIcon(divButton);
+      // +-------------------+
+      // | SECTION : FILTERS |
+      // +-------------------+
+      let filter = document.createElement('div');
+      filter.setAttribute('class', 'filter');
+      // DELETE FILTER : SECTION
+      let removeFilter = document.createElement('button');
+      removeFilter.addEventListener("click", function() {
+        divMenuItem.remove();
+        filter.remove();
+        ingredientArray.pop();
+        card.forEach(e => {
+          e.style.display = "block";
+        });
+        document.getElementById('ingredients-input').value = "";
+        allTotalRecipes();
+      });
+      // APPENDCHILDS
+      sectionFilters.appendChild(filter);
+      filter.innerHTML = ingredient;
+      filter.appendChild(removeFilter);
+      renderSVGCross(removeFilter);
+    }
+  });
 });
-// APPAREILS
+// +-----------+
+// | APPAREILS |
+// +-----------+
 allAppareils.forEach(appareil => {
+  // SETUP
   let div = document.createElement('div');
   div.setAttribute("class", "item-filtre");
+  div.setAttribute("display", "block");
   menuAppareils.appendChild(div);
   div.innerHTML = appareil;
+  // MENU : ONCLICK EVENT
+  const appareilsArray = [];
+  div.addEventListener("click", function() {
+    if (!appareilsArray.includes(appareil)) {
+      appareilsArray.push(appareil);
+      // +----------------+
+      // | MENU DEROULANT |
+      // +----------------+
+      let divMenuItem = document.createElement('div');
+      divMenuItem.setAttribute('class', 'item-selected-style');
+      let divMenuTitle = document.createElement('div');
+      divMenuTitle.setAttribute('class', 'item-selected');
+      divMenuTitle.innerHTML = appareil;
+      // DELETE FILTER : MENU
+      let divButton = document.createElement('button');
+      divButton.setAttribute('class', 'delete-filter');
+      divButton.addEventListener("click", function() {
+        divMenuItem.remove();
+        filter.remove();
+        appareilsArray.pop();
+        card.forEach(e => {
+          e.style.display = "block";
+        });
+        document.getElementById('appareils-input').value = "";
+        allTotalRecipes();
+      });
+      // APPENDCHILDS
+      selectedAppareils.appendChild(divMenuItem);
+      divMenuItem.appendChild(divMenuTitle);
+      divMenuItem.appendChild(divButton);
+      renderSVGIcon(divButton);
+      // +-------------------+
+      // | SECTION : FILTERS |
+      // +-------------------+
+      let filter = document.createElement('div');
+      filter.setAttribute('class', 'filter');
+      // DELETE FILTER : SECTION
+      let removeFilter = document.createElement('button');
+      removeFilter.addEventListener("click", function() {
+        divMenuItem.remove();
+        filter.remove();
+        appareilsArray.pop();
+        card.forEach(e => {
+          e.style.display = "block";
+        });
+        document.getElementById('appareils-input').value = "";
+        allTotalRecipes();
+      });
+      // APPENDCHILDS
+      sectionFilters.appendChild(filter);
+      filter.innerHTML = appareil;
+      filter.appendChild(removeFilter);
+      renderSVGCross(removeFilter);
+    }
+  });
 });
-// USTENSILS
+// +-----------+
+// | USTENSILS |
+// +-----------+
 allUstensils.forEach(ustensil => {
+  // SETUP
   let div = document.createElement('div');
   div.setAttribute("class", "item-filtre");
+  div.setAttribute("display", "block");
   menuUstensils.appendChild(div);
   div.innerHTML = ustensil;
+  // MENU : ONCLICK EVENT
+  const ustensilsArray = [];
+  div.addEventListener("click", function() {
+    if (!ustensilsArray.includes(ustensil)) {
+      ustensilsArray.push(ustensil);
+      // +----------------+
+      // | MENU DEROULANT |
+      // +----------------+
+      let divMenuItem = document.createElement('div');
+      divMenuItem.setAttribute('class', 'item-selected-style');
+      let divMenuTitle = document.createElement('div');
+      divMenuTitle.setAttribute('class', 'item-selected');
+      divMenuTitle.innerHTML = ustensil;
+      // DELETE FILTER : MENU
+      let divButton = document.createElement('button');
+      divButton.setAttribute('class', 'delete-filter');
+      divButton.addEventListener("click", function() {
+        divMenuItem.remove();
+        filter.remove();
+        ustensilsArray.pop();
+        card.forEach(e => {
+          e.style.display = "block";
+        });
+        document.getElementById('ustensils-input').value = "";
+        allTotalRecipes();
+      });
+      // APPENDCHILDS
+      selectedUstensils.appendChild(divMenuItem);
+      divMenuItem.appendChild(divMenuTitle);
+      divMenuItem.appendChild(divButton);
+      renderSVGIcon(divButton);
+      // +-------------------+
+      // | SECTION : FILTERS |
+      // +-------------------+
+      let filter = document.createElement('div');
+      filter.setAttribute('class', 'filter');
+      // DELETE FILTER : SECTION
+      let removeFilter = document.createElement('button');
+      removeFilter.addEventListener("click", function() {
+        divMenuItem.remove();
+        filter.remove();
+        ustensilsArray.pop();
+        card.forEach(e => {
+          e.style.display = "block";
+        });
+        document.getElementById('ustensils-input').value = "";
+        allTotalRecipes();
+      });
+      // APPENDCHILDS
+      sectionFilters.appendChild(filter);
+      filter.innerHTML = ustensil;
+      filter.appendChild(removeFilter);
+      renderSVGCross(removeFilter);
+    }
+  });
 });
-
-
-
-
-
-
