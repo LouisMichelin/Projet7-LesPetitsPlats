@@ -250,11 +250,11 @@ allIngredients.forEach(ingredient => {
     }
   });
 });
-
-// INGREDIENTS : BARRE DE RECHERCHE
+// BARRE DE RECHERCHE : Press Enter
 inputIngredients.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
+    menuIngredients.style.overflow = "hidden";
     let itemFiltre = document.querySelectorAll('.item-filtre');
     let itemFiltreArray = [...new Set(itemFiltre)];
     itemFiltreArray.forEach(recipe => {
@@ -269,10 +269,11 @@ inputIngredients.addEventListener("keydown", function(e) {
     });
   }
 });
-// TOGGLE W/LOUPE BUTTON
+// BARRE DE RECHERCHE : Loupe Button
 document.getElementById('search-filter-button1').addEventListener("click", function(e) {
   if (inputIngredients.value != "") {
     e.preventDefault();
+    menuIngredients.style.overflow = "hidden";
     let itemFiltre = document.querySelectorAll('.item-filtre');
     let itemFiltreArray = [...new Set(itemFiltre)];
     itemFiltreArray.forEach(recipe => {
@@ -287,18 +288,21 @@ document.getElementById('search-filter-button1').addEventListener("click", funct
     });
   }
 });
+// RESET IF SEARCH BAR == EMPTY
 inputIngredients.addEventListener("input", function() {
   let itemFiltre = document.querySelectorAll('.item-filtre');
   let itemFiltreArray = [...new Set(itemFiltre)];
   if (!inputIngredients.value.length) {
     itemFiltreArray.forEach(recipe => {
       recipe.style.display = "block";
+      menuIngredients.style.overflowY = "scroll";
     })
   }
-})
+});
 
 
 
+// TEST DEVELOPMENT ICI------------
 
 
 
@@ -344,6 +348,10 @@ inputIngredients.addEventListener("input", function() {
 
 
 
+// // +-----------+
+// // | APPAREILS |
+// // +-----------+
+// const appareilsArray = [];
 
 
 
@@ -352,22 +360,7 @@ inputIngredients.addEventListener("input", function() {
 
 
 
-
-
-
-// +-----------+
-// | APPAREILS |
-// +-----------+
-const appareilsArray = [];
-
-
-
-
-
-
-
-
-// +-----------+
-// | USTENSILS |
-// +-----------+
-const ustensilsArray = [];
+// // +-----------+
+// // | USTENSILS |
+// // +-----------+
+// const ustensilsArray = [];
