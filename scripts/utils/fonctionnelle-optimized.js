@@ -251,38 +251,22 @@ allIngredients.forEach(ingredient => {
   });
 });
 
-
+// SEARCH BAR DES MENUS
 inputIngredients.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
-  // -------------------------------------------------------------
-    // console.log(inputIngredients.value);
-
-    allIngredients.forEach(recipe => {
-      let recette = recipe.toLowerCase();
-      let index = allIngredients.indexOf(recipe);
-      let itemFiltre = document.querySelector('.item-filtre');
-
-      if (recette.includes(inputIngredients.value.toLowerCase())) {
-        console.log("YES!", recipe, index, allIngredients[index]);
-
-        // allIngredients[index].setAttribute("display", "block");
-
+    let itemFiltre = document.querySelectorAll('.item-filtre');
+    let itemFiltreArray = [...new Set(itemFiltre)];
+    itemFiltreArray.forEach(recipe => {
+      let recette = recipe.innerHTML.toLowerCase();
+      if (!recette.includes(inputIngredients.value.toLowerCase())) {
+        console.log("NOPE.....", recipe);
+        recipe.style.display = "none";
       } else {
-        console.log("NOPE.....", recipe, index, allIngredients[index]);
-        itemFiltre.style.display = "none"
-        // allIngredients[index].setAttribute("display", "none");
+        console.log("YES!", recipe);
+        recipe.style.display = "block";
       }
     });
-    
-    
-
-
-
-
-
-
-
   }
 });
 
