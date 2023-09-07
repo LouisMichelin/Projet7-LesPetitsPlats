@@ -366,6 +366,40 @@ chosenIngredient(); // EVENTLISTENER DES INGREDIENTS - NOT FILTERED
 // };
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // +------------------+
 // | FILTRE APPAREILS |
 // +------------------+
