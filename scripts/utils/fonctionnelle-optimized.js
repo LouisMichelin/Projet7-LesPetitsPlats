@@ -210,9 +210,18 @@ allIngredients.forEach(ingredient => {
             e.style.display = "block";
           }
         });
-        inputIngredients.value = "";
+        // inputIngredients.value = "";
         allTotalRecipes();
         console.log("INGREDIENT ARRAY: ", ingredientArray);
+        // RESET LES FILTRES RECHERCHES SI (SECTION FILTRE = VIDE)
+        let itemFiltre = document.querySelectorAll('.item-filtre');
+        let itemFiltreArray = [...new Set(itemFiltre)];
+        if (sectionFilters.childNodes.length == 0) {
+          itemFiltreArray.forEach(recipe => {
+            recipe.style.display = "block";
+            menuIngredients.style.overflowY = "scroll";
+          });
+        }
       });
       // APPENDCHILDS
       selectedIngredients.appendChild(divMenuItem);
@@ -237,9 +246,18 @@ allIngredients.forEach(ingredient => {
             e.style.display = "block";
           }
         });
-        inputIngredients.value = "";
+        // inputIngredients.value = "";
         allTotalRecipes();
         console.log("INGREDIENT ARRAY: ", ingredientArray);
+        // RESET LES FILTRES RECHERCHES SI (SECTION FILTRE = VIDE)
+        let itemFiltre = document.querySelectorAll('.item-filtre');
+        let itemFiltreArray = [...new Set(itemFiltre)];
+        if (sectionFilters.childNodes.length == 0) {
+          itemFiltreArray.forEach(recipe => {
+            recipe.style.display = "block";
+            menuIngredients.style.overflowY = "scroll";
+          });
+        }
       });
       // APPENDCHILDS
       sectionFilters.appendChild(filter);
@@ -247,6 +265,14 @@ allIngredients.forEach(ingredient => {
       filter.appendChild(removeFilter);
       renderSVGCross(removeFilter);
       console.log("AFTER: ", ingredientArray);
+      //
+      //
+      // TEST DEVELOPMENT ICI------------
+      //
+      //
+      setupCardsFromIngredients();
+
+
     }
   });
 });
@@ -259,7 +285,7 @@ inputIngredients.addEventListener("keydown", function(e) {
     let itemFiltreArray = [...new Set(itemFiltre)];
     itemFiltreArray.forEach(recipe => {
       let recette = recipe.innerHTML.toLowerCase();
-      if (!recette.includes(inputIngredients.value.toLowerCase())) {
+      if (!recette.includes(inputIngredients.value.toLowerCase().trim())) {
         console.log("NOPE.....", recipe);
         recipe.style.display = "none";
       } else {
@@ -278,7 +304,7 @@ document.getElementById('search-filter-button1').addEventListener("click", funct
     let itemFiltreArray = [...new Set(itemFiltre)];
     itemFiltreArray.forEach(recipe => {
       let recette = recipe.innerHTML.toLowerCase();
-      if (!recette.includes(inputIngredients.value.toLowerCase())) {
+      if (!recette.includes(inputIngredients.value.toLowerCase().trim())) {
         console.log("NOPE.....", recipe);
         recipe.style.display = "none";
       } else {
@@ -288,7 +314,7 @@ document.getElementById('search-filter-button1').addEventListener("click", funct
     });
   }
 });
-// RESET IF SEARCH BAR == EMPTY
+// RESET IF SEARCH BAR = EMPTY
 inputIngredients.addEventListener("input", function() {
   let itemFiltre = document.querySelectorAll('.item-filtre');
   let itemFiltreArray = [...new Set(itemFiltre)];
@@ -302,7 +328,27 @@ inputIngredients.addEventListener("input", function() {
 
 
 
+
+//
+//
 // TEST DEVELOPMENT ICI------------
+//
+//
+function setupCardsFromIngredients() {
+  console.log("FUNCTION", ingredientArray);
+  ingredientArray.forEach(selection => {
+    if (allIngredients.includes(selection.toLowerCase())) {
+      console.log(allIngredients);
+    }
+  });
+};
+
+
+
+
+
+
+
 
 
 
