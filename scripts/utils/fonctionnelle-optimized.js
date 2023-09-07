@@ -251,7 +251,7 @@ allIngredients.forEach(ingredient => {
   });
 });
 
-// SEARCH BAR DES MENUS
+// INGREDIENTS : BARRE DE RECHERCHE
 inputIngredients.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
@@ -269,9 +269,33 @@ inputIngredients.addEventListener("keydown", function(e) {
     });
   }
 });
-
-
-
+// TOGGLE W/LOUPE BUTTON
+document.getElementById('search-filter-button1').addEventListener("click", function(e) {
+  if (inputIngredients.value != "") {
+    e.preventDefault();
+    let itemFiltre = document.querySelectorAll('.item-filtre');
+    let itemFiltreArray = [...new Set(itemFiltre)];
+    itemFiltreArray.forEach(recipe => {
+      let recette = recipe.innerHTML.toLowerCase();
+      if (!recette.includes(inputIngredients.value.toLowerCase())) {
+        console.log("NOPE.....", recipe);
+        recipe.style.display = "none";
+      } else {
+        console.log("YES!", recipe);
+        recipe.style.display = "block";
+      }
+    });
+  }
+});
+inputIngredients.addEventListener("input", function() {
+  let itemFiltre = document.querySelectorAll('.item-filtre');
+  let itemFiltreArray = [...new Set(itemFiltre)];
+  if (!inputIngredients.value.length) {
+    itemFiltreArray.forEach(recipe => {
+      recipe.style.display = "block";
+    })
+  }
+})
 
 
 

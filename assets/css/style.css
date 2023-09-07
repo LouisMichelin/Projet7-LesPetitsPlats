@@ -203,7 +203,9 @@ main {
   outline: none;
   margin-left: 10px;
 }
-.search-filter-button {
+#search-filter-button1,
+#search-filter-button2,
+#search-filter-button3 {
   display: flex;
   background-color: #FFFFFF;
   margin-right: 11.5px;
