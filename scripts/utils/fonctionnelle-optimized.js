@@ -7,7 +7,7 @@ const loupe = document.getElementById('button-loupe');
 // WRAPPER + CARD DOM
 let wrapper = document.getElementById('wrapper').children;
 wrapper = Array.from(wrapper);
-let card = document.querySelectorAll('.card');
+let cards = document.querySelectorAll('.card');
 
 
 // +---------------------------------------------------+
@@ -72,52 +72,75 @@ function allTotalRecipes() {
 };
 
 
+
+
+
+
+
+
+
+
+
 // +----------------------------------+
 // | FONCTION LOUPE : Main Search Bar |
 // +----------------------------------+
 function mainSearchFunction() {
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
-  let allFiltersRegrouped = [];
-  // FILTRE NOM
-  let nameFilter = recipes.filter(card => card.name.toLowerCase().includes(mainSearchInput));
-  nameFilter.forEach(x => {
-    allFiltersRegrouped.push(x.id);
-  });
-  // FILTRE DESCRIPTION
-  let descriptionFilter = recipes.filter(card => card.description.toLowerCase().includes(mainSearchInput));
-  descriptionFilter.forEach(x => {
-    allFiltersRegrouped.push(x.id);
-  });
-  // FILTRE INGREDIENTS
-  recipes.forEach(x => {
-    const allStackedIngredients = x.ingredients;
-    allStackedIngredients.forEach(card => {
-      const ingredient = card.ingredient.toLowerCase();
-      if (ingredient.includes(mainSearchInput)) {
-        allFiltersRegrouped.push(x.id);
-      }
-    });
-  });
-  // SUPPRIME LES DOUBLONS && SORT BY RECIPE.ID
-  allFiltersRegrouped = [...new Set(allFiltersRegrouped)];
-  allFiltersRegrouped.sort((a, b) => a - b);
+  
+  let allFiltersRegrouped =  searchByNameDescriptionIngredients(mainSearchInput);
   console.log(allFiltersRegrouped);
+
   // DISPLAY: NONE FOR ALL CARDS
-  card.forEach(e => {
-    e.style.display = "none";
-  });
-  // FILTERING
-  let i = 0;
-  recipes.forEach(recipe => {
-    allFiltersRegrouped.forEach(index => {
-      if (index == recipe.id) {
-        console.log(recipe.name);
-        card[i].style.display = "block";
-      }
-    });
-    i++;
-  });
+  displayFiltredRecipes(allFiltersRegrouped);
+
 };
+
+function searchByNameDescriptionIngredients(searchString){
+
+  // FILTRE NOM
+  let allFiltersRegrouped = recipes.filter(card => (
+    card.name.toLowerCase().includes(searchString) ||
+    card.description.toLowerCase().includes(searchString) || 
+    card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
+    ));
+
+  // SUPPRIME LES DOUBLONS && SORT BY RECIPE.ID
+  //allFiltersRegrouped = [...new Set(allFiltersRegrouped)];
+  //allFiltersRegrouped.sort((a, b) => a - b);
+
+  return allFiltersRegrouped;
+}
+
+function displayFiltredRecipes(filtredTable){
+
+  cards.forEach(card => {
+    if(filtredTable.find(element => (element.id == card.id)))
+    {
+      card.style.display = "block";
+    }
+    else{
+      card.style.display = "none";
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // TOGGLERS : Loupe + "Enter"
 mainSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
@@ -138,14 +161,14 @@ loupe.addEventListener("click", function(event) {
 // +----------------------------------------------+
 const delMainSearch = document.getElementById('button-erase');
 delMainSearch.addEventListener("click", function() {
-  card.forEach(e => {
+  cards.forEach(e => {
     e.style.display = "block";
   });
   allTotalRecipes();
 });
 mainSearchBar.addEventListener("input", (e) => {
   if (e.currentTarget.value == "" && totalCards < 50) {
-    card.forEach(e => {
+    cards.forEach(e => {
       e.style.display = "block";
     });
     allTotalRecipes();
