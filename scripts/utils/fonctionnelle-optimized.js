@@ -10,6 +10,7 @@ wrapper = Array.from(wrapper);
 let cards = document.querySelectorAll('.card');
 
 
+
 // +---------------------------------------------------+
 // | SVG CREATORS : "DELETE CROSS FROM FILTERS BUTTON" |
 // +---------------------------------------------------+
@@ -56,6 +57,7 @@ function renderSVGCross(Node) {
 };
 
 
+
 // +----------------------+
 // | NB TOTAL DE RECETTES |
 // +----------------------+
@@ -73,75 +75,44 @@ function allTotalRecipes() {
 
 
 
-
-
-
-
-
-
-
-
-// +----------------------------------+
-// | FONCTION LOUPE : Main Search Bar |
-// +----------------------------------+
+// +--------------------------+
+// | FONCTION MAIN SEARCH BAR |
+// +--------------------------+
 function mainSearchFunction() {
+  // MAIN INPUT
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
-  
+  // APPLIQUE LA FONCTION AVEC MAIN INPUT
   let allFiltersRegrouped =  searchByNameDescriptionIngredients(mainSearchInput);
   console.log(allFiltersRegrouped);
-
-  // DISPLAY: NONE FOR ALL CARDS
+  // DISPLAY CARDS : BLOCK || NONE
   displayFiltredRecipes(allFiltersRegrouped);
-
 };
-
+// RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS
 function searchByNameDescriptionIngredients(searchString){
-
-  // FILTRE NOM
   let allFiltersRegrouped = recipes.filter(card => (
     card.name.toLowerCase().includes(searchString) ||
-    card.description.toLowerCase().includes(searchString) || 
+    card.description.toLowerCase().includes(searchString) ||
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
-    ));
-
-  // SUPPRIME LES DOUBLONS && SORT BY RECIPE.ID
-  //allFiltersRegrouped = [...new Set(allFiltersRegrouped)];
-  //allFiltersRegrouped.sort((a, b) => a - b);
-
+  ));
   return allFiltersRegrouped;
-}
-
-function displayFiltredRecipes(filtredTable){
-
+};
+// DISPLAY : BLOCK || NONE
+function displayFiltredRecipes(filtredTable) {
   cards.forEach(card => {
-    if(filtredTable.find(element => (element.id == card.id)))
-    {
+    if (filtredTable.find(element => (element.id == card.id))) {
       card.style.display = "block";
     }
-    else{
+    else {
       card.style.display = "none";
     }
   });
-}
+};
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TOGGLERS : Loupe + "Enter"
+// +--------------------+
+// | TOGGLER : "ENTRER" |
+// +--------------------+
 mainSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
@@ -149,11 +120,15 @@ mainSearchBar.addEventListener("keydown", function(e) {
     allTotalRecipes();
   }
 });
+// +-------------------+
+// | TOGGLER : "LOUPE" |
+// +-------------------+
 loupe.addEventListener("click", function(event) {
   event.preventDefault();
   mainSearchFunction();
   allTotalRecipes();
 });
+
 
 
 // +----------------------------------------------+
@@ -174,6 +149,13 @@ mainSearchBar.addEventListener("input", (e) => {
     allTotalRecipes();
   }
 });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 // +--------------------------------------------+
