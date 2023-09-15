@@ -9,7 +9,6 @@ let wrapper = document.getElementById('wrapper').children;
 wrapper = Array.from(wrapper);
 let cards = document.querySelectorAll('.card');
 
-
 // +---------------------------------------------------+
 // | SVG CREATORS : "DELETE CROSS FROM FILTERS BUTTON" |
 // +---------------------------------------------------+
@@ -55,7 +54,6 @@ function renderSVGCross(Node) {
   return Node.appendChild(iconSvg);
 }
 
-
 // +----------------------+
 // | NB TOTAL DE RECETTES |
 // +----------------------+
@@ -70,7 +68,6 @@ function allTotalRecipes() {
   console.log("Total Recipes = ", totalCards);
   document.getElementById('nb-recettes').innerHTML = `${totalCards} recettes`;
 }
-
 
 // +--------------------------+
 // | FONCTION MAIN SEARCH BAR |
@@ -105,10 +102,9 @@ function displayFiltredRecipes(filtredTable) {
   });
 }
 
-
-// +--------------------+
-// | TOGGLER : "ENTRER" |
-// +--------------------+
+// +-----------------------------------+
+// | TOGGLER : "ENTRER" / BOUTON LOUPE |
+// +-----------------------------------+
 mainSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
@@ -116,15 +112,11 @@ mainSearchBar.addEventListener("keydown", function(e) {
     allTotalRecipes();
   }
 });
-// +-------------------+
-// | TOGGLER : "LOUPE" |
-// +-------------------+
 loupe.addEventListener("click", function(event) {
   event.preventDefault();
   mainSearchFunction();
   allTotalRecipes();
 });
-
 
 // +----------------------------------------------+
 // | MAIN SEARCH BAR : Erase Button & Empty Input |
@@ -137,14 +129,15 @@ delMainSearch.addEventListener("click", function() {
   allTotalRecipes();
 });
 // RESET FILTERS WHEN SEARCH BAR = EMPTY
-// mainSearchBar.addEventListener("input", (e) => {
-//   if (e.currentTarget.value == "" && totalCards < 50) {
-//     cards.forEach(e => {
-//       e.style.display = "block";
-//     });
-//     allTotalRecipes();
-//   }
-// });
+mainSearchBar.addEventListener("input", (e) => {
+  if (e.currentTarget.value == "" && totalCards < 50) {
+    cards.forEach(e => {
+      e.style.display = "block";
+    });
+    allTotalRecipes();
+  }
+});
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,31 +149,46 @@ delMainSearch.addEventListener("click", function() {
 // SECTION FILTERS : Filtres choisis
 let sectionFilters = document.getElementById('filters-selected');
 // MENU INGREDIENTS
-
-const ingredientsSearchInput = document.getElementById('ingredients-input').value.toLowerCase().trim();
 const ingredientsSelected = document.getElementById('selected-ingredients');
 // MENU APPAREILS
-
-const appareilsSearchInput = document.getElementById('appareils-input').value.toLowerCase().trim();
 const appareilsSelected = document.getElementById('selected-appareils');
 // MENU USTENSILS
-
-const ustensilsSearchInput = document.getElementById('ustensils-input').value.toLowerCase().trim();
 const ustensilsSelected = document.getElementById('selected-ustensils');
+
+
+console.log(allIngredients);
+console.log(allAppareils);
+console.log(allUstensils);
 
 
 // FUNCTION INGREDIENTS SEARCH
 function ingredientSearchFunction() {
-  console.log("hello world");
-  
-  
-
+  const ingredientSearchInput = document.getElementById('ingredients-input').value.toLowerCase().trim();
 
 }
-ingredientSearchFunction()
+function searchByIngredients(searchString) {
+  let filteredIngredients = x;
+}
 
 
+// FUNCTION APPAREILS SEARCH
+function appareilSearchFunction() {
+  const appareilsSearchInput = document.getElementById('appareils-input').value.toLowerCase().trim();
 
+}
+function searchByAppareils(searchString) {
+  let filteredAppareils = x;
+}
+
+
+// FUNCTION USTENSILS SEARCH
+function ustensilSearchFunction() {
+  const ustensilsSearchInput = document.getElementById('ustensils-input').value.toLowerCase().trim();
+
+}
+function searchByUstensils(searchString) {
+  let filteredUstensils = x;
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,7 +196,7 @@ ingredientSearchFunction()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// MAYBE GOOD, IDK
+// !!!!!!!!!!!!!!!!!!!!! MAYBE GOOD, IDK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //
 // // BARRE DE RECHERCHE : Press Enter
 // inputIngredients.addEventListener("keydown", function(e) {
