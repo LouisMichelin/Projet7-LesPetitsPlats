@@ -156,15 +156,15 @@ delMainSearch.addEventListener("click", function() {
 // SECTION FILTERS : Filtres choisis
 let sectionFilters = document.getElementById('filters-selected');
 // MENU INGREDIENTS
-const ingredientsIndex = document.getElementById('all-items-ingredients');
+
 const ingredientsSearchInput = document.getElementById('ingredients-input').value.toLowerCase().trim();
 const ingredientsSelected = document.getElementById('selected-ingredients');
 // MENU APPAREILS
-const appareilsIndex = document.getElementById('all-items-appareils');
+
 const appareilsSearchInput = document.getElementById('appareils-input').value.toLowerCase().trim();
 const appareilsSelected = document.getElementById('selected-appareils');
 // MENU USTENSILS
-const ustensilsIndex = document.getElementById('all-items-ustensils');
+
 const ustensilsSearchInput = document.getElementById('ustensils-input').value.toLowerCase().trim();
 const ustensilsSelected = document.getElementById('selected-ustensils');
 
@@ -173,7 +173,7 @@ const ustensilsSelected = document.getElementById('selected-ustensils');
 function ingredientSearchFunction() {
   console.log("hello world");
   
-
+  
 
 
 }
