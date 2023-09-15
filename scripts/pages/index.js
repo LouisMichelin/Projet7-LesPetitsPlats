@@ -43,27 +43,39 @@ function init() {
     getAllItemFilters(recipe);
   });
   // ELIMINER DOUBLONS
-  convertToSet();
+  // convertToSet();
 }
 
 // +-----------------------------------------------+
 // | REGROUPE LES INGREDIENTS/APPAREILS/USTENSILES |
 // +-----------------------------------------------+
-function getAllItemFilters(recipe) {
-  let ingredientConsole = recipe.ingredients;
-  let ustensilsConsole = recipe.ustensils;
-  // CREATION MENU : INGREDIENTS
-  ingredientConsole.forEach(item => {
-    allIngredients.push(item.ingredient);
-  });
-  // CREATION MENU : APPAREILS
-  allAppareils.push(recipe.appliance);
-  // CREATION MENU : USTENSILES
-  ustensilsConsole.forEach(item => {
-    allUstensils.push(item);
-  });
-}
 
+function getAllItemFilters(recipe) {
+  const eachIngredient = recipe.ingredients;
+
+  eachIngredient.forEach(recette => {
+    allIngredients.push(recette.ingredient);
+  })
+  allIngredients = [...new Set(allIngredients)];
+
+  
+
+
+  // let ingredientConsole = recipe.ingredients;
+  // let ustensilsConsole = recipe.ustensils;
+  // // CREATION MENU : INGREDIENTS
+  // ingredientConsole.forEach(item => {
+  //   allIngredients.push(item.ingredient);
+  // });
+  // // CREATION MENU : APPAREILS
+  // allAppareils.push(recipe.appliance);
+  // // CREATION MENU : USTENSILES
+  // ustensilsConsole.forEach(item => {
+  //   allUstensils.push(item);
+  // });
+
+}
+console.log(allIngredients)
 // +---------------------------------+
 // | ELIMINE LES DOUBLONS DES LISTES |
 // +---------------------------------+
@@ -72,6 +84,9 @@ function convertToSet() {
   allAppareils = [...new Set(allAppareils)];
   allUstensils = [...new Set(allUstensils)];
 }
+console.log(allIngredients)
+console.log(allAppareils)
+console.log(allUstensils)
 
 // +---------------------------------+
 // | CREATION DES CARTES DE RECETTES |
