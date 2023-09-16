@@ -49,7 +49,7 @@ function init() {
     let div = document.createElement('div');
     ingredientsIndex.appendChild(div);
     div.innerHTML = ingredient;
-    div.setAttribute("class", "item-filtre");
+    div.setAttribute("class", "item-filtre-ingredients");
   });
   // SETUP BOUTONS-MENUS : APPAREILS
   allAppareils = [...new Set(allAppareils)];
@@ -58,7 +58,7 @@ function init() {
     let div = document.createElement('div');
     appareilsIndex.appendChild(div);
     div.innerHTML = appareil;
-    div.setAttribute("class", "item-filtre");
+    div.setAttribute("class", "item-filtre-appareils");
   });
   // SETUP BOUTONS-MENUS : USTENSILS
   allUstensils = [...new Set(allUstensils)];
@@ -67,7 +67,7 @@ function init() {
     let div = document.createElement('div');
     ustensilsIndex.appendChild(div);
     div.innerHTML = ustensil;
-    div.setAttribute("class", "item-filtre");
+    div.setAttribute("class", "item-filtre-ustensils");
   });
 }
 

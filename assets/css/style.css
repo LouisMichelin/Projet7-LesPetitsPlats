@@ -302,7 +302,9 @@ main {
   overflow-y: scroll;
   font-family: 'Manrope', sans-serif;
 }
-.item-filtre {
+.item-filtre-ingredients,
+.item-filtre-appareils,
+.item-filtre-ustensils {
   margin: 10px 0 0 10px;
 }
 
