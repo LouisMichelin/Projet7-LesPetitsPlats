@@ -138,88 +138,120 @@ mainSearchBar.addEventListener("input", (e) => {
   }
 });
 
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-// +-----------------------------------+
-// | BUTTONS-MENUS : Listing des Items |
-// +-----------------------------------+
-// SECTION FILTERS : Filtres choisis
-const sectionFilters = document.getElementById('filters-selected');
-// MENU INGREDIENTS
-const ingredientsSelected = document.getElementById('selected-ingredients');
-// MENU APPAREILS
-const appareilsSelected = document.getElementById('selected-appareils');
-// MENU USTENSILS
-const ustensilsSelected = document.getElementById('selected-ustensils');
-
 // console.log(allIngredients);
 // console.log(allAppareils);
 // console.log(allUstensils);
 
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
+// +--------------------------------------------------+
+// | INGREDIENTS/APPAREILS/USTENSILS MENUS DEROULANTS |
+// +--------------------------------------------------+
+// MENU INGREDIENTS : ITEMS CHOISIS
+const ingredientsSelected = document.getElementById('selected-ingredients');
+const appareilsSelected = document.getElementById('selected-appareils');
+const ustensilsSelected = document.getElementById('selected-ustensils');
+// ALL ITEMS (HTML)
 const ingredientsListe = document.querySelectorAll('.item-filtre-ingredients');
 const appareilsListe = document.querySelectorAll('.item-filtre-appareils');
 const ustensilsListe = document.querySelectorAll('.item-filtre-ustensils');
-//
+// SEARCH BARS INPUTS
 const ingredientSearchBar = document.getElementById('ingredients-input');
 const appareilsSearchBar = document.getElementById('appareils-input');
 const ustensilsSearchBar = document.getElementById('ustensils-input');
+// SECTION FILTRES : ITEMS CHOISIS
+const sectionFilters = document.getElementById('filters-selected');
 
+// +--------------------------------------------------+
+// | RESEARCH TOGGLERS : "Enter Key" + "Loupe Button" |
+// +--------------------------------------------------+
 ingredientSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     searchByItem();
-    ingredientSearchBar.value = "";
-
-
   }
 });
+document.getElementById("search-filter-button1").addEventListener("click", function() {
+  searchByItem();
+});
+//
 appareilsSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     searchByItem();
-    appareilsSearchBar.value = "";
-
-
   }
 });
+document.getElementById("search-filter-button2").addEventListener("click", function() {
+  searchByItem();
+});
+//
 ustensilsSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     searchByItem();
-    ustensilsSearchBar.value = "";
-
-
   }
 });
+document.getElementById("search-filter-button3").addEventListener("click", function() {
+  searchByItem();
+});
 
+// +----------------------------------+
+// | RECHERCHE DANS MENUS' SEARCHBARS |
+// +----------------------------------+
 function searchByItem() {
   if (ingredientSearchBar.value.length > 0) {
-    console.log(ingredientSearchBar.value);
-    
     ingredientsListe.forEach(ingredient => {
       if (ingredient.innerHTML.toLocaleLowerCase().trim().includes(ingredientSearchBar.value.toLocaleLowerCase().trim())) {
-        console.log("OUI CAPITAINE OOOOOOOOOOOOOOOOOOOH");
         ingredient.style.display = "block";
       } else {
         ingredient.style.display = "none";
       }
     });
-
-  } else if (appareilsSearchBar.value.length > 0) {
-    console.log(appareilsSearchBar.value);
-
-
-  } else if (ustensilsSearchBar.value.length > 0) {
-    console.log(ustensilsSearchBar.value);
-
-
+  }
+  if (appareilsSearchBar.value.length > 0) {
+    appareilsListe.forEach(appareil => {
+      if (appareil.innerHTML.toLocaleLowerCase().trim().includes(appareilsSearchBar.value.toLocaleLowerCase().trim())) {
+        appareil.style.display = "block";
+      } else {
+        appareil.style.display = "none";
+      }
+    });
+  }
+  if (ustensilsSearchBar.value.length > 0) {
+    ustensilsListe.forEach(ustensil => {
+      if (ustensil.innerHTML.toLocaleLowerCase().trim().includes(ustensilsSearchBar.value.toLocaleLowerCase().trim())) {
+        ustensil.style.display = "block";
+      } else {
+        ustensil.style.display = "none";
+      }
+    });
   }
 }
+
+// +----------------------------+
+// | RESET SEARCH BARS IF EMPTY |
+// +----------------------------+
+ingredientSearchBar.addEventListener("input", (e) => {
+  if (e.currentTarget.value == "") {
+    ingredientsListe.forEach(e => {
+      e.style.display = "block";
+    });
+  }
+});
+appareilsSearchBar.addEventListener("input", (e) => {
+  if (e.currentTarget.value == "") {
+    appareilsListe.forEach(e => {
+      e.style.display = "block";
+    });
+  }
+});
+ustensilsSearchBar.addEventListener("input", (e) => {
+  if (e.currentTarget.value == "") {
+    ustensilsListe.forEach(e => {
+      e.style.display = "block";
+    });
+  }
+});
+
 
 
 
