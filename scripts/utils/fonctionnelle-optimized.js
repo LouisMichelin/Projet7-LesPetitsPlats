@@ -138,21 +138,15 @@ mainSearchBar.addEventListener("input", (e) => {
   }
 });
 
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// console.log(allIngredients);
-// console.log(allAppareils);
-// console.log(allUstensils);
+
+
 
 // +--------------------------------------------------+
 // | INGREDIENTS/APPAREILS/USTENSILS MENUS DEROULANTS |
 // +--------------------------------------------------+
-// MENU INGREDIENTS : ITEMS CHOISIS
-const ingredientsSelected = document.getElementById('selected-ingredients');
-const appareilsSelected = document.getElementById('selected-appareils');
-const ustensilsSelected = document.getElementById('selected-ustensils');
 // ALL ITEMS (HTML)
 const ingredientsListe = document.querySelectorAll('.item-filtre-ingredients');
 const appareilsListe = document.querySelectorAll('.item-filtre-appareils');
@@ -161,14 +155,13 @@ const ustensilsListe = document.querySelectorAll('.item-filtre-ustensils');
 const ingredientSearchBar = document.getElementById('ingredients-input');
 const appareilsSearchBar = document.getElementById('appareils-input');
 const ustensilsSearchBar = document.getElementById('ustensils-input');
-// SECTION FILTRES : ITEMS CHOISIS
-const sectionFilters = document.getElementById('filters-selected');
 
 // +--------------------------------------------------+
 // | RESEARCH TOGGLERS : "Enter Key" + "Loupe Button" |
 // +--------------------------------------------------+
 ingredientSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
+    e.preventDefault();
     searchByItem();
   }
 });
@@ -178,6 +171,7 @@ document.getElementById("search-filter-button1").addEventListener("click", funct
 //
 appareilsSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
+    e.preventDefault();
     searchByItem();
   }
 });
@@ -187,6 +181,7 @@ document.getElementById("search-filter-button2").addEventListener("click", funct
 //
 ustensilsSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
+    e.preventDefault();
     searchByItem();
   }
 });
@@ -252,65 +247,44 @@ ustensilsSearchBar.addEventListener("input", (e) => {
   }
 });
 
-
-
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MENU INGREDIENTS : ITEMS CHOISIS
+const ingredientsSelected = document.getElementById('selected-ingredients');
+const appareilsSelected = document.getElementById('selected-appareils');
+const ustensilsSelected = document.getElementById('selected-ustensils');
+// SECTION FILTRES : ITEMS CHOISIS
+const sectionFilters = document.getElementById('filters-selected');
+
+
+ingredientsListe.forEach(ingredient => {
+  ingredient.addEventListener("click", function() {
+    console.log(ingredient.innerHTML);
+    let div = document.createElement("div");
+
+
+
+  });
+});
 //
-// !!!!!!!!!!!!!!!!!!!!! MAYBE GOOD, IDK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+appareilsListe.forEach(appareil => {
+  appareil.addEventListener("click", function() {
+    console.log(appareil.innerHTML);
+    let div = document.createElement("div");
+
+
+
+  });
+});
 //
-// // BARRE DE RECHERCHE : Press Enter
-// inputIngredients.addEventListener("keydown", function(e) {
-//   if (e.code === "Enter") {
-//     e.preventDefault();
-//     menuIngredients.style.overflow = "hidden";
-//     let itemFiltre = document.querySelectorAll('.item-filtre');
-//     let itemFiltreArray = [...new Set(itemFiltre)];
-//     itemFiltreArray.forEach(recipe => {
-//       let recette = recipe.innerHTML.toLowerCase();
-//       if (!recette.includes(inputIngredients.value.toLowerCase().trim())) {
-//         console.log("NOPE.....", recipe);
-//         recipe.style.display = "none";
-//       } else {
-//         console.log("YES!", recipe);
-//         recipe.style.display = "block";
-//       }
-//     });
-//   }
-// });
-// // BARRE DE RECHERCHE : Loupe Button
-// document.getElementById('search-filter-button1').addEventListener("click", function(e) {
-//   if (inputIngredients.value != "") {
-//     e.preventDefault();
-//     menuIngredients.style.overflow = "hidden";
-//     let itemFiltre = document.querySelectorAll('.item-filtre');
-//     let itemFiltreArray = [...new Set(itemFiltre)];
-//     itemFiltreArray.forEach(recipe => {
-//       let recette = recipe.innerHTML.toLowerCase();
-//       if (!recette.includes(inputIngredients.value.toLowerCase().trim())) {
-//         console.log("NOPE.....", recipe);
-//         recipe.style.display = "none";
-//       } else {
-//         console.log("YES!", recipe);
-//         recipe.style.display = "block";
-//       }
-//     });
-//   }
-// });
-// // RESET IF SEARCH BAR = EMPTY
-// inputIngredients.addEventListener("input", function() {
-//   let itemFiltre = document.querySelectorAll('.item-filtre');
-//   let itemFiltreArray = [...new Set(itemFiltre)];
-//   if (!inputIngredients.value.length) {
-//     itemFiltreArray.forEach(recipe => {
-//       recipe.style.display = "block";
-//       menuIngredients.style.overflowY = "scroll";
-//     })
-//   }
-// });
+ustensilsListe.forEach(ustensil => {
+  ustensil.addEventListener("click", function() {
+    console.log(ustensil.innerHTML);
+    let div = document.createElement("div");
+
+
+
+  });
+});
