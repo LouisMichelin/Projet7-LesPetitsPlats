@@ -288,3 +288,41 @@ ustensilsListe.forEach(ustensil => {
 
   });
 });
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+let exerciceArray = [];
+let filteredArray;
+mainSearchBar.addEventListener("input", mainSearch => {
+  // AJOUTE CHAQUE LETTRE SAISIE, 1 PAR 1 | RETIRE LA PRECEDENTE (POUR FORMER DES MOTS)
+  exerciceArray.pop();
+  exerciceArray.push(mainSearch.target.value.toLowerCase().trim());
+  filteredArray = allIngredients.filter(element => {
+    for (let lettre of exerciceArray) {
+      console.log("Lettre qu'on PUSH dans exerciceArray : ", lettre);
+      //
+      let index = 0;
+      //
+      const comparaison = element.toLowerCase();
+      console.log("Ingrédient comparé : ", comparaison);
+      //
+      const i = comparaison.substring(index).indexOf(lettre);
+      console.log("Index 'i' de la valeur saisie : ", i);
+      //
+      if (i < index) return false;
+      index = i;
+    }
+    return true;
+  });
+});
+console.log(filteredArray);
