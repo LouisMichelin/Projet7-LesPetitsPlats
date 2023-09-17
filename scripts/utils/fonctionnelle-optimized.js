@@ -54,21 +54,6 @@ function renderSVGCross(Node) {
   return Node.appendChild(iconSvg);
 }
 
-// +----------------------+
-// | NB TOTAL DE RECETTES |
-// +----------------------+
-let totalCards;
-function allTotalRecipes() {
-  totalCards = 0;
-  wrapper.forEach(card => {
-    if (card.style.display == "block") {
-      totalCards++;
-    }
-  });
-  console.log("Total Recipes = ", totalCards);
-  document.getElementById('nb-recettes').innerHTML = `${totalCards} recettes`;
-}
-
 // +--------------------------+
 // | FONCTION MAIN SEARCH BAR |
 // +--------------------------+
@@ -77,9 +62,9 @@ function mainSearchFunction() {
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
   // APPLIQUE LA FONCTION AVEC MAIN INPUT
   let allFiltersRegrouped =  searchByNameDescriptionIngredients(mainSearchInput);
-  console.log(allFiltersRegrouped);
+  
   // DISPLAY CARDS : BLOCK || NONE
-  displayFiltredRecipes(allFiltersRegrouped);
+  updateGlobalView(allFiltersRegrouped);
 }
 // RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS
 function searchByNameDescriptionIngredients(searchString) {
@@ -90,17 +75,6 @@ function searchByNameDescriptionIngredients(searchString) {
   ));
   return allFiltersRegrouped;
 }
-// DISPLAY : BLOCK || NONE
-function displayFiltredRecipes(filtredTable) {
-  cards.forEach(card => {
-    if (filtredTable.find(element => (element.id == card.id))) {
-      card.style.display = "block";
-    }
-    else {
-      card.style.display = "none";
-    }
-  });
-}
 
 // +-----------------------------------+
 // | TOGGLER : "ENTRER" / BOUTON LOUPE |
@@ -109,18 +83,17 @@ mainSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
     mainSearchFunction();
-    allTotalRecipes();
   }
 });
 loupe.addEventListener("click", function(event) {
   event.preventDefault();
   mainSearchFunction();
-  allTotalRecipes();
 });
 
 // +----------------------------------------------+
 // | MAIN SEARCH BAR : Erase Button & Empty Input |
 // +----------------------------------------------+
+/*
 const delMainSearch = document.getElementById('button-erase');
 delMainSearch.addEventListener("click", function() {
   cards.forEach(e => {
@@ -136,7 +109,7 @@ mainSearchBar.addEventListener("input", (e) => {
     });
     allTotalRecipes();
   }
-});
+});*/
 
 
 
@@ -147,110 +120,55 @@ mainSearchBar.addEventListener("input", (e) => {
 // +--------------------------------------------------+
 // | INGREDIENTS/APPAREILS/USTENSILS MENUS DEROULANTS |
 // +--------------------------------------------------+
-// ALL ITEMS (HTML)
-const ingredientsListe = document.querySelectorAll('.item-filtre-ingredients');
-const appareilsListe = document.querySelectorAll('.item-filtre-appareils');
-const ustensilsListe = document.querySelectorAll('.item-filtre-ustensils');
+
 // SEARCH BARS INPUTS
 const ingredientSearchBar = document.getElementById('ingredients-input');
 const appareilsSearchBar = document.getElementById('appareils-input');
 const ustensilsSearchBar = document.getElementById('ustensils-input');
 
 // +--------------------------------------------------+
-// | RESEARCH TOGGLERS : "Enter Key" + "Loupe Button" |
+// | RESEARCH TOGGLERS : "input" |
 // +--------------------------------------------------+
-ingredientSearchBar.addEventListener("keydown", function(e) {
-  if (e.code === "Enter") {
-    e.preventDefault();
-    searchByItem();
-  }
-});
-document.getElementById("search-filter-button1").addEventListener("click", function() {
-  searchByItem();
-});
-//
-appareilsSearchBar.addEventListener("keydown", function(e) {
-  if (e.code === "Enter") {
-    e.preventDefault();
-    searchByItem();
-  }
-});
-document.getElementById("search-filter-button2").addEventListener("click", function() {
-  searchByItem();
-});
-//
-ustensilsSearchBar.addEventListener("keydown", function(e) {
-  if (e.code === "Enter") {
-    e.preventDefault();
-    searchByItem();
-  }
-});
-document.getElementById("search-filter-button3").addEventListener("click", function() {
-  searchByItem();
+ingredientSearchBar.addEventListener("input", function(e) {
+  e.preventDefault();
+  const ingredientsListe = document.querySelectorAll('.item-filtre-ingredients');
+  searchByItem(ingredientSearchBar.value, ingredientsListe) ;
 });
 
-// +----------------------------------+
-// | RECHERCHE DANS MENUS' SEARCHBARS |
-// +----------------------------------+
-function searchByItem() {
-  if (ingredientSearchBar.value.length > 0) {
-    ingredientsListe.forEach(ingredient => {
-      if (ingredient.innerHTML.toLocaleLowerCase().trim().includes(ingredientSearchBar.value.toLocaleLowerCase().trim())) {
-        ingredient.style.display = "block";
+appareilsSearchBar.addEventListener("input", function(e) {
+    e.preventDefault();
+    const appareilsListe = document.querySelectorAll('.item-filtre-appareils');
+    searchByItem(appareilsSearchBar.value, appareilsListe) ;
+});
+
+ustensilsSearchBar.addEventListener("input", function(e) { 
+    e.preventDefault();
+    const ustensilsListe = document.querySelectorAll('.item-filtre-ustensils');
+    searchByItem(ustensilsSearchBar.value, ustensilsListe) ;
+});
+
+
+
+// searchTag est la chaine de caractere qu'on tape dans la zone de recherche
+// allTags: Tous les elements tags de meme class
+function searchByItem(searchTag, allTags) {
+  searchTag= searchTag.toLocaleLowerCase().trim();
+  if (searchTag.length > 0) {
+    allTags.forEach(element => {
+      if (element.innerHTML.toLocaleLowerCase().trim().includes(searchTag)) {
+        element.style.display = "block";
       } else {
-        ingredient.style.display = "none";
-      }
-    });
-  }
-  if (appareilsSearchBar.value.length > 0) {
-    appareilsListe.forEach(appareil => {
-      if (appareil.innerHTML.toLocaleLowerCase().trim().includes(appareilsSearchBar.value.toLocaleLowerCase().trim())) {
-        appareil.style.display = "block";
-      } else {
-        appareil.style.display = "none";
-      }
-    });
-  }
-  if (ustensilsSearchBar.value.length > 0) {
-    ustensilsListe.forEach(ustensil => {
-      if (ustensil.innerHTML.toLocaleLowerCase().trim().includes(ustensilsSearchBar.value.toLocaleLowerCase().trim())) {
-        ustensil.style.display = "block";
-      } else {
-        ustensil.style.display = "none";
+        element.style.display = "none";
       }
     });
   }
 }
 
-// +----------------------------+
-// | RESET SEARCH BARS IF EMPTY |
-// +----------------------------+
-ingredientSearchBar.addEventListener("input", (e) => {
-  if (e.currentTarget.value == "") {
-    ingredientsListe.forEach(e => {
-      e.style.display = "block";
-    });
-  }
-});
-appareilsSearchBar.addEventListener("input", (e) => {
-  if (e.currentTarget.value == "") {
-    appareilsListe.forEach(e => {
-      e.style.display = "block";
-    });
-  }
-});
-ustensilsSearchBar.addEventListener("input", (e) => {
-  if (e.currentTarget.value == "") {
-    ustensilsListe.forEach(e => {
-      e.style.display = "block";
-    });
-  }
-});
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 // MENU INGREDIENTS : ITEMS CHOISIS
 const ingredientsSelected = document.getElementById('selected-ingredients');
 const appareilsSelected = document.getElementById('selected-appareils');
@@ -288,41 +206,4 @@ ustensilsListe.forEach(ustensil => {
 
   });
 });
-
-
-
-
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-let exerciceArray = [];
-let filteredArray;
-mainSearchBar.addEventListener("input", mainSearch => {
-  // AJOUTE CHAQUE LETTRE SAISIE, 1 PAR 1 | RETIRE LA PRECEDENTE (POUR FORMER DES MOTS)
-  exerciceArray.pop();
-  exerciceArray.push(mainSearch.target.value.toLowerCase().trim());
-  filteredArray = allIngredients.filter(element => {
-    for (let lettre of exerciceArray) {
-      console.log("Lettre qu'on PUSH dans exerciceArray : ", lettre);
-      //
-      let index = 0;
-      //
-      const comparaison = element.toLowerCase();
-      console.log("Ingrédient comparé : ", comparaison);
-      //
-      const i = comparaison.substring(index).indexOf(lettre);
-      console.log("Index 'i' de la valeur saisie : ", i);
-      //
-      if (i < index) return false;
-      index = i;
-    }
-    return true;
-  });
-});
-console.log(filteredArray);
+*/
