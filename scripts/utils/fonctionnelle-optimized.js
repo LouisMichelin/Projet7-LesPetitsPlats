@@ -62,11 +62,13 @@ function mainSearchFunction() {
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
   // APPLIQUE LA FONCTION AVEC MAIN INPUT
   let allFiltersRegrouped =  searchByNameDescriptionIngredients(mainSearchInput);
-  
   // DISPLAY CARDS : BLOCK || NONE
   updateGlobalView(allFiltersRegrouped);
 }
-// RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS
+
+// +---------------------------------------------------------+
+// | RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS |
+// +---------------------------------------------------------+
 function searchByNameDescriptionIngredients(searchString) {
   let allFiltersRegrouped = recipes.filter(card => (
     card.name.toLowerCase().includes(searchString) ||
@@ -76,9 +78,9 @@ function searchByNameDescriptionIngredients(searchString) {
   return allFiltersRegrouped;
 }
 
-// +-----------------------------------+
-// | TOGGLER : "ENTRER" / BOUTON LOUPE |
-// +-----------------------------------+
+// +------------------------------------+
+// | TOGGLERS : "ENTRER" / BOUTON LOUPE |
+// +------------------------------------+
 mainSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
@@ -90,70 +92,40 @@ loupe.addEventListener("click", function(event) {
   mainSearchFunction();
 });
 
-// +----------------------------------------------+
-// | MAIN SEARCH BAR : Erase Button & Empty Input |
-// +----------------------------------------------+
-/*
-const delMainSearch = document.getElementById('button-erase');
-delMainSearch.addEventListener("click", function() {
-  cards.forEach(e => {
-    e.style.display = "block";
-  });
-  allTotalRecipes();
-});
-// RESET FILTERS WHEN SEARCH BAR = EMPTY
-mainSearchBar.addEventListener("input", (e) => {
-  if (e.currentTarget.value == "" && totalCards < 50) {
-    cards.forEach(e => {
-      e.style.display = "block";
-    });
-    allTotalRecipes();
-  }
-});*/
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-// +--------------------------------------------------+
-// | INGREDIENTS/APPAREILS/USTENSILS MENUS DEROULANTS |
-// +--------------------------------------------------+
-
-// SEARCH BARS INPUTS
+// +-----------------------------------------------------------+
+// | INPUTS MENUS DEROULANTS : INGREDIENTS/APPAREILS/USTENSILS |
+// +-----------------------------------------------------------+
 const ingredientSearchBar = document.getElementById('ingredients-input');
 const appareilsSearchBar = document.getElementById('appareils-input');
 const ustensilsSearchBar = document.getElementById('ustensils-input');
 
-// +--------------------------------------------------+
-// | RESEARCH TOGGLERS : "input" |
-// +--------------------------------------------------+
+// +---------------------------------------------------------+
+// | RESEARCH TOGGLERS POUR CHAQUE MENU : Listener = "input" |
+// +---------------------------------------------------------+
 ingredientSearchBar.addEventListener("input", function(e) {
   e.preventDefault();
   const ingredientsListe = document.querySelectorAll('.item-filtre-ingredients');
   searchByItem(ingredientSearchBar.value, ingredientsListe) ;
 });
-
 appareilsSearchBar.addEventListener("input", function(e) {
     e.preventDefault();
     const appareilsListe = document.querySelectorAll('.item-filtre-appareils');
     searchByItem(appareilsSearchBar.value, appareilsListe) ;
 });
-
 ustensilsSearchBar.addEventListener("input", function(e) { 
     e.preventDefault();
     const ustensilsListe = document.querySelectorAll('.item-filtre-ustensils');
     searchByItem(ustensilsSearchBar.value, ustensilsListe) ;
 });
 
-
-
-// searchTag est la chaine de caractere qu'on tape dans la zone de recherche
-// allTags: Tous les elements tags de meme class
+// +------------------------------------------------------+
+// | FUNCTION SEARCH BY ITEM : Recherche Pour Chaque Menu |
+// +------------------------------------------------------+
 function searchByItem(searchTag, allTags) {
-  searchTag= searchTag.toLocaleLowerCase().trim();
+  // searchTag = Chaîne de caractères saisie
+  searchTag = searchTag.toLocaleLowerCase().trim();
   if (searchTag.length > 0) {
+    // allTags = Tous les elements-tags de même classe (Ingrédients/Appareils/Ustensils)
     allTags.forEach(element => {
       if (element.innerHTML.toLocaleLowerCase().trim().includes(searchTag)) {
         element.style.display = "block";
@@ -164,46 +136,13 @@ function searchByItem(searchTag, allTags) {
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-// MENU INGREDIENTS : ITEMS CHOISIS
-const ingredientsSelected = document.getElementById('selected-ingredients');
-const appareilsSelected = document.getElementById('selected-appareils');
-const ustensilsSelected = document.getElementById('selected-ustensils');
-// SECTION FILTRES : ITEMS CHOISIS
-const sectionFilters = document.getElementById('filters-selected');
-
-
-ingredientsListe.forEach(ingredient => {
-  ingredient.addEventListener("click", function() {
-    console.log(ingredient.innerHTML);
-    let div = document.createElement("div");
-
-
-
-  });
-});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-appareilsListe.forEach(appareil => {
-  appareil.addEventListener("click", function() {
-    console.log(appareil.innerHTML);
-    let div = document.createElement("div");
+// +----------------------------------------------------------------------------------------------+
+// | OBJECTIF : FUNCTION TOGGLE CSS DE L'ELEMENT CLICKED &&& TOGGLE FILTERS DE L'ELEMENT CLICKED  |
+// +----------------------------------------------------------------------------------------------+
 
-
-
-  });
-});
-//
-ustensilsListe.forEach(ustensil => {
-  ustensil.addEventListener("click", function() {
-    console.log(ustensil.innerHTML);
-    let div = document.createElement("div");
-
-
-
-  });
-});
-*/

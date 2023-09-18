@@ -97,6 +97,7 @@ function fillTags(tagDomElement, listElement, classCss){
     div.addEventListener("click", function(e){
       e.preventDefault();
       console.log(element);
+      
     });
   });
 }
