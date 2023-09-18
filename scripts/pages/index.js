@@ -1,6 +1,6 @@
-// +-----------------------------------+
-// | EFFACER LE TEXTE DE LA BARRE MAIN |
-// +-----------------------------------+
+// +---------------------------------+
+// | MAIN SEARCH BAR : Erase Toggler |
+// +---------------------------------+
 let buttonErase = document.getElementById('button-erase');
 let mainInput = document.getElementById('main-input');
 buttonErase.addEventListener("click", function () {
@@ -8,9 +8,9 @@ buttonErase.addEventListener("click", function () {
   buttonErase.style.display = "none";
 });
 
-// +------------------------------------------------+
-// | AFFICHER DELETE BUTTON SI >= 3 LETTRES SAISIES |
-// +------------------------------------------------+
+// +------------------------------------------------------+
+// | MAIN SEARCH BAR : Erase Button IF +3 Lettres Saisies |
+// +------------------------------------------------------+
 mainInput.addEventListener("input", function () {
   if (mainInput.value == "") {
     buttonErase.style.display = "none";
@@ -18,59 +18,75 @@ mainInput.addEventListener("input", function () {
     buttonErase.style.display = "block";
   }
 });
-  // +----------------------------+
-  // | ARRAYS DES BOUTONS FILTRES |
-  // +----------------------------+
-  let allIngredients = [];
-  let allAppareils = [];
-  let allUstensils = [];
 
-// +---------------------+
-// | PROGRAMME PRINCIPAL |
-// +---------------------+
+// +----------------------------+
+// | ARRAYS DES BOUTONS FILTRES |
+// +----------------------------+
+let allIngredients = [];
+let allAppareils = [];
+let allUstensils = [];
+
+// +-------------+
+// | MAIN INIT() |
+// +-------------+
 function init() {
   updateGlobalView(recipes);
 }
 
-function updateGlobalView(ListRecipe){
-   // initialisation
+// +--------------------+
+// | UPDATE GLOBAL VIEW |
+// +--------------------+
+function updateGlobalView(ListRecipe) {
+  // INITIALISATION DES ARRAYS
   allIngredients = [];
   allAppareils = [];
   allUstensils = [];
-
-  // TOTAL RECETTES
+  // NB TOTAL RECETTES
   let totalRecipes = document.getElementById('nb-recettes');
   totalRecipes.innerHTML = `${ListRecipe.length} recettes`;
   // SETUP WRAPPER
-
   let wrapper = document.getElementById('wrapper');
   wrapper.innerHTML = "";
-
+  // CARTES & ALL BUTTON-ELEMENTS
   ListRecipe.forEach(recipe => {
-    // CREATION DES CARTES ET DE LEUR AFFICHAGE SUR LE DOM
+    // CREATION CARTES + AFFICHAGE SUR LE DOM
     const card = getRecipesCardDOM(recipe);
     wrapper.appendChild(card);
-    // Recuperation de tous les elements de ingredients, ustinciles et appareils
+    // RECUPERATION ELEMENTS VERS ARRAYS : Ingredients, Appareils & Ustensils
     getAllItemFilters(recipe);
   });
-  //Elimination des doublons
+  // ELIMINATION DES DOUBLONS
   allIngredients = [...new Set(allIngredients)];
   allAppareils = [...new Set(allAppareils)];
   allUstensils = [...new Set(allUstensils)];
-  
-  // remlir la liste des tag pour chaque element
-
-  // SETUP BOUTONS-MENUS : INGREDIENTS
+  // REMPLIR LISTE DES TAGS POUR CHAQUE MENU DEROULANT :
+  // 1- SETUP BOUTONS-MENUS : INGREDIENTS
   fillTags(document.getElementById('all-items-ingredients'), allIngredients,  "item-filtre-ingredients");
-  
-  // SETUP BOUTONS-MENUS : APPAREILS
+  // 2- SETUP BOUTONS-MENUS : APPAREILS
   fillTags(document.getElementById('all-items-appareils'), allAppareils, "item-filtre-appareils");
-  
-  // SETUP BOUTONS-MENUS : USTENSILS
+  // 3- SETUP BOUTONS-MENUS : USTENSILS
   fillTags(document.getElementById('all-items-ustensils'), allUstensils, "item-filtre-ustensils");
- 
 }
-//fonction pour remplir les tags
+
+// +----------------------------------------------------+
+// | FUNCTION REGROUPE INGREDIENTS/APPAREILS/USTENSILES |
+// +----------------------------------------------------+
+function getAllItemFilters(recipe) {
+  // INGREDIENTS
+  recipe.ingredients.forEach(element => {
+    allIngredients.push(element.ingredient);
+  });
+  // APPAREILS
+  allAppareils.push(recipe.appliance);
+  // USTENSILS
+  recipe.ustensils.forEach(ustensil => {
+    allUstensils.push(ustensil);
+  });
+}
+
+// +-------------------------------------+
+// | FUNCTION REMPLIR LES TAGS DES MENUS |
+// +-------------------------------------+
 function fillTags(tagDomElement, listElement, classCss){
   tagDomElement.innerHTML="";
   listElement.forEach(element => {
@@ -84,33 +100,16 @@ function fillTags(tagDomElement, listElement, classCss){
     });
   });
 }
-// +-----------------------------------------------+
-// | REGROUPE LES INGREDIENTS/APPAREILS/USTENSILES |
-// +-----------------------------------------------+
-function getAllItemFilters(recipe) {
-  // INGREDIENTS
- recipe.ingredients.forEach(element => {
-    allIngredients.push(element.ingredient);
-  });
-  // APPAREILS
-  allAppareils.push(recipe.appliance);
-  // USTENSILS
-  recipe.ustensils.forEach(ustensil => {
-    allUstensils.push(ustensil);
-  });
-}
 
-// +---------------------------------+
-// | CREATION DES CARTES DE RECETTES |
-// +---------------------------------+
-
+// +------------------------------------+
+// | CREATION DES CARTES-RECETTES (DOM) |
+// +------------------------------------+
 function getRecipesCardDOM(recipe) {
-  // 1 CARTE DE RECETTE
+  // CARTE DE RECETTE
   let recipeCard = document.createElement('div');
   recipeCard.setAttribute("class", "card");
   recipeCard.style.display = 'block';
   recipeCard.setAttribute("id", `${recipe.id}`);
-
   // PHOTO ET DUREE
   let recipeEntete = document.createElement('div');
   recipeEntete.setAttribute("class", "recipe-entete");
@@ -147,9 +146,7 @@ function getRecipesCardDOM(recipe) {
   ingredientNom.setAttribute("class", "ingredient-nom");
   let ingredientQuantite = document.createElement('div');
   ingredientQuantite.setAttribute("class", "ingredient-quantite");
-  // 
   // AFFICHAGE DES DONNEES DE CHAQUE INGREDIENT DE RECIPES.INGREDIENTS
-  //
   let ingredientConsole = recipe.ingredients;
   ingredientConsole.forEach(recipe => {
     if (recipe.quantity && recipe.unit) {
@@ -169,9 +166,7 @@ function getRecipesCardDOM(recipe) {
     }
     listeIngredients.appendChild(ingredientRecette.cloneNode(true));
   });
-  // 
   // ASSEMBLAGE DES BALISES
-  // 
   recipeCard.appendChild(recipeEntete);
   recipeEntete.appendChild(recipeDuree);
   recipeEntete.appendChild(recipePhoto);
@@ -183,7 +178,6 @@ function getRecipesCardDOM(recipe) {
   recipeComplete.appendChild(recipeIngredients);
   recipeIngredients.appendChild(partieIngredients);
   recipeIngredients.appendChild(listeIngredients);
-
   return recipeCard;
 }
 
