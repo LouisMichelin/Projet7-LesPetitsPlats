@@ -269,7 +269,8 @@ main {
   padding-right: 15px;
 }
 .delete-filter svg {
-  display: none;
+  display: flex;
+  opacity: 0;
   align-items: center;
 }
 /* HOVERING SUR ITEM SELECTED */

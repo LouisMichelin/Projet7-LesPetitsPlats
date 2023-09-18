@@ -62,7 +62,7 @@ function mainSearchFunction() {
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
   // APPLIQUE LA FONCTION AVEC MAIN INPUT
   let allFiltersRegrouped =  searchByNameDescriptionIngredients(mainSearchInput);
-  // DISPLAY CARDS : BLOCK || NONE
+  // UPDATE GLOBAL VIEW AVEC LA NOUVELLE ARRAY FILTREE !
   updateGlobalView(allFiltersRegrouped);
 }
 
@@ -78,9 +78,9 @@ function searchByNameDescriptionIngredients(searchString) {
   return allFiltersRegrouped;
 }
 
-// +------------------------------------+
-// | TOGGLERS : "ENTRER" / BOUTON LOUPE |
-// +------------------------------------+
+// +----------------------------------------------------+
+// | TOGGLERS MAIN SEARCH BAR : "ENTRER" / BOUTON LOUPE |
+// +----------------------------------------------------+
 mainSearchBar.addEventListener("keydown", function(e) {
   if (e.code === "Enter") {
     e.preventDefault();
@@ -145,4 +145,6 @@ function searchByItem(searchTag, allTags) {
 // +----------------------------------------------------------------------------------------------+
 // | OBJECTIF : FUNCTION TOGGLE CSS DE L'ELEMENT CLICKED &&& TOGGLE FILTERS DE L'ELEMENT CLICKED  |
 // +----------------------------------------------------------------------------------------------+
-
+function filterWithSelectedElement() {
+  console.log("je fonctionne ahahaha")
+}
