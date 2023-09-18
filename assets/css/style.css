@@ -263,14 +263,14 @@ main {
   width: 100%;
 }
 .delete-filter {
+  display: flex;
   align-items: center;
   background-color: #FFD15B;
   height: 100%;
   padding-right: 15px;
 }
 .delete-filter svg {
-  display: flex;
-  opacity: 0;
+  display: none;
   align-items: center;
 }
 /* HOVERING SUR ITEM SELECTED */
@@ -327,18 +327,24 @@ main {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 200px;
+  width: 190px;
   height: 56px;
   margin-right: 64px;
   margin-bottom: 21px;
   border-radius: 11px;
-  cursor: pointer;
+  cursor: default;
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 21.86px;
   color: #1B1B1B;
   background-color: #FFD15B;
+}
+.element-name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.12px;
 }
 .filter > button {
   display: flex;

@@ -147,4 +147,18 @@ function searchByItem(searchTag, allTags) {
 // +----------------------------------------------------------------------------------------------+
 function filterWithSelectedElement() {
   console.log("je fonctionne ahahaha")
+
+}
+
+
+
+function createMenuSelected(elementTag) {
+  let div = document.createElement("div");
+  console.log(test)
+}
+createMenuSelected(ingredients)
+
+
+function createSectionSelected() {
+  let div = document.createElement("div");
 }
