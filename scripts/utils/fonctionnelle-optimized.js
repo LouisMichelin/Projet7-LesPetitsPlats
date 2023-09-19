@@ -41,10 +41,10 @@ function renderSVGCross(Node) {
   iconSvg.setAttribute('width', '17');
   iconSvg.setAttribute('height', '17');
   iconSvg.setAttribute('viewBox', '0 0 17 17');
-  iconSvg.setAttribute('fill', '#FFD15B');
+  iconSvg.setAttribute('fill', 'none');
   let iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   iconPath.setAttribute('d', 'M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15');
-  iconPath.setAttribute('stroke', '#1B1B1B');
+  iconPath.setAttribute('stroke', '#000000');
   iconPath.setAttribute('stroke-width', '2.16667');
   iconPath.setAttribute('stroke-linecap', 'round');
   iconPath.setAttribute('stroke-linejoin', 'round');
@@ -142,18 +142,10 @@ function searchByItem(searchTag, allTags) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// +----------------------------------------------------------------------------------------------+
-// | OBJECTIF : FUNCTION TOGGLE CSS DE L'ELEMENT CLICKED &&& TOGGLE FILTERS DE L'ELEMENT CLICKED  |
-// +----------------------------------------------------------------------------------------------+
-function filterWithSelectedElement(elementTag) {
-  console.log(elementTag);
-  // createMenuSelectedIngredients();
-}
-
 // +------------------------------------------------+
 // | FUNCTION MENU : CREATE & REMOVE SELECTED ITEMS |
 // +------------------------------------------------+
-function createMenuSelected(tagDomSelection, elementTag) {
+function createMenuSelected(tagDomSelection, elementTag, domDiv) {
   // DOM MISE EN PAGE
   const itemSelectedStyle = document.createElement("div");
   itemSelectedStyle.setAttribute("class", "item-selected-style");
@@ -172,16 +164,37 @@ function createMenuSelected(tagDomSelection, elementTag) {
   // REMOVE SELECTED ITEM
   deleteFilter.addEventListener("click", function() {
     removeSelectedItem(deleteFilter);
+    domDiv.removeAttribute("style");
   });
 }
-function removeSelectedItem(deleteButton) {
-  deleteButton.parentNode.remove();
+
+// +------------------------------------+
+// | FUNCTION SECTION : CREATE & REMOVE |
+// +------------------------------------+
+function createSectionSelected(elementTag) {
+  const sectionFilters = document.getElementById("filters-selected");
+  // DOM MISE EN PAGE
+  const filter = document.createElement("div");
+  filter.setAttribute("class", "filter");
+  // ITEM SELECTED
+  const itemSelectedName = document.createElement("div");
+  itemSelectedName.setAttribute("class", "element-name");
+  itemSelectedName.innerHTML = elementTag;
+  // BOUTON DELETE
+  const deleteSectionFilter = document.createElement("div");
+  deleteSectionFilter.setAttribute("class", "delete-filter-section");
+  renderSVGCross(deleteSectionFilter);
+  // APPENDCHILD'S
+  sectionFilters.appendChild(filter);
+  filter.appendChild(itemSelectedName);
+  filter.appendChild(deleteSectionFilter);
+  // REMOVE SELECTED ITEM
+  deleteSectionFilter.addEventListener("click", function() {
+    removeSelectedItem(deleteSectionFilter);
+  });
 }
 
-// +---------------------------------------------------+
-// | FUNCTION SECTION : CREATE & REMOVE SELECTED ITEMS |
-// +---------------------------------------------------+
-function createSectionSelected() {
-  
-
+// FUNCTION REMOVE ITEM
+function removeSelectedItem(deleteButton) {
+  deleteButton.parentNode.remove();
 }

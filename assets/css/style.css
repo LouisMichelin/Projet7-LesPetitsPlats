@@ -346,14 +346,14 @@ main {
   font-size: 16px;
   line-height: 19.12px;
 }
-.filter > button {
+.delete-filter-section {
   display: flex;
   background-color: #FFD15B;
 }
-.filter > button:hover {
+.delete-filter-section svg:hover {
   cursor: pointer;
 }
-#delete-filter path {
+.delete-filter-section path {
   stroke: #000000;
 }
 
