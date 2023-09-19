@@ -141,24 +141,47 @@ function searchByItem(searchTag, allTags) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+
 // +----------------------------------------------------------------------------------------------+
 // | OBJECTIF : FUNCTION TOGGLE CSS DE L'ELEMENT CLICKED &&& TOGGLE FILTERS DE L'ELEMENT CLICKED  |
 // +----------------------------------------------------------------------------------------------+
-function filterWithSelectedElement() {
-  console.log("je fonctionne ahahaha")
-
+function filterWithSelectedElement(elementTag) {
+  console.log(elementTag);
+  // createMenuSelectedIngredients();
 }
 
-
-
-function createMenuSelected(elementTag) {
-  let div = document.createElement("div");
-  console.log(test)
+// +------------------------------------------------+
+// | FUNCTION MENU : CREATE & REMOVE SELECTED ITEMS |
+// +------------------------------------------------+
+function createMenuSelected(tagDomSelection, elementTag) {
+  // DOM MISE EN PAGE
+  const itemSelectedStyle = document.createElement("div");
+  itemSelectedStyle.setAttribute("class", "item-selected-style");
+  // ITEM SELECTED
+  const itemSelectedName = document.createElement("div");
+  itemSelectedName.setAttribute("class", "item-selected");
+  itemSelectedName.innerHTML = elementTag;
+  // BOUTON DELETE
+  const deleteFilter = document.createElement("div");
+  deleteFilter.setAttribute("class", "delete-filter");
+  renderSVGIcon(deleteFilter);
+  // APPENDCHILD'S
+  tagDomSelection.appendChild(itemSelectedStyle);
+  itemSelectedStyle.appendChild(itemSelectedName);
+  itemSelectedStyle.appendChild(deleteFilter);
+  // REMOVE SELECTED ITEM
+  deleteFilter.addEventListener("click", function() {
+    removeSelectedItem(deleteFilter);
+  });
 }
-createMenuSelected(ingredients)
+function removeSelectedItem(deleteButton) {
+  deleteButton.parentNode.remove();
+}
 
-
+// +---------------------------------------------------+
+// | FUNCTION SECTION : CREATE & REMOVE SELECTED ITEMS |
+// +---------------------------------------------------+
 function createSectionSelected() {
-  let div = document.createElement("div");
+  
+
 }

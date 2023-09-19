@@ -88,7 +88,7 @@ function getAllItemFilters(recipe) {
 // | FUNCTION REMPLIR LES TAGS DES MENUS |
 // +-------------------------------------+
 function fillTags(tagDomElement, listElement, classCss){
-  tagDomElement.innerHTML="";
+  tagDomElement.innerHTML = "";
   listElement.forEach(element => {
     let div = document.createElement('div');
     tagDomElement.appendChild(div);
@@ -96,8 +96,14 @@ function fillTags(tagDomElement, listElement, classCss){
     div.setAttribute("class", classCss);
     div.addEventListener("click", function(e){
       e.preventDefault();
-      console.log(element);
-      filterWithSelectedElement();
+      if (listElement == allIngredients) {
+        createMenuSelected(document.getElementById("selected-ingredients"), element);
+      } else if (listElement == allAppareils) {
+        createMenuSelected(document.getElementById("selected-appareils"), element);
+      } else if (listElement == allUstensils) {
+        createMenuSelected(document.getElementById("selected-ustensils"), element);
+      }
+      
     });
   });
 }
