@@ -94,7 +94,7 @@ function fillTags(tagDomElement, listElement, classCss){
     tagDomElement.appendChild(div);
     div.innerHTML = element;
     div.setAttribute("class", classCss);
-    div.addEventListener("click", function(e){
+    div.addEventListener("click", function(e) {
       e.preventDefault();
       if (listElement == allIngredients) {
         createMenuSelected(document.getElementById("selected-ingredients"), element, div);
@@ -106,6 +106,7 @@ function fillTags(tagDomElement, listElement, classCss){
         createMenuSelected(document.getElementById("selected-ustensils"), element, div);
         div.style.display = "none";
       }
+      filterWithSelectedItem(element);
     });
   });
 }

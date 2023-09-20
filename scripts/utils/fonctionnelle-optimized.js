@@ -1,6 +1,7 @@
 // +---------------+
 // | DOM VARIABLES |
 // ----------------+
+let finalFiltersAllRegrouped = recipes;
 // MAIN SEARCH BAR
 const mainSearchBar = document.getElementById('main-input');
 const loupe = document.getElementById('button-loupe');
@@ -75,9 +76,9 @@ function searchByNameDescriptionIngredients(searchString) {
     card.description.toLowerCase().includes(searchString) ||
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
   ));
+  finalFiltersAllRegrouped = allFiltersRegrouped;
   return allFiltersRegrouped;
 }
-
 // +----------------------------------------------------+
 // | TOGGLERS MAIN SEARCH BAR : "ENTRER" / BOUTON LOUPE |
 // +----------------------------------------------------+
@@ -198,4 +199,33 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
 // FUNCTION REMOVE ITEM
 function removeSelectedItem(deleteButton) {
   deleteButton.parentNode.remove();
+}
+
+// +----------------------------------------------+
+// | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
+// +----------------------------------------------+
+function filterWithSelectedItem(domDiv) {
+
+  
+
+  // finalFiltersRegrouped.forEach(element => {
+  //   if (element.includes(domDiv.innerHTML)) {
+  //     console.log(element);
+  //     element.style.display = "block";
+  //   } else {
+  //     console.log(element, "pas selected");
+  //     element.style.display = "none";
+  //   }
+  // })
+  console.log(finalFiltersAllRegrouped)
+
+  let finalAction = finalFiltersAllRegrouped.filter(card => (
+    card.name.toLowerCase().includes(domDiv.toLowerCase().trim()) ||
+    card.description.toLowerCase().includes(domDiv.toLowerCase().trim()) ||
+    card.ingredients.some(element => element.ingredient.toLowerCase().includes(domDiv.toLowerCase().trim()))
+  ));
+  
+  
+
+  updateGlobalView(finalAction);
 }
