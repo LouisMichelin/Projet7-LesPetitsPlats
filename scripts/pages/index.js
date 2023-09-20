@@ -96,7 +96,6 @@ function fillTags(tagDomElement, listElement, classCss){
     div.setAttribute("class", classCss);
     div.addEventListener("click", function(e){
       e.preventDefault();
-      createSectionSelected(element);
       if (listElement == allIngredients) {
         createMenuSelected(document.getElementById("selected-ingredients"), element, div);
         div.style.display = "none";

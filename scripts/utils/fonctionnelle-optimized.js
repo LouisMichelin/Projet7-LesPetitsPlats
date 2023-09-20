@@ -105,17 +105,17 @@ const ustensilsSearchBar = document.getElementById('ustensils-input');
 ingredientSearchBar.addEventListener("input", function(e) {
   e.preventDefault();
   const ingredientsListe = document.querySelectorAll('.item-filtre-ingredients');
-  searchByItem(ingredientSearchBar.value, ingredientsListe) ;
+  searchByItem(ingredientSearchBar.value, ingredientsListe);
 });
 appareilsSearchBar.addEventListener("input", function(e) {
     e.preventDefault();
     const appareilsListe = document.querySelectorAll('.item-filtre-appareils');
-    searchByItem(appareilsSearchBar.value, appareilsListe) ;
+    searchByItem(appareilsSearchBar.value, appareilsListe);
 });
 ustensilsSearchBar.addEventListener("input", function(e) { 
     e.preventDefault();
     const ustensilsListe = document.querySelectorAll('.item-filtre-ustensils');
-    searchByItem(ustensilsSearchBar.value, ustensilsListe) ;
+    searchByItem(ustensilsSearchBar.value, ustensilsListe);
 });
 
 // +------------------------------------------------------+
@@ -136,16 +136,13 @@ function searchByItem(searchTag, allTags) {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// +------------------------------------------------+
-// | FUNCTION MENU : CREATE & REMOVE SELECTED ITEMS |
-// +------------------------------------------------+
+// +----------------------------------------------------------+
+// | FUNCTION MENU & SECTION : CREATE/REMOVE SELECTED FILTERS |
+// +----------------------------------------------------------+
 function createMenuSelected(tagDomSelection, elementTag, domDiv) {
+  ////////////////////////
+  // PARTIE MENU FILTER //
+  ////////////////////////
   // DOM MISE EN PAGE
   const itemSelectedStyle = document.createElement("div");
   itemSelectedStyle.setAttribute("class", "item-selected-style");
@@ -163,37 +160,36 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
   itemSelectedStyle.appendChild(deleteFilter);
   // REMOVE SELECTED ITEM
   deleteFilter.addEventListener("click", function() {
+    removeSelectedItem(deleteSectionFilter);
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
   });
-}
-
-// +------------------------------------+
-// | FUNCTION SECTION : CREATE & REMOVE |
-// +------------------------------------+
-function createSectionSelected(elementTag) {
+  ////////////////////////////
+  // PARTIE SECTION FILTERS //
+  ////////////////////////////
   const sectionFilters = document.getElementById("filters-selected");
   // DOM MISE EN PAGE
   const filter = document.createElement("div");
   filter.setAttribute("class", "filter");
   // ITEM SELECTED
-  const itemSelectedName = document.createElement("div");
-  itemSelectedName.setAttribute("class", "element-name");
-  itemSelectedName.innerHTML = elementTag;
+  const filterSelectedName = document.createElement("div");
+  filterSelectedName.setAttribute("class", "element-name");
+  filterSelectedName.innerHTML = elementTag;
   // BOUTON DELETE
   const deleteSectionFilter = document.createElement("div");
   deleteSectionFilter.setAttribute("class", "delete-filter-section");
   renderSVGCross(deleteSectionFilter);
   // APPENDCHILD'S
   sectionFilters.appendChild(filter);
-  filter.appendChild(itemSelectedName);
+  filter.appendChild(filterSelectedName);
   filter.appendChild(deleteSectionFilter);
   // REMOVE SELECTED ITEM
   deleteSectionFilter.addEventListener("click", function() {
     removeSelectedItem(deleteSectionFilter);
+    removeSelectedItem(deleteFilter);
+    domDiv.removeAttribute("style");
   });
 }
-
 // FUNCTION REMOVE ITEM
 function removeSelectedItem(deleteButton) {
   deleteButton.parentNode.remove();
