@@ -133,6 +133,11 @@ function searchByItem(searchTag, allTags) {
         element.style.display = "none";
       }
     });
+  } else {
+    // Reset allTags lorsque suppression "brute" de la searchbar (ctrl+A & Suppr)
+    allTags.forEach(element => {
+      element.style.display = "block";
+    });
   }
 }
 
