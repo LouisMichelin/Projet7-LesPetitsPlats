@@ -1,7 +1,6 @@
 // +---------------+
 // | DOM VARIABLES |
 // ----------------+
-let finalFiltersAllRegrouped = recipes;
 // MAIN SEARCH BAR
 const mainSearchBar = document.getElementById('main-input');
 const loupe = document.getElementById('button-loupe');
@@ -62,7 +61,7 @@ function mainSearchFunction() {
   // MAIN INPUT
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
   // APPLIQUE LA FONCTION AVEC MAIN INPUT
-  let allFiltersRegrouped =  searchByNameDescriptionIngredients(mainSearchInput);
+  let allFiltersRegrouped = searchByNameDescriptionIngredients(mainSearchInput);
   // UPDATE GLOBAL VIEW AVEC LA NOUVELLE ARRAY FILTREE !
   updateGlobalView(allFiltersRegrouped);
 }
@@ -76,7 +75,6 @@ function searchByNameDescriptionIngredients(searchString) {
     card.description.toLowerCase().includes(searchString) ||
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
   ));
-  finalFiltersAllRegrouped = allFiltersRegrouped;
   return allFiltersRegrouped;
 }
 // +----------------------------------------------------+
@@ -142,9 +140,9 @@ function searchByItem(searchTag, allTags) {
   }
 }
 
-// +----------------------------------------------------------+
-// | FUNCTION MENU & SECTION : CREATE/REMOVE SELECTED FILTERS |
-// +----------------------------------------------------------+
+// +--------------------------------------------------------------+
+// | FUNCTION MENU & SECTION DOM : CREATE/REMOVE SELECTED FILTERS |
+// +--------------------------------------------------------------+
 function createMenuSelected(tagDomSelection, elementTag, domDiv) {
   ////////////////////////
   // PARTIE MENU FILTER //
@@ -204,28 +202,13 @@ function removeSelectedItem(deleteButton) {
 // +----------------------------------------------+
 // | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
 // +----------------------------------------------+
-function filterWithSelectedItem(domDiv) {
-
-  
-
-  // finalFiltersRegrouped.forEach(element => {
-  //   if (element.includes(domDiv.innerHTML)) {
-  //     console.log(element);
-  //     element.style.display = "block";
-  //   } else {
-  //     console.log(element, "pas selected");
-  //     element.style.display = "none";
-  //   }
-  // })
-  console.log(finalFiltersAllRegrouped)
-
-  let finalAction = finalFiltersAllRegrouped.filter(card => (
-    card.name.toLowerCase().includes(domDiv.toLowerCase().trim()) ||
-    card.description.toLowerCase().includes(domDiv.toLowerCase().trim()) ||
-    card.ingredients.some(element => element.ingredient.toLowerCase().includes(domDiv.toLowerCase().trim()))
+// let finalFiltersAllRegrouped = recipes;
+function filterWithSelectedItem(itemSelected) {
+  let finalAction = recipes.filter(card => (
+    card.name.toLowerCase().includes(itemSelected) ||
+    card.description.toLowerCase().includes(itemSelected) ||
+    card.ingredients.some(element => element.ingredient.toLowerCase().includes(itemSelected))
   ));
-  
-  
-
+  console.log(finalAction);
   updateGlobalView(finalAction);
 }

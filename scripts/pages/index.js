@@ -99,14 +99,17 @@ function fillTags(tagDomElement, listElement, classCss){
       if (listElement == allIngredients) {
         createMenuSelected(document.getElementById("selected-ingredients"), element, div);
         div.style.display = "none";
+        // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
       } else if (listElement == allAppareils) {
         createMenuSelected(document.getElementById("selected-appareils"), element, div);
         div.style.display = "none";
+        // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
       } else if (listElement == allUstensils) {
         createMenuSelected(document.getElementById("selected-ustensils"), element, div);
         div.style.display = "none";
+        // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
       }
-      filterWithSelectedItem(element);
+      
     });
   });
 }
