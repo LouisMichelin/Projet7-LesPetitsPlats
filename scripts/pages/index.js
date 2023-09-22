@@ -99,7 +99,7 @@ function fillTags(tagDomElement, listElement, classCss){
       if (listElement == allIngredients) {
         createMenuSelected(document.getElementById("selected-ingredients"), element, div);
         div.style.display = "none";
-        filterWithSelectedItem(div.innerHTML.toLowerCase().trim(), allIngredients);
+        filterWithSelectedItem(div.innerHTML.toLowerCase(), allIngredients);
       } else if (listElement == allAppareils) {
         createMenuSelected(document.getElementById("selected-appareils"), element, div);
         div.style.display = "none";

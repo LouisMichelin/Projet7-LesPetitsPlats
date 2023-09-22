@@ -1,6 +1,7 @@
 // +---------------+
 // | DOM VARIABLES |
 // ----------------+
+let finalArray; // TEST
 // MAIN SEARCH BAR
 const mainSearchBar = document.getElementById('main-input');
 const loupe = document.getElementById('button-loupe');
@@ -75,8 +76,11 @@ function searchByNameDescriptionIngredients(searchString) {
     card.description.toLowerCase().includes(searchString) ||
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
   ));
+  finalArray = allFiltersRegrouped;
+  console.log(finalArray); // RENDRE finalArray accessible plus bas
   return allFiltersRegrouped;
 }
+
 // +----------------------------------------------------+
 // | TOGGLERS MAIN SEARCH BAR : "ENTRER" / BOUTON LOUPE |
 // +----------------------------------------------------+
@@ -202,37 +206,50 @@ function removeSelectedItem(deleteButton) {
 // +----------------------------------------------+
 // | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
 // +----------------------------------------------+
-// let finalFiltersAllRegrouped = recipes;
-function filterWithSelectedItem(selectedElement, listElement) {
-  console.log(listElement);
-  console.log(recipes);
 
+
+
+function filterWithSelectedItem(selectedElement, listElement) {
+  console.log(selectedElement)
+  // console.log(listElement);
+
+  if (finalArray == undefined) {
+    finalArray = recipes
+  }
+
+  console.log(finalArray)
 
   // CARTES & ALL BUTTON-ELEMENTS
-  listElement.forEach(recipe => {
-    if (recipe.toLowerCase().includes(selectedElement.toLowerCase())) {
-      // console.log("OUI", recipe)
-    } else {
-      // console.log("NOPE", recipe)
-    }
-  });
+  // listElement.forEach(recipe => {
+  //   if (recipe.toLowerCase().includes(selectedElement.toLowerCase())) {
+  //     // console.log("OUI", recipe)
+  //   } else {
+  //     // console.log("NOPE", recipe)
+  //   }
+  // });
 
 
-  listElement.filter(card => {
 
-    console.log(card)
-    // if (card.name.toLowerCase().includes(selectedElement.toLowerCase()) ||
-    // card.description.toLowerCase().includes(selectedElement.toLowerCase()) ||
-    // card.ingredients.some(element => element.ingredient.toLowerCase().includes(selectedElement.toLowerCase()))) {
-    //   card.style.display = "block";
+  finalArray.filter(card => {
+    console.log(card);
+    // if (card.name.toLowerCase().includes(selectedElement) ||
+    // card.description.toLowerCase().includes(selectedElement) ||
+    // card.ingredients.some(element => element.ingredient.toLowerCase().includes(selectedElement)))
+    // {
+    //   // console.log("OUI");
+    //   // console.log(card.id);
+      
 
-    // } else {
-    //   card.style.display = "none"
     // }
+    // else {
+    //   // console.log("NON");
+    //   // console.log(card.id);
+      
 
-
-
+    // }
+    
   });
+    
 
-  // updateGlobalView()
+
 }
