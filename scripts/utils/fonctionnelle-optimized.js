@@ -203,12 +203,36 @@ function removeSelectedItem(deleteButton) {
 // | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
 // +----------------------------------------------+
 // let finalFiltersAllRegrouped = recipes;
-function filterWithSelectedItem(itemSelected) {
-  let finalAction = recipes.filter(card => (
-    card.name.toLowerCase().includes(itemSelected) ||
-    card.description.toLowerCase().includes(itemSelected) ||
-    card.ingredients.some(element => element.ingredient.toLowerCase().includes(itemSelected))
-  ));
-  console.log(finalAction);
-  updateGlobalView(finalAction);
+function filterWithSelectedItem(selectedElement, listElement) {
+  console.log(listElement);
+  console.log(recipes);
+
+
+  // CARTES & ALL BUTTON-ELEMENTS
+  listElement.forEach(recipe => {
+    if (recipe.toLowerCase().includes(selectedElement.toLowerCase())) {
+      // console.log("OUI", recipe)
+    } else {
+      // console.log("NOPE", recipe)
+    }
+  });
+
+
+  listElement.filter(card => {
+
+    console.log(card)
+    // if (card.name.toLowerCase().includes(selectedElement.toLowerCase()) ||
+    // card.description.toLowerCase().includes(selectedElement.toLowerCase()) ||
+    // card.ingredients.some(element => element.ingredient.toLowerCase().includes(selectedElement.toLowerCase()))) {
+    //   card.style.display = "block";
+
+    // } else {
+    //   card.style.display = "none"
+    // }
+
+
+
+  });
+
+  // updateGlobalView()
 }
