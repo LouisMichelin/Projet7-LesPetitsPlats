@@ -203,28 +203,30 @@ function removeSelectedItem(deleteButton) {
   deleteButton.parentNode.remove();
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
 // +----------------------------------------------+
 // | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
 // +----------------------------------------------+
-function filterWithSelectedItem(selectedElement, listElement) {
-  console.log("selectedElement", selectedElement);
-  console.log("listElement", listElement);
-
-  // REALISER LE FILTRE AVEC OU SANS MainResearch
+function filterWithSelectedItem(selectedElement, listElements) {
+  console.log("selectedElement : ", selectedElement);
+  console.log("listElement :", listElements);
+  // FinalArray : SANS ou AVEC mainResearch()
   if (finalArray == undefined) {
-    finalArray = recipes;
+    finalArray = recipes; // SANS mainResearch()
   } else {
-    finalArray = finalArray;
+    finalArray = finalArray; // AVEC mainResearch()
   }
-  console.log(finalArray);
+  
+  console.log("RECETTES QU'ON A FILTRE : ", finalArray);
 
-  // TRI FINAL : SI ITEM CLICKED == RECIPE FILTERED, Display = Block, else Display = None
-  finalArray.forEach(recipeFiltered => {
-    console.log(recipeFiltered.name);
-    if (recipeFiltered.name.toLowerCase().includes(selectedElement)) {
-      console.log("Yes", recipeFiltered.id, recipeFiltered.name);
-    }
-    
+  // FILTRE
+  let test = finalArray.filter(recipe => {
+    console.log(recipe);
+    recipe.ingredients.some(element => element.ingredient.toLowerCase().includes(selectedElement));
   });
+  console.log(test);
 
 }
