@@ -109,7 +109,6 @@ function fillTags(tagDomElement, listElement, classCss){
         div.style.display = "none";
         // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
       }
-      
     });
   });
 }

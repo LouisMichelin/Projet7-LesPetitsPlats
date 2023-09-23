@@ -206,50 +206,25 @@ function removeSelectedItem(deleteButton) {
 // +----------------------------------------------+
 // | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
 // +----------------------------------------------+
-
-
-
 function filterWithSelectedItem(selectedElement, listElement) {
-  console.log(selectedElement)
-  // console.log(listElement);
+  console.log("selectedElement", selectedElement);
+  console.log("listElement", listElement);
 
+  // REALISER LE FILTRE AVEC OU SANS MainResearch
   if (finalArray == undefined) {
-    finalArray = recipes
+    finalArray = recipes;
+  } else {
+    finalArray = finalArray;
   }
+  console.log(finalArray);
 
-  console.log(finalArray)
-
-  // CARTES & ALL BUTTON-ELEMENTS
-  // listElement.forEach(recipe => {
-  //   if (recipe.toLowerCase().includes(selectedElement.toLowerCase())) {
-  //     // console.log("OUI", recipe)
-  //   } else {
-  //     // console.log("NOPE", recipe)
-  //   }
-  // });
-
-
-
-  finalArray.filter(card => {
-    console.log(card);
-    // if (card.name.toLowerCase().includes(selectedElement) ||
-    // card.description.toLowerCase().includes(selectedElement) ||
-    // card.ingredients.some(element => element.ingredient.toLowerCase().includes(selectedElement)))
-    // {
-    //   // console.log("OUI");
-    //   // console.log(card.id);
-      
-
-    // }
-    // else {
-    //   // console.log("NON");
-    //   // console.log(card.id);
-      
-
-    // }
+  // TRI FINAL : SI ITEM CLICKED == RECIPE FILTERED, Display = Block, else Display = None
+  finalArray.forEach(recipeFiltered => {
+    console.log(recipeFiltered.name);
+    if (recipeFiltered.name.toLowerCase().includes(selectedElement)) {
+      console.log("Yes", recipeFiltered.id, recipeFiltered.name);
+    }
     
   });
-    
-
 
 }
