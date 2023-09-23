@@ -210,23 +210,45 @@ function removeSelectedItem(deleteButton) {
 // +----------------------------------------------+
 // | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
 // +----------------------------------------------+
-function filterWithSelectedItem(selectedElement, listElements) {
-  console.log("selectedElement : ", selectedElement);
-  console.log("listElement :", listElements);
+function filterWithSelectedItem(selectedElement) {
+  // console.log("selectedElement : ", selectedElement);
+  // console.log("listElement :", listElements);
   // FinalArray : SANS ou AVEC mainResearch()
   if (finalArray == undefined) {
     finalArray = recipes; // SANS mainResearch()
   } else {
     finalArray = finalArray; // AVEC mainResearch()
   }
-  
-  console.log("RECETTES QU'ON A FILTRE : ", finalArray);
+  // console.log("RECETTES QU'ON A FILTRE : ", finalArray);
+
 
   // FILTRE
-  let test = finalArray.filter(recipe => {
-    console.log(recipe);
-    recipe.ingredients.some(element => element.ingredient.toLowerCase().includes(selectedElement));
-  });
-  console.log(test);
+  // let ingredientsArray = [];
+  // let appareilsArray = [];
+  // let ustensilsArray = [];
 
+  console.log(finalArray);
+
+  finalArray.filter(recipe => {
+    console.log(recipe);
+    console.log("")
+    // console.log(recipe.id);
+
+    recipe.ingredients.some(element => {
+      // console.log(element.ingredient.toLowerCase());
+      if (element.ingredient.toLowerCase().includes(selectedElement)) {
+        console.log("YES", recipe.id);
+        wrapper[recipe.id].style.display = "block";
+
+        // ingredientsArray.push(recipe);
+        // document.getElementById([recipe.id]).style.display = "block";
+      } else if (!element.ingredient.toLowerCase().includes(selectedElement)) {
+        console.log("NOPE", recipe.id);
+        wrapper[recipe.id].style.display = "none";
+        // document.getElementById([recipe.id]).style.display = "none";
+      }
+    });
+
+  });
+  // console.log(ingredientsArray);
 }

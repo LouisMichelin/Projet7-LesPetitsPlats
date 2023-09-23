@@ -96,19 +96,23 @@ function fillTags(tagDomElement, listElement, classCss){
     div.setAttribute("class", classCss);
     div.addEventListener("click", function(e) {
       e.preventDefault();
+
       if (listElement == allIngredients) {
         createMenuSelected(document.getElementById("selected-ingredients"), element, div);
         div.style.display = "none";
-        filterWithSelectedItem(div.innerHTML.toLowerCase(), allIngredients);
+        filterWithSelectedItem(div.innerHTML.toLowerCase());
+
       } else if (listElement == allAppareils) {
         createMenuSelected(document.getElementById("selected-appareils"), element, div);
         div.style.display = "none";
         // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
+
       } else if (listElement == allUstensils) {
         createMenuSelected(document.getElementById("selected-ustensils"), element, div);
         div.style.display = "none";
         // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
       }
+
     });
   });
 }
