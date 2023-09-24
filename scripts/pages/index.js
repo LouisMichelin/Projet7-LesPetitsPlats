@@ -19,15 +19,17 @@ mainInput.addEventListener("input", function () {
   }
 });
 
-// +----------------------------+
-// | ARRAYS DES BOUTONS FILTRES |
-// +----------------------------+
+// +-----------------------------+
+// | ARRAYS BOUTONS FILTRES INIT |
+// +-----------------------------+
 let allIngredients = [];
 let allAppareils = [];
 let allUstensils = [];
 
-
-let listtagIng = [];
+// +----------------------+
+// | ARRAYS MENUS FILTRES |
+// +----------------------+
+let listTagIng = [];
 let listTagUst = [];
 let listTagApp = [];
 
@@ -101,32 +103,41 @@ function fillTags(tagDomElement, listElement, classCss){
     div.setAttribute("class", classCss);
     div.addEventListener("click", function(e) {
       e.preventDefault();
+      let tagDomSelection = "";
+
+      
+
+      console.log(tagDomElement);
+      console.log(div);
+      div.style.display = "none"; // MARCHE PLUS
 
 
-      let tagDomSelection="";
 
+
+      // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY
       switch (listElement) {
-          case allIngredients:
-                listtagIng.push(element.toLowerCase());
-                tagDomSelection="selected-ingredients";
-                break;
-          case allUstensils:
-                listTagUst.push(element.toLowerCase());
-                tagDomSelection="selected-ustensils";
-                break;
-          case allAppareils:
-                listTagApp.push(element.toLowerCase());
-                tagDomSelection="selected-appareils";
-                break;
-          default:
-          console.log("Unkown");
+        case allIngredients:
+          listTagIng.push(element.toLowerCase());
+          tagDomSelection = "selected-ingredients";
+          break;
+        case allAppareils:
+          listTagApp.push(element.toLowerCase());
+          tagDomSelection = "selected-appareils";
+          break;
+        case allUstensils:
+          listTagUst.push(element.toLowerCase());
+          tagDomSelection = "selected-ustensils";
+          break;
+        default:
+        console.log("Unknown");
       }
-      div.style.display = "none";
+      // SETUP : MENU FILTERS + SECTION DOM FILTERS (AVEC NEW VALUES)
       createMenuSelected(document.getElementById(tagDomSelection), element, div);
-      let filtredRecipes = advancedSearch(listtagIng,listTagUst, listTagApp);
+      // FUNCTION FILTREE AVEC LES ARRAYS QU'ON VIENT DE PASSER
+      let filtredRecipes = advancedSearch(listTagIng, listTagUst, listTagApp);
       console.log(filtredRecipes);
+      // FUNCTION UPDATEGLOBAL AVEC TOTAL DES 3 ARRAYS
       updateGlobalView(filtredRecipes);
-
     });
   });
 }

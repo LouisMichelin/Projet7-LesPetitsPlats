@@ -1,7 +1,6 @@
 // +---------------+
 // | DOM VARIABLES |
 // ----------------+
-
 // MAIN SEARCH BAR
 const mainSearchBar = document.getElementById('main-input');
 const loupe = document.getElementById('button-loupe');
@@ -80,49 +79,45 @@ function searchByNameDescriptionIngredients(searchString) {
   return allFiltersRegrouped;
 }
 
-// +---------------------------------------------------------+
-// | RECHERCHE DANS RECIPES AVEC INGREDIENTS ustintil et appareil |
-// +---------------------------------------------------------+
-function advancedSearch(listtagIngredients,listTagUstintils, listTagAppliance){
+// +----------------------------------------------------------------+
+// | RECHERCHE DANS RECIPES AVEC INGREDIENTS, APPAREILS & USTENSILS |
+// +----------------------------------------------------------------+
+function advancedSearch(listTagIngredients, listTagUstensils, listTagAppliances) {
+  // INITIALISE VARIABLE "result"
   let result = recipes;
-
-  listtagIngredients.forEach(tag =>{
+  // FILTRES APPLIQUES 1 PAR 1, DE "INGREDIENTS" A "USTENSILS"
+  listTagIngredients.forEach(tag => {
     result = searchByIngredients(tag, result); 
   });
-
-
-  listTagUstintils.forEach(tag =>{
-    result = searchByUstensils(tag,result);
-    
-  });
-
-  listTagAppliance.forEach(tag =>{
+  listTagAppliances.forEach(tag => {
     result = searchByAppliances(tag, result);
-    
   });
-
+  listTagUstensils.forEach(tag => {
+    result = searchByUstensils(tag, result);
+  });
   return result;
 }
+// FONCTION SEARCH: INGREDIENTS
 function searchByIngredients(searchString, listRecipes) {
   let allFiltersRegrouped = listRecipes.filter(card => (
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
   ));
   return allFiltersRegrouped;
 }
-function searchByUstensils(searchString,listRecipes) {
-  let allFiltersRegrouped = listRecipes.filter(card => (
-    card.ustensils.some(element => element.toLowerCase().includes(searchString))
-  ));
-  return allFiltersRegrouped;
-}
-
-function searchByAppliances(searchString,listRecipes) {
+// FONCTION SEARCH: APPAREILS 
+function searchByAppliances(searchString, listRecipes) {
   let allFiltersRegrouped = listRecipes.filter(card => (
     card.appliance.toLowerCase().includes(searchString)
   ));
   return allFiltersRegrouped;
 }
-
+// FONCTION SEARCH: USTENSILS
+function searchByUstensils(searchString, listRecipes) {
+  let allFiltersRegrouped = listRecipes.filter(card => (
+    card.ustensils.some(element => element.toLowerCase().includes(searchString))
+  ));
+  return allFiltersRegrouped;
+}
 
 // +----------------------------------------------------+
 // | TOGGLERS MAIN SEARCH BAR : "ENTRER" / BOUTON LOUPE |
@@ -249,4 +244,6 @@ function removeSelectedItem(deleteButton) {
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
-
+// +------------------------------------+
+// | REVERSE EFFECT OF SELECTED FILTERS |
+// +------------------------------------+
