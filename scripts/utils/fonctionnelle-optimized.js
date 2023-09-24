@@ -1,7 +1,7 @@
 // +---------------+
 // | DOM VARIABLES |
 // ----------------+
-let finalArray; // TEST
+
 // MAIN SEARCH BAR
 const mainSearchBar = document.getElementById('main-input');
 const loupe = document.getElementById('button-loupe');
@@ -76,10 +76,53 @@ function searchByNameDescriptionIngredients(searchString) {
     card.description.toLowerCase().includes(searchString) ||
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
   ));
-  finalArray = allFiltersRegrouped;
-  console.log(finalArray); // RENDRE finalArray accessible plus bas
+  
   return allFiltersRegrouped;
 }
+
+// +---------------------------------------------------------+
+// | RECHERCHE DANS RECIPES AVEC INGREDIENTS ustintil et appareil |
+// +---------------------------------------------------------+
+function advancedSearch(listtagIngredients,listTagUstintils, listTagAppliance){
+  let result = recipes;
+
+  listtagIngredients.forEach(tag =>{
+    result = searchByIngredients(tag, result); 
+  });
+
+
+  listTagUstintils.forEach(tag =>{
+    result = searchByUstensils(tag,result);
+    
+  });
+
+  listTagAppliance.forEach(tag =>{
+    result = searchByAppliances(tag, result);
+    
+  });
+
+  return result;
+}
+function searchByIngredients(searchString, listRecipes) {
+  let allFiltersRegrouped = listRecipes.filter(card => (
+    card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
+  ));
+  return allFiltersRegrouped;
+}
+function searchByUstensils(searchString,listRecipes) {
+  let allFiltersRegrouped = listRecipes.filter(card => (
+    card.ustensils.some(element => element.toLowerCase().includes(searchString))
+  ));
+  return allFiltersRegrouped;
+}
+
+function searchByAppliances(searchString,listRecipes) {
+  let allFiltersRegrouped = listRecipes.filter(card => (
+    card.appliance.toLowerCase().includes(searchString)
+  ));
+  return allFiltersRegrouped;
+}
+
 
 // +----------------------------------------------------+
 // | TOGGLERS MAIN SEARCH BAR : "ENTRER" / BOUTON LOUPE |
@@ -207,48 +250,3 @@ function removeSelectedItem(deleteButton) {
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-// +----------------------------------------------+
-// | FUNCTION MENU : FILTER WITH SELECTED ELEMENT |
-// +----------------------------------------------+
-function filterWithSelectedItem(selectedElement) {
-  // console.log("selectedElement : ", selectedElement);
-  // console.log("listElement :", listElements);
-  // FinalArray : SANS ou AVEC mainResearch()
-  if (finalArray == undefined) {
-    finalArray = recipes; // SANS mainResearch()
-  } else {
-    finalArray = finalArray; // AVEC mainResearch()
-  }
-  // console.log("RECETTES QU'ON A FILTRE : ", finalArray);
-
-
-  // FILTRE
-  // let ingredientsArray = [];
-  // let appareilsArray = [];
-  // let ustensilsArray = [];
-
-  console.log(finalArray);
-
-  finalArray.filter(recipe => {
-    console.log(recipe);
-    console.log("")
-    // console.log(recipe.id);
-
-    recipe.ingredients.some(element => {
-      // console.log(element.ingredient.toLowerCase());
-      if (element.ingredient.toLowerCase().includes(selectedElement)) {
-        console.log("YES", recipe.id);
-        wrapper[recipe.id].style.display = "block";
-
-        // ingredientsArray.push(recipe);
-        // document.getElementById([recipe.id]).style.display = "block";
-      } else if (!element.ingredient.toLowerCase().includes(selectedElement)) {
-        console.log("NOPE", recipe.id);
-        wrapper[recipe.id].style.display = "none";
-        // document.getElementById([recipe.id]).style.display = "none";
-      }
-    });
-
-  });
-  // console.log(ingredientsArray);
-}

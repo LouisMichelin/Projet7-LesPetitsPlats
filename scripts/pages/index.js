@@ -26,6 +26,11 @@ let allIngredients = [];
 let allAppareils = [];
 let allUstensils = [];
 
+
+let listtagIng = [];
+let listTagUst = [];
+let listTagApp = [];
+
 // +-------------+
 // | MAIN INIT() |
 // +-------------+
@@ -97,21 +102,30 @@ function fillTags(tagDomElement, listElement, classCss){
     div.addEventListener("click", function(e) {
       e.preventDefault();
 
-      if (listElement == allIngredients) {
-        createMenuSelected(document.getElementById("selected-ingredients"), element, div);
-        div.style.display = "none";
-        filterWithSelectedItem(div.innerHTML.toLowerCase());
 
-      } else if (listElement == allAppareils) {
-        createMenuSelected(document.getElementById("selected-appareils"), element, div);
-        div.style.display = "none";
-        // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
+      let tagDomSelection="";
 
-      } else if (listElement == allUstensils) {
-        createMenuSelected(document.getElementById("selected-ustensils"), element, div);
-        div.style.display = "none";
-        // filterWithSelectedItem(div.innerHTML.toLowerCase().trim());
+      switch (listElement) {
+          case allIngredients:
+                listtagIng.push(element.toLowerCase());
+                tagDomSelection="selected-ingredients";
+                break;
+          case allUstensils:
+                listTagUst.push(element.toLowerCase());
+                tagDomSelection="selected-ustensils";
+                break;
+          case allAppareils:
+                listTagApp.push(element.toLowerCase());
+                tagDomSelection="selected-appareils";
+                break;
+          default:
+          console.log("Unkown");
       }
+      div.style.display = "none";
+      createMenuSelected(document.getElementById(tagDomSelection), element, div);
+      let filtredRecipes = advancedSearch(listtagIng,listTagUst, listTagApp);
+      console.log(filtredRecipes);
+      updateGlobalView(filtredRecipes);
 
     });
   });
