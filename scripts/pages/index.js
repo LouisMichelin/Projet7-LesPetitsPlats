@@ -68,7 +68,7 @@ function updateGlobalView(ListRecipe) {
   allUstensils = [...new Set(allUstensils)];
   // REMPLIR LISTE DES TAGS POUR CHAQUE MENU DEROULANT :
   // 1- SETUP BOUTONS-MENUS : INGREDIENTS
-  fillTags(document.getElementById('all-items-ingredients'), allIngredients,  "item-filtre-ingredients");
+  fillTags(document.getElementById('all-items-ingredients'), allIngredients, "item-filtre-ingredients");
   // 2- SETUP BOUTONS-MENUS : APPAREILS
   fillTags(document.getElementById('all-items-appareils'), allAppareils, "item-filtre-appareils");
   // 3- SETUP BOUTONS-MENUS : USTENSILS
@@ -101,19 +101,11 @@ function fillTags(tagDomElement, listElement, classCss){
     tagDomElement.appendChild(div);
     div.innerHTML = element;
     div.setAttribute("class", classCss);
+    // EVENT LISTENER : ONCLICK
     div.addEventListener("click", function(e) {
       e.preventDefault();
       let tagDomSelection = "";
-
-      
-
-      console.log(tagDomElement);
-      console.log(div);
       div.style.display = "none"; // MARCHE PLUS
-
-
-
-
       // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY
       switch (listElement) {
         case allIngredients:

@@ -82,9 +82,10 @@ function searchByNameDescriptionIngredients(searchString) {
 // +----------------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC INGREDIENTS, APPAREILS & USTENSILS |
 // +----------------------------------------------------------------+
+let result;
 function advancedSearch(listTagIngredients, listTagUstensils, listTagAppliances) {
   // INITIALISE VARIABLE "result"
-  let result = recipes;
+  result = recipes;
   // FILTRES APPLIQUES 1 PAR 1, DE "INGREDIENTS" A "USTENSILS"
   listTagIngredients.forEach(tag => {
     result = searchByIngredients(tag, result); 
@@ -209,6 +210,7 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     removeSelectedItem(deleteSectionFilter);
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
+    updateGlobalView(recipes);
   });
   ////////////////////////////
   // PARTIE SECTION FILTERS //
@@ -234,6 +236,7 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     removeSelectedItem(deleteSectionFilter);
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
+    updateGlobalView(recipes);
   });
 }
 // FUNCTION REMOVE ITEM
