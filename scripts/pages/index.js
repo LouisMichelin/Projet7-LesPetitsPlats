@@ -104,6 +104,8 @@ function fillTags(tagDomElement, listElement, classCss){
     // EVENT LISTENER : ONCLICK
     div.addEventListener("click", function(e) {
       e.preventDefault();
+      selectedElements.push(element);
+      console.log("Liste Filters Applied: ", selectedElements);
       let tagDomSelection = "";
       div.style.display = "none"; // MARCHE PLUS
       // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY

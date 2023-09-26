@@ -1,3 +1,7 @@
+let selectedElements = [];
+
+
+
 // +---------------+
 // | DOM VARIABLES |
 // ----------------+
@@ -210,7 +214,8 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     removeSelectedItem(deleteSectionFilter);
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
-    updateGlobalView(recipes);
+    
+    resetSelectedElement(elementTag)
   });
   ////////////////////////////
   // PARTIE SECTION FILTERS //
@@ -236,7 +241,8 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     removeSelectedItem(deleteSectionFilter);
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
-    updateGlobalView(recipes);
+    
+    resetSelectedElement(elementTag);
   });
 }
 // FUNCTION REMOVE ITEM
@@ -250,3 +256,39 @@ function removeSelectedItem(deleteButton) {
 // +------------------------------------+
 // | REVERSE EFFECT OF SELECTED FILTERS |
 // +------------------------------------+
+
+function resetSelectedElement(tagValue) {
+  console.log("Deleted Filter: ", tagValue);
+  let indexOfTagValue = selectedElements.indexOf(tagValue);
+  selectedElements.splice(indexOfTagValue, 1);
+  console.log("Liste Filters Applied - AFTER: ", selectedElements);
+
+  // FILTER AVEC LA SELECTEDELEMENTS ARRAY[]
+
+  let filtredFinalRecipes = selectedElements.forEach(item => {
+    
+  });
+
+
+
+  let allFiltersRegrouped = recipes.filter(card => {
+    card.name.toLowerCase().includes() ||
+    card.description.toLowerCase().includes() ||
+    card.ingredients.some(element => element.ingredient.toLowerCase().includes())
+  });
+
+  console.log(allFiltersRegrouped);
+  
+
+
+
+  // let allFiltersRegrouped = recipes.filter(card => (
+  //   // card.name.toLowerCase().includes(elementChosen.toLowerCase()) ||
+  //   // card.description.toLowerCase().includes(elementChosen.toLowerCase()) ||
+  //   // card.ingredients.some(element => element.ingredient.toLowerCase().includes(elementChosen.toLowerCase()))
+  // ));
+  // console.log(allFiltersRegrouped);
+
+
+  // updateGlobalView(allFiltersRegrouped);
+}
