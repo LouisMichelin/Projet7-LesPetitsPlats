@@ -69,8 +69,11 @@ function mainSearchFunction() {
 // +---------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS |
 // +---------------------------------------------------------+
+let result;
 function searchByNameDescriptionIngredients(searchString) {
-  let allFiltersRegrouped = recipes.filter(card => (
+  // INITIALISE VARIABLE "result"
+  result = recipes;
+  let allFiltersRegrouped = result.filter(card => (
     card.name.toLowerCase().includes(searchString) ||
     card.description.toLowerCase().includes(searchString) ||
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
@@ -82,7 +85,7 @@ function searchByNameDescriptionIngredients(searchString) {
 // +----------------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC INGREDIENTS, APPAREILS & USTENSILS |
 // +----------------------------------------------------------------+
-let result;
+
 function advancedSearch(listTagIngredients, listTagUstensils, listTagAppliances) {
   // INITIALISE VARIABLE "result"
   result = recipes;
