@@ -94,6 +94,7 @@ function getAllItemFilters(recipe) {
 // +-------------------------------------+
 // | FUNCTION REMPLIR LES TAGS DES MENUS |
 // +-------------------------------------+
+let filtredRecipes
 function fillTags(tagDomElement, listElement, classCss){
   tagDomElement.innerHTML = "";
   listElement.forEach(element => {
@@ -104,8 +105,6 @@ function fillTags(tagDomElement, listElement, classCss){
     // EVENT LISTENER : ONCLICK
     div.addEventListener("click", function(e) {
       e.preventDefault();
-      selectedElements.push(element);
-      console.log("Liste Filters Applied: ", selectedElements);
       let tagDomSelection = "";
       div.style.display = "none"; // MARCHE PLUS
       // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY
@@ -128,7 +127,7 @@ function fillTags(tagDomElement, listElement, classCss){
       // SETUP : MENU FILTERS + SECTION DOM FILTERS (AVEC NEW VALUES)
       createMenuSelected(document.getElementById(tagDomSelection), element, div);
       // FUNCTION FILTREE AVEC LES ARRAYS QU'ON VIENT DE PASSER
-      let filtredRecipes = advancedSearch(listTagIng, listTagUst, listTagApp);
+      filtredRecipes = advancedSearch(listTagIng, listTagUst, listTagApp);
       console.log(filtredRecipes);
       // FUNCTION UPDATEGLOBAL AVEC TOTAL DES 3 ARRAYS
       updateGlobalView(filtredRecipes);

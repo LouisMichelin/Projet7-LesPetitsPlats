@@ -1,7 +1,3 @@
-let selectedElements = [];
-
-
-
 // +---------------+
 // | DOM VARIABLES |
 // ----------------+
@@ -215,7 +211,7 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
     
-    resetSelectedElement(elementTag)
+    resetSelectedElement(elementTag);
   });
   ////////////////////////////
   // PARTIE SECTION FILTERS //
@@ -245,50 +241,28 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     resetSelectedElement(elementTag);
   });
 }
-// FUNCTION REMOVE ITEM
+// FUNCTION REMOVE ITEM (POUR L.190-244)
 function removeSelectedItem(deleteButton) {
   deleteButton.parentNode.remove();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
 // +------------------------------------+
 // | REVERSE EFFECT OF SELECTED FILTERS |
 // +------------------------------------+
-
 function resetSelectedElement(tagValue) {
-  console.log("Deleted Filter: ", tagValue);
-  let indexOfTagValue = selectedElements.indexOf(tagValue);
-  selectedElements.splice(indexOfTagValue, 1);
-  console.log("Liste Filters Applied - AFTER: ", selectedElements);
-
-  // FILTER AVEC LA SELECTEDELEMENTS ARRAY[]
-
-  let filtredFinalRecipes = selectedElements.forEach(item => {
-    
-  });
-
-
-
-  let allFiltersRegrouped = recipes.filter(card => {
-    card.name.toLowerCase().includes() ||
-    card.description.toLowerCase().includes() ||
-    card.ingredients.some(element => element.ingredient.toLowerCase().includes())
-  });
-
-  console.log(allFiltersRegrouped);
-  
-
-
-
-  // let allFiltersRegrouped = recipes.filter(card => (
-  //   // card.name.toLowerCase().includes(elementChosen.toLowerCase()) ||
-  //   // card.description.toLowerCase().includes(elementChosen.toLowerCase()) ||
-  //   // card.ingredients.some(element => element.ingredient.toLowerCase().includes(elementChosen.toLowerCase()))
-  // ));
-  // console.log(allFiltersRegrouped);
-
-
-  // updateGlobalView(allFiltersRegrouped);
+  if (listTagIng.includes(tagValue.toLowerCase())) {
+    let indexRemove = listTagIng.indexOf(tagValue.toLowerCase());
+    listTagIng.splice(indexRemove, 1);
+    console.log(listTagIng);
+  } else if (listTagApp.includes(tagValue.toLowerCase())) {
+    let indexRemove = listTagApp.indexOf(tagValue.toLowerCase());
+    listTagApp.splice(indexRemove, 1);
+    console.log(listTagApp);
+  } else if (listTagUst.includes(tagValue.toLowerCase())) {
+    let indexRemove = listTagUst.indexOf(tagValue.toLowerCase());
+    listTagUst.splice(indexRemove, 1);
+    console.log(listTagUst);
+  }
+  let filtredFinalRecipes = advancedSearch(listTagIng, listTagUst, listTagApp);
+  updateGlobalView(filtredFinalRecipes);
 }
