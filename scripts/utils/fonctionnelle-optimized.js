@@ -9,6 +9,8 @@ let wrapper = document.getElementById('wrapper').children;
 wrapper = Array.from(wrapper);
 let cards = document.querySelectorAll('.card');
 
+// Liste des recipes deja filtrés
+let allFiltersRegrouped=recipes;
 // +---------------------------------------------------+
 // | SVG CREATORS : "DELETE CROSS FROM FILTERS BUTTON" |
 // +---------------------------------------------------+
@@ -61,7 +63,7 @@ function mainSearchFunction() {
   // MAIN INPUT
   const mainSearchInput = document.getElementById("main-input").value.toLowerCase().trim();
   // APPLIQUE LA FONCTION AVEC MAIN INPUT
-  let allFiltersRegrouped = searchByNameDescriptionIngredients(mainSearchInput);
+  allFiltersRegrouped = searchByNameDescriptionIngredients(mainSearchInput);
   // UPDATE GLOBAL VIEW AVEC LA NOUVELLE ARRAY FILTREE !
   updateGlobalView(allFiltersRegrouped);
 }
@@ -69,26 +71,25 @@ function mainSearchFunction() {
 // +---------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS |
 // +---------------------------------------------------------+
-let result;
+
 function searchByNameDescriptionIngredients(searchString) {
   // INITIALISE VARIABLE "result"
-  result = recipes;
-  let allFiltersRegrouped = result.filter(card => (
+  let result = allFiltersRegrouped.filter(card => (
     card.name.toLowerCase().includes(searchString) ||
     card.description.toLowerCase().includes(searchString) ||
     card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
   ));
   
-  return allFiltersRegrouped;
+  return result;
 }
 
 // +----------------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC INGREDIENTS, APPAREILS & USTENSILS |
 // +----------------------------------------------------------------+
 
-function advancedSearch(listTagIngredients, listTagUstensils, listTagAppliances) {
+function advancedSearch(listReciepes, listTagIngredients, listTagUstensils, listTagAppliances) {
   // INITIALISE VARIABLE "result"
-  result = recipes;
+  result = listReciepes;
   // FILTRES APPLIQUES 1 PAR 1, DE "INGREDIENTS" A "USTENSILS"
   listTagIngredients.forEach(tag => {
     result = searchByIngredients(tag, result); 
@@ -213,7 +214,6 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     removeSelectedItem(deleteSectionFilter);
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
-    
     resetSelectedElement(elementTag);
   });
   ////////////////////////////
@@ -240,7 +240,6 @@ function createMenuSelected(tagDomSelection, elementTag, domDiv) {
     removeSelectedItem(deleteSectionFilter);
     removeSelectedItem(deleteFilter);
     domDiv.removeAttribute("style");
-    
     resetSelectedElement(elementTag);
   });
 }
@@ -266,6 +265,6 @@ function resetSelectedElement(tagValue) {
     listTagUst.splice(indexRemove, 1);
     console.log(listTagUst);
   }
-  let filtredFinalRecipes = advancedSearch(listTagIng, listTagUst, listTagApp);
+  let filtredFinalRecipes = advancedSearch(allFiltersRegrouped, listTagIng, listTagUst, listTagApp);
   updateGlobalView(filtredFinalRecipes);
 }
