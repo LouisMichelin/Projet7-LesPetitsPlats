@@ -1,0 +1,6 @@
+// ICI, ON CREE TOUTES LES FONCTIONS : "FILTER", "SOME", "INCLUDES"
+// QU'ON UTILISAIT EN FONCTIONNELLE
+// SOUS LES NOMS :
+// .filter()
+// .some()
+// .includes()
