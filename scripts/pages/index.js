@@ -56,14 +56,25 @@ function updateGlobalView(ListRecipe) {
   // SETUP WRAPPER
   let wrapper = document.getElementById('wrapper');
   wrapper.innerHTML = "";
+
   // CARTES & ALL BUTTON-ELEMENTS
-  ListRecipe.forEach(recipe => {
+  for (let i = 0; i < ListRecipe.length; i++) {
     // CREATION CARTES + AFFICHAGE SUR LE DOM
-    const card = getRecipesCardDOM(recipe);
+    const card = getRecipesCardDOM(ListRecipe[i]);
     wrapper.appendChild(card);
     // RECUPERATION ELEMENTS VERS ARRAYS : Ingredients, Appareils & Ustensils
-    getAllItemFilters(recipe);
-  });
+    getAllItemFilters(ListRecipe[i]);
+  }
+
+  // ListRecipe.forEach(recipe => {
+  //   // CREATION CARTES + AFFICHAGE SUR LE DOM
+  //   const card = getRecipesCardDOM(recipe);
+  //   wrapper.appendChild(card);
+  //   // RECUPERATION ELEMENTS VERS ARRAYS : Ingredients, Appareils & Ustensils
+  //   getAllItemFilters(recipe);
+  // });
+
+
   // ELIMINATION DES DOUBLONS
   allIngredients = [...new Set(allIngredients)];
   allAppareils = [...new Set(allAppareils)];
@@ -188,7 +199,8 @@ function getRecipesCardDOM(recipe) {
   ingredientQuantite.setAttribute("class", "ingredient-quantite");
   // AFFICHAGE DES DONNEES DE CHAQUE INGREDIENT DE RECIPES.INGREDIENTS
   let ingredientConsole = recipe.ingredients;
-  ingredientConsole.forEach(recipe => {
+
+  for (let i = 0; i < ingredientConsole.length; i++) {
     if (recipe.quantity && recipe.unit) {
       ingredientRecette.appendChild(ingredientNom);
       ingredientNom.innerHTML = recipe.ingredient;
@@ -205,7 +217,27 @@ function getRecipesCardDOM(recipe) {
       ingredientQuantite.innerHTML = "";
     }
     listeIngredients.appendChild(ingredientRecette.cloneNode(true));
-  });
+  }
+  // ingredientConsole.forEach(recipe => {
+  //   if (recipe.quantity && recipe.unit) {
+  //     ingredientRecette.appendChild(ingredientNom);
+  //     ingredientNom.innerHTML = recipe.ingredient;
+  //     ingredientRecette.appendChild(ingredientQuantite);
+  //     ingredientQuantite.innerHTML = `${recipe.quantity}${recipe.unit}`;
+  //   } else if (recipe.quantity) {
+  //     ingredientRecette.appendChild(ingredientNom);
+  //     ingredientNom.innerHTML = recipe.ingredient;
+  //     ingredientRecette.appendChild(ingredientQuantite);
+  //     ingredientQuantite.innerHTML = `${recipe.quantity}`;
+  //   } else {
+  //     ingredientRecette.appendChild(ingredientNom);
+  //     ingredientNom.innerHTML = recipe.ingredient;
+  //     ingredientQuantite.innerHTML = "";
+  //   }
+  //   listeIngredients.appendChild(ingredientRecette.cloneNode(true));
+  // });
+
+
   // ASSEMBLAGE DES BALISES
   recipeCard.appendChild(recipeEntete);
   recipeEntete.appendChild(recipeDuree);
