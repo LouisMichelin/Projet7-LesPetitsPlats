@@ -65,14 +65,6 @@ function updateGlobalView(ListRecipe) {
     // RECUPERATION ELEMENTS VERS ARRAYS : Ingredients, Appareils & Ustensils
     getAllItemFilters(ListRecipe[i]);
   }
-  // ListRecipe.forEach(recipe => {
-  //   // CREATION CARTES + AFFICHAGE SUR LE DOM
-  //   const card = getRecipesCardDOM(recipe);
-  //   wrapper.appendChild(card);
-  //   // RECUPERATION ELEMENTS VERS ARRAYS : Ingredients, Appareils & Ustensils
-  //   getAllItemFilters(recipe);
-  // });
-
 
   // ELIMINATION DES DOUBLONS
   allIngredients = [...new Set(allIngredients)];
@@ -92,15 +84,16 @@ function updateGlobalView(ListRecipe) {
 // +----------------------------------------------------+
 function getAllItemFilters(recipe) {
   // INGREDIENTS
-  recipe.ingredients.forEach(element => {
-    allIngredients.push(element.ingredient);
-  });
+  for (let i = 0; i < recipe.ingredients.length; i++) {
+    allIngredients.push(recipe.ingredients[i].ingredient);
+  }
   // APPAREILS
   allAppareils.push(recipe.appliance);
   // USTENSILS
-  recipe.ustensils.forEach(ustensil => {
-    allUstensils.push(ustensil);
-  });
+  for (let i = 0; i < recipe.ustensils.length; i++) {
+    allUstensils.push(recipe.ustensils[i]);
+    console.log(recipe.ustensils[i])
+  }
 }
 
 // +-------------------------------------+
