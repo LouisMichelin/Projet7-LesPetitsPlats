@@ -92,7 +92,6 @@ function getAllItemFilters(recipe) {
   // USTENSILS
   for (let i = 0; i < recipe.ustensils.length; i++) {
     allUstensils.push(recipe.ustensils[i]);
-    console.log(recipe.ustensils[i])
   }
 }
 
