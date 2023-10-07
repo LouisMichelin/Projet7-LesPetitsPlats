@@ -1,38 +1,28 @@
-// -----------------------------------------------------------------
-// ICI, ON CREE TOUTES LES FONCTIONS : "FILTER", "SOME", "INCLUDES"
-// QU'ON UTILISAIT EN FONCTIONNELLE
-// SOUS LES NOMS :
-// .filter()
-// .some()
-// .includes()
-// -----------------------------------------------------------------
-// NEW ARRAY
-let newArray = [];
 // +----------------------------+
 // | FONCTION NATIVE : INCLUDES |
 // +----------------------------+
-let test2 = "Limonade de Coco";
-let test3 = test2.toLowerCase();
-let searchFilterIncludes = "coco";
-// ------------------------------
-function nativeIncludes() {
-  // LOWERCASE ARRAY
-  // for (let i = 0; i < recipesToFilter.length; i++) {
-  //   recipesToFilter[i] = recipesToFilter[i].toLowerCase();
-  // }
-  test2 = test2.toLowerCase();
-  test2 = test2.split(" ");
-  console.log(test2);
-  for (let i = 0; i < test2.length; i++) {
-    if (test2[i] === searchFilterIncludes) {
-      newArray.push(test2[i]);
-      console.log("yes", newArray);
-    } else {
-      console.log("nope", test2[i]);
+function nativeIncludes(menuElements, selectedItem) {
+  for (let i = 0; i < menuElements.length; i++) {
+    menuElements[i].toLowerCase().split(" ");
+    if (menuElements[i] === selectedItem) {
+      console.log("ça matche")
+      return true;
     }
-  }
+  };
 }
-// nativeIncludes();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // +--------------------------+
@@ -42,7 +32,11 @@ let recipesToFilter = ["Limonade de Coco", "Burger de Dinde", "Poulet Fermier"];
 let searchFilter = "limonade";
 let filteredArray = [];
 // ------------------------------
-function nativeFilter() {
+function nativeFilter(recettes) {
+  for (let i = 0; i < recettes.length; i++) {
+    recettes[i].name = recettes[i].name.toLowerCase();
+  }
+
   // LOWERCASE ARRAY
   for (let i = 0; i < recipesToFilter.length; i++) {
     recipesToFilter[i] = recipesToFilter[i].toLowerCase();
