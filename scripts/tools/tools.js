@@ -13,72 +13,63 @@ function nativeIncludes(menuElements, selectedItem) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // +--------------------------+
 // | FONCTION NATIVE : FILTER |
 // +--------------------------+
-let recipesToFilter = ["Limonade de Coco", "Burger de Dinde", "Poulet Fermier"];
-let searchFilter = "limonade";
-let filteredArray = [];
-// ------------------------------
-function nativeFilter(recettes) {
-  for (let i = 0; i < recettes.length; i++) {
-    recettes[i].name = recettes[i].name.toLowerCase();
-  }
-
-  // LOWERCASE ARRAY
-  for (let i = 0; i < recipesToFilter.length; i++) {
-    recipesToFilter[i] = recipesToFilter[i].toLowerCase();
-  }
-  console.log(recipesToFilter);
-  // FILTRAGE
-  for (let i = 0; i < recipesToFilter.length; i++) {
-    let filteredItem = recipesToFilter[i].split(" ");
-    for (let y = 0; y < filteredItem.length; y++) {
-      if (filteredItem[y] === searchFilter) {
-        console.log("Yes", filteredItem[y]);
-        let index = recipesToFilter.indexOf(recipesToFilter[i]);
-        recipesToFilter.splice(index, 1);
-      }
+function nativeFilter(listElements, searchedItem) {
+  for (let i = 0; i < listElements.length; i++) {
+    if (nativeIncludes(recipes[i].name.toLowerCase()) === searchedItem.toLowerCase() ||
+    nativeIncludes(recipes[i].description.toLowerCase()) === searchedItem.toLowerCase() ||
+    nativeIncludes(recipes[i].ingredients.toLowerCase()) === searchedItem.toLowerCase()) {
+      console.log("yes")
     }
   }
+  
+  // switch (cardDetails) {
+  //   case listElements.name:
+  //     console.log("NAME, wouhou");
+  //     break;
+  //   case listElements.description:
+  //     console.log("DESC, wouhou");
+  //     break;
+  //   case listElements.ingredients:
+  //     console.log("ING, wouhou");
+  //     break;
+  //   default:
+  //     console.log("Error Switch NativeFilter()");
+  // }
+
+
+  // for (let i = 0; i < listElements.length; i++) {
+  //   let lowercaseName = listElements[i].name.toLowerCase().split(" ");
+  //   for (let y = 0; y < lowercaseName.length; y++) {
+  //     if (lowercaseName[y] !== searchedItem.toLowerCase()) {
+  //       listElements.splice(listElements.indexOf([i]), 1);
+  //     }
+  //   }
+  // }
+
+
+  // console.log(listElements);
 }
-// nativeFilter();
+
 
 
 // +--------------------------+
-// | FONCTION NATIVE : SOME |
+// | FONCTION NATIVE : SOME   |
 // +--------------------------+
-let recipesToDoSome = ["Limonade de Coco", "Spaghettis Bolognaise", "Frites"];
-let searchFilterSome = "bolognaise";
-// ------------------------------
-function nativeSome() {
-  // LOWERCASE ARRAY
-  for (let i = 0; i < recipesToDoSome.length; i++) {
-    recipesToDoSome[i] = recipesToDoSome[i].toLowerCase();
-  }
-  console.log(recipesToDoSome);
+function nativeSome(arrayLooped, searchedItem) {
   // FILTRAGE SOME
-  for (let i = 0; i < recipesToDoSome.length; i++) {
-    let filteredItem = recipesToDoSome[i].split(" ");
+  for (let i = 0; i < arrayLooped.length; i++) {
+    let filteredItem = arrayLooped[i].toLowerCase().split(" ");
+
     for (let y = 0; y < filteredItem.length; y++) {
-      if (filteredItem[y] === searchFilterSome) {
-        console.log("Yes", filteredItem[y], true);
+      if (filteredItem[y] === searchedItem) {
+        console.log("Yes", filteredItem[i], true);
         return true;
       }
     }
+
   }
   return false;
 }
-// nativeSome();

@@ -71,15 +71,24 @@ function mainSearchFunction() {
 // +---------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS |
 // +---------------------------------------------------------+
-
 function searchByNameDescriptionIngredients(searchString) {
   // INITIALISE VARIABLE "result"
-  let result = allFiltersRegrouped.filter(card => (
-    card.name.toLowerCase().includes(searchString) ||
-    card.description.toLowerCase().includes(searchString) ||
-    card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
-  ));
-  
+
+  let result = nativeFilter(allFiltersRegrouped, searchString);
+
+
+  // allFiltersRegrouped.filter(card => (
+  //   card.name.toLowerCase().includes(searchString) ||
+  //   card.description.toLowerCase().includes(searchString) ||
+  //   card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
+  // ));
+
+
+  // let result = allFiltersRegrouped.filter(card => (
+  //   card.name.toLowerCase().includes(searchString) ||
+  //   card.description.toLowerCase().includes(searchString) ||
+  //   card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
+  // ));
   return result;
 }
 
@@ -87,9 +96,9 @@ function searchByNameDescriptionIngredients(searchString) {
 // | RECHERCHE DANS RECIPES AVEC INGREDIENTS, APPAREILS & USTENSILS |
 // +----------------------------------------------------------------+
 
-function advancedSearch(listReciepes, listTagIngredients, listTagUstensils, listTagAppliances) {
+function advancedSearch(listRecipes, listTagIngredients, listTagUstensils, listTagAppliances) {
   // INITIALISE VARIABLE "result"
-  result = listReciepes;
+  result = listRecipes;
   // FILTRES APPLIQUES 1 PAR 1, DE "INGREDIENTS" A "USTENSILS"
   listTagIngredients.forEach(tag => {
     result = searchByIngredients(tag, result); 

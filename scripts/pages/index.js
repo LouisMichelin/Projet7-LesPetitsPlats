@@ -78,7 +78,7 @@ function updateGlobalView(ListRecipe) {
   // 3- SETUP BOUTONS-MENUS : USTENSILS
   fillTags(document.getElementById('all-items-ustensils'), allUstensils, "item-filtre-ustensils");
 }
-
+nativeSome(allIngredients, "coco");
 // +----------------------------------------------------+
 // | FUNCTION REGROUPE INGREDIENTS/APPAREILS/USTENSILES |
 // +----------------------------------------------------+
@@ -140,47 +140,6 @@ function fillTags(tagDomElement, listElement, classCss) {
     };
   };
 }
-  // listElement.forEach(element => {
-  //   // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY
-  //   if ((listElement== allIngredients && !listTagIng.includes(element.toLowerCase())) ||
-  //   (listElement== allAppareils && !listTagApp.includes(element.toLowerCase())) ||
-  //   (listElement== allUstensils && !listTagUst.includes(element.toLowerCase()))) {
-  //     let div = document.createElement('div');
-  //     tagDomElement.appendChild(div);
-  //     div.innerHTML = element;
-  //     div.setAttribute("class", classCss);
-  //     // EVENT LISTENER : ONCLICK
-  //     div.addEventListener("click", function(e) {
-  //       e.preventDefault();
-  //       let tagDomSelection = "";
-  //       // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY
-  //       switch (listElement) {
-  //         case allIngredients:
-  //           listTagIng.push(element.toLowerCase());
-  //           tagDomSelection = "selected-ingredients";
-  //           break;
-  //         case allAppareils:
-  //           listTagApp.push(element.toLowerCase());
-  //           tagDomSelection = "selected-appareils";
-  //           break;
-  //         case allUstensils:
-  //           listTagUst.push(element.toLowerCase());
-  //           tagDomSelection = "selected-ustensils";
-  //           break;
-  //         default:
-  //         console.log("Unknown");
-  //       }
-  //       // SETUP : MENU FILTERS + SECTION DOM FILTERS (AVEC NEW VALUES)
-  //       createMenuSelected(document.getElementById(tagDomSelection), element, div);
-  //       // FUNCTION FILTREE AVEC LES ARRAYS QU'ON VIENT DE PASSER
-  //       let filtredRecipes = advancedSearch(allFiltersRegrouped, listTagIng, listTagUst, listTagApp);
-  //       console.log(filtredRecipes);
-  //       // FUNCTION UPDATEGLOBAL AVEC TOTAL DES 3 ARRAYS
-  //       updateGlobalView(filtredRecipes);
-  //     });
-  //   }
-  // });
-
 
 // +------------------------------------+
 // | CREATION DES CARTES-RECETTES (DOM) |
