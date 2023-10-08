@@ -78,7 +78,7 @@ function updateGlobalView(ListRecipe) {
   // 3- SETUP BOUTONS-MENUS : USTENSILS
   fillTags(document.getElementById('all-items-ustensils'), allUstensils, "item-filtre-ustensils");
 }
-nativeSome(allIngredients, "coco");
+
 // +----------------------------------------------------+
 // | FUNCTION REGROUPE INGREDIENTS/APPAREILS/USTENSILES |
 // +----------------------------------------------------+
