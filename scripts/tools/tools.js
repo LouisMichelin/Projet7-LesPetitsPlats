@@ -9,6 +9,7 @@ function nativeIncludes(menuElements, selectedItem) {
   }
   return false;
 }
+// -----------------------------------------------------------------------------------
 
 // +------------------------------------------------------------+
 // | FONCTION NATIVE : FILTER (Name, Description & Ingredients) |
@@ -43,7 +44,7 @@ function nativeFilterIng(listElements, searchedItem) {
 function nativeFilterApp(listElements, searchedItem) {
   let filtredElements = [];
   for (let i = 0; i < listElements.length; i++) {
-    if (listElements[i].appliance.includes(searchedItem)) {
+    if (listElements[i].appliance.toLowerCase().includes(searchedItem)) {
       filtredElements.push(listElements[i]);
     }
   }
@@ -55,19 +56,13 @@ function nativeFilterApp(listElements, searchedItem) {
 function nativeFilterUst(listElements, searchedItem) {
   let filtredElements = [];
   for (let i = 0; i < listElements.length; i++) {
-    for (let y = 0; y < ustensils.length; y++) {
-      if (nativeSomeUst(listElements[i].ustensils[y], searchedItem)) {
-        filtredElements.push(listElements[i]);
-      }
-      // if (listElements[i].ustensils[y].includes(searchedItem)) {
-      //   filtredElements.push(listElements[i]);
-      // }
+    if (nativeSomeUst(listElements[i].ustensils, searchedItem)) {
+      filtredElements.push(listElements[i]);
     }
   }
   return filtredElements;
 }
-
-
+// -----------------------------------------------------------------------------------
 
 // +---------------------------------------+
 // | FONCTION NATIVE : SOME (Ingredients)  |
@@ -91,3 +86,4 @@ function nativeSomeUst(ustensils, searchedIngredient) {
   }
   return false;
 }
+// -----------------------------------------------------------------------------------

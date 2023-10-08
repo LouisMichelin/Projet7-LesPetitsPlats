@@ -85,66 +85,30 @@ function advancedSearch(listRecipes, listTagIngredients, listTagUstensils, listT
   for (let i = 0; i < listTagIngredients.length; i++) {
     result = searchByIngredients(listTagIngredients[i], result);
   }
-  for (let i = 0; i < listTagAppliances.length; i++) {
-    result = searchByAppliances(listTagAppliances[i], result);
+  for (let y = 0; y < listTagAppliances.length; y++) {
+    result = searchByAppliances(listTagAppliances[y], result);
   }
-  for (let i = 0; i < listTagUstensils.length; i++) {
-    result = searchByUstensils(listTagUstensils[i], result);
+  for (let z = 0; z < listTagUstensils.length; z++) {
+    result = searchByUstensils(listTagUstensils[z], result);
   }
-
-
-  // listTagIngredients.forEach(tag => {
-  //   result = searchByIngredients(tag, result); 
-  // });
-  // listTagAppliances.forEach(tag => {
-  //   result = searchByAppliances(tag, result);
-  // });
-  // listTagUstensils.forEach(tag => {
-  //   result = searchByUstensils(tag, result);
-  // });
   return result;
 }
-
-
 
 // FONCTION SEARCH: INGREDIENTS
 function searchByIngredients(searchString, listRecipes) {
   let allFiltersRegrouped = nativeFilterIng(listRecipes, searchString);
-
-  // let allFiltersRegrouped = listRecipes.filter(card => (
-  //   card.ingredients.some(element => element.ingredient.toLowerCase().includes(searchString))
-  // ));
   return allFiltersRegrouped;
 }
-
 // FONCTION SEARCH: APPAREILS 
 function searchByAppliances(searchString, listRecipes) {
   let allFiltersRegrouped = nativeFilterApp(listRecipes, searchString);
   return allFiltersRegrouped;
 }
-
 // FONCTION SEARCH: USTENSILS
 function searchByUstensils(searchString, listRecipes) {
   let allFiltersRegrouped = nativeFilterUst(listRecipes, searchString);
-  
-  // listRecipes.filter(card => (
-  //   card.ustensils.some(element => element.toLowerCase().includes(searchString))
-  // ));
   return allFiltersRegrouped;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // +----------------------------------------------------+
 // | TOGGLERS MAIN SEARCH BAR : "ENTRER" / BOUTON LOUPE |
