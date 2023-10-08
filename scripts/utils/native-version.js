@@ -93,7 +93,6 @@ function advancedSearch(listRecipes, listTagIngredients, listTagUstensils, listT
   }
   return result;
 }
-
 // FONCTION SEARCH: INGREDIENTS
 function searchByIngredients(searchString, listRecipes) {
   let allFiltersRegrouped = nativeFilterIng(listRecipes, searchString);
@@ -158,18 +157,18 @@ function searchByItem(searchTag, allTags) {
   searchTag = searchTag.toLocaleLowerCase().trim();
   if (searchTag.length > 0) {
     // allTags = Tous les elements-tags de même classe (Ingrédients/Appareils/Ustensils)
-    allTags.forEach(element => {
-      if (element.innerHTML.toLocaleLowerCase().trim().includes(searchTag)) {
-        element.style.display = "block";
+    for (let i = 0; i < allTags.length; i++) {
+      if (allTags[i].innerHTML.toLocaleLowerCase().trim().includes(searchTag)) {
+        allTags[i].style.display = "block";
       } else {
-        element.style.display = "none";
+        allTags[i].style.display = "none";
       }
-    });
+    }
   } else {
     // Reset allTags lorsque suppression "brute" de la searchbar (ctrl+A & Suppr)
-    allTags.forEach(element => {
-      element.style.display = "block";
-    });
+    for (let i = 0; i < allTags.length; i++) {
+      allTags[i].style.display = "block";
+    }
   }
 }
 
@@ -238,19 +237,20 @@ function removeSelectedItem(deleteButton) {
 // | REVERSE EFFECT OF SELECTED FILTERS |
 // +------------------------------------+
 function resetSelectedElement(tagValue) {
-  if (listTagIng.includes(tagValue.toLowerCase())) {
+  if (nativeIncludes(listTagIng, tagValue.toLocaleLowerCase())) {
     let indexRemove = listTagIng.indexOf(tagValue.toLowerCase());
     listTagIng.splice(indexRemove, 1);
     console.log(listTagIng);
-  } else if (listTagApp.includes(tagValue.toLowerCase())) {
+  } else if (nativeIncludes(listTagApp, tagValue.toLocaleLowerCase())) {
     let indexRemove = listTagApp.indexOf(tagValue.toLowerCase());
     listTagApp.splice(indexRemove, 1);
     console.log(listTagApp);
-  } else if (listTagUst.includes(tagValue.toLowerCase())) {
+  } else if (nativeIncludes(listTagUst, tagValue.toLocaleLowerCase())) {
     let indexRemove = listTagUst.indexOf(tagValue.toLowerCase());
     listTagUst.splice(indexRemove, 1);
     console.log(listTagUst);
   }
+
   let filtredFinalRecipes = advancedSearch(allFiltersRegrouped, listTagIng, listTagUst, listTagApp);
   updateGlobalView(filtredFinalRecipes);
 }
