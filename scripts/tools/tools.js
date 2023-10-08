@@ -3,8 +3,7 @@
 // +----------------------------+
 function nativeIncludes(menuElements, selectedItem) {
   for (let i = 0; i < menuElements.length; i++) {
-    if(menuElements[i].toLowerCase().includes(selectedItem))
-    {
+    if(menuElements[i].toLowerCase().includes(selectedItem)) {
       return true;
     }
   }

@@ -70,6 +70,7 @@ function updateGlobalView(ListRecipe) {
   allIngredients = [...new Set(allIngredients)];
   allAppareils = [...new Set(allAppareils)];
   allUstensils = [...new Set(allUstensils)];
+
   // REMPLIR LISTE DES TAGS POUR CHAQUE MENU DEROULANT :
   // 1- SETUP BOUTONS-MENUS : INGREDIENTS
   fillTags(document.getElementById('all-items-ingredients'), allIngredients, "item-filtre-ingredients");
@@ -102,33 +103,34 @@ function fillTags(tagDomElement, listElement, classCss) {
   tagDomElement.innerHTML = "";
   for (let i = 0; i < listElement.length; i++) {
     if ((listElement == allIngredients && !nativeIncludes(listTagIng, listElement[i].toLowerCase())) ||
-      (listElement == allAppareils && !nativeIncludes(listTagApp, listElement[i].toLowerCase())) ||
-      (listElement == allUstensils && !nativeIncludes(listTagUst, listElement[i].toLowerCase()))) {  
-        let div = document.createElement('div');
-        tagDomElement.appendChild(div);
-        div.innerHTML = listElement[i];
-        div.setAttribute("class", classCss);
-        // EVENT LISTENER : ONCLICK
-        div.addEventListener("click", function(e) {
-          e.preventDefault();
-          let tagDomSelection = "";
-          // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY
-          switch (listElement) {
-            case allIngredients:
-              listTagIng.push(listElement[i].toLowerCase());
-              tagDomSelection = "selected-ingredients";
-              break;
-            case allAppareils:
-              listTagApp.push(listElement[i].toLowerCase());
-              tagDomSelection = "selected-appareils";
-              break;
-            case allUstensils:
-              listTagUst.push(listElement[i].toLowerCase());
-              tagDomSelection = "selected-ustensils";
-              break;
-            default:
-            console.log("Unknown");
-          }
+    (listElement == allAppareils && !nativeIncludes(listTagApp, listElement[i].toLowerCase())) ||
+    (listElement == allUstensils && !nativeIncludes(listTagUst, listElement[i].toLowerCase())))
+    {  
+      let div = document.createElement('div');
+      tagDomElement.appendChild(div);
+      div.innerHTML = listElement[i];
+      div.setAttribute("class", classCss);
+      // EVENT LISTENER : ONCLICK
+      div.addEventListener("click", function(e) {
+        e.preventDefault();
+        let tagDomSelection = "";
+        // FILTRE CHAQUE ARRAY (Ingrédients/Appareils/Ustensils) VERS LEUR NEW ARRAY
+        switch (listElement) {
+          case allIngredients:
+            listTagIng.push(listElement[i].toLowerCase());
+            tagDomSelection = "selected-ingredients";
+            break;
+          case allAppareils:
+            listTagApp.push(listElement[i].toLowerCase());
+            tagDomSelection = "selected-appareils";
+            break;
+          case allUstensils:
+            listTagUst.push(listElement[i].toLowerCase());
+            tagDomSelection = "selected-ustensils";
+            break;
+          default:
+          console.log("Unknown");
+        }
         // SETUP : MENU FILTERS + SECTION DOM FILTERS (AVEC NEW VALUES)
         createMenuSelected(document.getElementById(tagDomSelection), listElement[i], div);
         // FUNCTION FILTREE AVEC LES ARRAYS QU'ON VIENT DE PASSER
