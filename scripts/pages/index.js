@@ -6,7 +6,7 @@ let mainInput = document.getElementById('main-input');
 buttonErase.addEventListener("click", function () {
   mainInput.value = "";
   buttonErase.style.display = "none";
-  allFiltersRegrouped= recipes;
+  allFiltersRegrouped = recipes;
   updateGlobalView(allFiltersRegrouped);
 });
 

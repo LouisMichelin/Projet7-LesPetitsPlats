@@ -10,32 +10,82 @@ function nativeIncludes(menuElements, selectedItem) {
   return false;
 }
 
-
-
-// NATIVE FILTER par name, desc et ingredients
-function nativeFilterNameDescIngs(listElements, searchedItem) {
+// +------------------------------------------------------------+
+// | FONCTION NATIVE : FILTER (Name, Description & Ingredients) |
+// +------------------------------------------------------------+
+function nativeFilterNameDescIng(listElements, searchedItem) {
   let filtredElements = [];
   for (let i = 0; i < listElements.length; i++) {
-    //Mettre la condition de filtrage 
-    //exp: filtrer
-    if(listElements[i].name.toLowerCase().includes(searchedItem) ||
+    if (listElements[i].name.toLowerCase().includes(searchedItem) ||
     listElements[i].description.toLowerCase().includes(searchedItem) ||
-    nativeSomeIng(listElements[i].ingredients, searchedItem)
-    )
+    nativeSomeIng(listElements[i].ingredients, searchedItem))
     {
-      filtredElements.push(listElements[i])
+      filtredElements.push(listElements[i]);
+    }
+  }
+  return filtredElements;
+}
+// +----------------------------------------+
+// | FONCTION NATIVE : FILTER (Ingredients) |
+// +----------------------------------------+
+function nativeFilterIng(listElements, searchedItem) {
+  let filtredElements = [];
+  for (let i = 0; i < listElements.length; i++) {
+    if (nativeSomeIng(listElements[i].ingredients, searchedItem)) {
+      filtredElements.push(listElements[i]);
+    }
+  }
+  return filtredElements;
+}
+// +--------------------------------------+
+// | FONCTION NATIVE : FILTER (Appareils) |
+// +--------------------------------------+
+function nativeFilterApp(listElements, searchedItem) {
+  let filtredElements = [];
+  for (let i = 0; i < listElements.length; i++) {
+    if (listElements[i].appliance.includes(searchedItem)) {
+      filtredElements.push(listElements[i]);
+    }
+  }
+  return filtredElements;
+}
+// +--------------------------------------+
+// | FONCTION NATIVE : FILTER (Ustensils) |
+// +--------------------------------------+
+function nativeFilterUst(listElements, searchedItem) {
+  let filtredElements = [];
+  for (let i = 0; i < listElements.length; i++) {
+    for (let y = 0; y < ustensils.length; y++) {
+      if (nativeSomeUst(listElements[i].ustensils[y], searchedItem)) {
+        filtredElements.push(listElements[i]);
+      }
+      // if (listElements[i].ustensils[y].includes(searchedItem)) {
+      //   filtredElements.push(listElements[i]);
+      // }
     }
   }
   return filtredElements;
 }
 
 
-// +--------------------------+
-// | FONCTION NATIVE : SOME   |
-// +--------------------------+
-function nativeSomeIng(ingredients, searchedIgredient) {
-  for (let index = 0; index < ingredients.length; index++) {
-    if( ingredients[index].ingredient.toLowerCase().includes(searchedIgredient)){
+
+// +---------------------------------------+
+// | FONCTION NATIVE : SOME (Ingredients)  |
+// +---------------------------------------+
+function nativeSomeIng(ingredients, searchedIngredient) {
+  for (let i = 0; i < ingredients.length; i++) {
+    if (ingredients[i].ingredient.toLowerCase().includes(searchedIngredient)) {
+      return true;
+    }
+  }
+  return false;
+}
+// +-------------------------------------+
+// | FONCTION NATIVE : SOME (Ustensils)  |
+// +-------------------------------------+
+function nativeSomeUst(ustensils, searchedIngredient) {
+  for (let i = 0; i < ustensils.length; i++) {
+    if (ustensils[i].toLowerCase().includes(searchedIngredient)) {
       return true;
     }
   }
