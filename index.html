@@ -17,7 +17,7 @@
         <img src="./assets/images/logo.svg" alt="Logo des Petits Plats">
       </a>
       <h2 id="main-title">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h2>
-      <form id="main-search-bar" action="">
+      <form id="main-search-bar">
         <input id="main-input" type="text" name="search" placeholder="Rechercher une recette, un ingrédient, ...">
         <button id="button-erase" type="button">
           <img src="./assets/images/croix.svg" alt="Effacer votre Recherche">
@@ -32,10 +32,8 @@
       </form>
     </header>
     <main>
-      <!--------------------------------->
       <!-- SECTION DES BUTTONS FILTERS -->
-      <!--------------------------------->
-      <section id="section-buttons">
+      <div id="section-buttons">
         <div id="all-buttons">
         <!-- BOUTON FILTRE INGREDIENTS-->
           <div class="filter-button" role="menubar" tabindex="0">
@@ -108,20 +106,16 @@
           </div>
         </div>
         <div id="nb-recettes"></div>
-      </section>
-      <!----------------------------------->
+      </div>
       <!-- SECTION DES FILTRES APPLIQUES -->
-      <!----------------------------------->
-      <section id="section-filters">
+      <div id="section-filters">
         <div id="filters-selected"></div>
-      </section>
-      <!------------------------------------>
+      </div>
       <!-- SECTION DES RECETTES AFFICHEES -->
-      <!------------------------------------>
-      <section id="wrapper"></section>
+      <div id="wrapper"></div>
     </main>
-    <script type="text/javascript" src="./data/recipes.js"></script>
-    <script type="text/javascript" src="./scripts/pages/index.js"></script>
-    <script type="text/javascript" src="./scripts/utils/fonctionnelle-optimized.js"></script>
+    <script src="./data/recipes.js"></script>
+    <script src="./scripts/pages/index.js"></script>
+    <script src="./scripts/utils/fonctionnelle-optimized.js"></script>
   </body>
 </html>
