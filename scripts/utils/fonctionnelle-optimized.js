@@ -8,9 +8,9 @@ const loupe = document.getElementById('button-loupe');
 let wrapper = document.getElementById('wrapper').children;
 wrapper = Array.from(wrapper);
 let cards = document.querySelectorAll('.card');
-
 // Liste des recipes deja filtrés
-let allFiltersRegrouped=recipes;
+let allFiltersRegrouped = recipes;
+
 // +---------------------------------------------------+
 // | SVG CREATORS : "DELETE CROSS FROM FILTERS BUTTON" |
 // +---------------------------------------------------+
@@ -71,7 +71,6 @@ function mainSearchFunction() {
 // +---------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC NOM/DESCRIPTION/INGREDIENTS |
 // +---------------------------------------------------------+
-
 function searchByNameDescriptionIngredients(searchString) {
   // INITIALISE VARIABLE "result"
   let result = allFiltersRegrouped.filter(card => (
@@ -86,7 +85,6 @@ function searchByNameDescriptionIngredients(searchString) {
 // +----------------------------------------------------------------+
 // | RECHERCHE DANS RECIPES AVEC INGREDIENTS, APPAREILS & USTENSILS |
 // +----------------------------------------------------------------+
-
 function advancedSearch(listReciepes, listTagIngredients, listTagUstensils, listTagAppliances) {
   // INITIALISE VARIABLE "result"
   result = listReciepes;
